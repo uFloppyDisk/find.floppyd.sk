@@ -7,10 +7,10 @@
       translate-y-0 hover:-translate-y-1
       shadow-md hover:shadow-sm shadow-red-500
     ">
-    <div class="basis-20 px-2 h-full">
+    <div class="basis-10 grow-0 shrink-0 px-1 h-full">
       <slot name="icon" />
     </div>
-    <div class="basis-full grow font-extrabold">
+    <div class="basis-full grow px-2 capitalize font-bold">
       <slot name="info" />
     </div>
   </div>
