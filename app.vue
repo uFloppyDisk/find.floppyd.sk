@@ -8,17 +8,17 @@
         <div class="flex flex-row gap-x-1">
           <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
             <font-awesome-icon 
-              icon="fa-solid fa-minus"
+              :icon="['fas', 'minus']"
             />
           </div>
           <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
             <font-awesome-icon
-              icon="fa-regular fa-square-full"
+              :icon="['far', 'square-full']"
             />
           </div>
           <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
             <font-awesome-icon 
-              icon="fa-solid fa-xmark"
+              :icon="['fas', 'xmark']"
             />
           </div>
         </div>
