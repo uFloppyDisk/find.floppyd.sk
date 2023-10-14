@@ -24,10 +24,10 @@
         </div>
       </div>
       <div class="absolute top-full mt-2">
-        <span class="d-user"></span>
-        <span>@localhost: ~</span>
-        <span class="d-path"></span>
-        <span>$ find "FloppyDisk"</span>
+        <ShellPrefix />
+        <span>find -name "FloppyDisk" -type gamer -not cringe</span>
+        <div></div>
+        <ShellPrefix />
         <span class="animate-pulse">
           <font-awesome-icon 
             class="scale-x-[.60] scale-y-95"
