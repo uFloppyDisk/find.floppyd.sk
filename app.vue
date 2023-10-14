@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col h-screen text-red-500 bg-[#0f0d0d] font-mono">
+  <div class="flex flex-col h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
     <div class="basis-12 px-6 bg-black border border-red-500">
       <div class="flex h-full justify-between items-center">
         <div>
@@ -37,7 +37,7 @@
           >
             <template #icon>
               <font-awesome-icon 
-                class="fa-2x"
+                class="text-3xl"
                 :icon="[
                   'fab',
                   link.icon ? link.icon : link.platform,
@@ -60,3 +60,13 @@ const goToLink = (href: string) => {
 }
 
 </script>
+
+<style>
+body {
+  background: repeating-linear-gradient( 0, #000, #000 2px, #f00 2px, #f00 4px );
+}
+
+div {
+  text-shadow: 0px 0px 5px #f00;
+}
+</style>
