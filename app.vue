@@ -1,9 +1,9 @@
 <template>
   <div class="flex flex-col h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
-    <div class="basis-12 px-6 bg-black border border-red-500">
+    <div class="relative basis-12 px-6 bg-black border border-red-500">
       <div class="flex h-full justify-between items-center">
         <div>
-          $ find 'FloppyDisk'
+          <span>Terminal</span>
         </div>
         <div class="flex flex-row gap-x-1">
           <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
@@ -22,6 +22,18 @@
             />
           </div>
         </div>
+      </div>
+      <div class="absolute top-full mt-2">
+        <span class="d-user"></span>
+        <span>@localhost: ~</span>
+        <span class="d-path"></span>
+        <span>$ find "FloppyDisk"</span>
+        <span class="animate-pulse">
+          <font-awesome-icon 
+            class="scale-x-[.60] scale-y-95"
+            :icon="['fas', 'square-full']"
+          />
+        </span>
       </div>
     </div>
     <div class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center">
@@ -58,6 +70,26 @@ import links from '~/src/links';
 const goToLink = (href: string) => {
   location.href = href;
 }
+
+const genRandomString = (length?: number, base?: number) => {
+  return Math.random().toString(base || 36).substring(2, length || 7);
+}
+
+if (process.browser) {
+  const vanityUserName = `user-${genRandomString()}`;
+  const vanityPath = window.location.pathname;
+
+  const vanityUserNameElements = document.getElementsByClassName("d-user");
+  Array.prototype.forEach.call(vanityUserNameElements, function (element) {
+    element.innerHTML = vanityUserName;
+  })
+
+  const vanityPathElements = document.getElementsByClassName("d-path");
+  Array.prototype.forEach.call(vanityPathElements, function (element) {
+    element.innerHTML = vanityPath;
+  })
+}
+
 
 </script>
 
