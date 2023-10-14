@@ -6,6 +6,7 @@
       transition
       translate-y-0 hover:-translate-y-1
       shadow-md hover:shadow-sm shadow-red-500
+      cursor-pointer
     ">
     <div class="basis-10 grow-0 shrink-0 px-1 h-full">
       <slot name="icon" />
