@@ -13,24 +13,30 @@ export default <
         platform: 'youtube',
         href: 'https://floppyd.sk/yt-prod',
 
-        title: 'Productions',
+        title: 'productions',
     },
     {
         platform: 'youtube',
         href: 'https://floppyd.sk/yt-gaming',
 
-        title: 'Gaming',
+        title: 'gaming',
     },
     {
         platform: 'twitter',
         href: 'https://floppyd.sk/twitter',
 
-        title: 'Tweets',
+        title: 'tweets',
     },
     {
         platform: 'instagram',
         href: 'https://floppyd.sk/instagram',
 
-        title: 'Images',
+        title: 'images',
+    },
+    {
+        platform: 'behance',
+        href: 'https://floppyd.sk/behance',
+
+        title: 'portfolio',
     },
 ];
