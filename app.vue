@@ -39,8 +39,8 @@
               <font-awesome-icon 
                 class="fa-2x"
                 :icon="[
-                  'fa-brands',
-                  link.icon,
+                  'fab',
+                  link.icon ? link.icon : link.platform,
                 ]"
               />
             </template>
@@ -58,6 +58,5 @@ import links from '~/src/links';
 const goToLink = (href: string) => {
   location.href = href;
 }
-
 
 </script>
