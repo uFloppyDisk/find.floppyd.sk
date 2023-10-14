@@ -11,7 +11,10 @@
               :icon="['fas', 'minus']"
             />
           </div>
-          <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
+          <div 
+            class="flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
+            @click="goToLink('https://floppyd.sk/repo-find-floppyd-sk')"
+          >
             <font-awesome-icon
               :icon="['far', 'square-full']"
             />
