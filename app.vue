@@ -41,14 +41,14 @@
       </div>
     </div>
     <div class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center">
-      <div class="grow flex flex-wrap text-center">
+      <div class="group grow flex flex-wrap text-center">
         <div
           v-for="link in links"
           :key="link.href"
           class="basis-1/3 xl:basis-1/4 p-2"
         >
           <SocialLink
-            class="p-1 max-h-10"
+            class="p-1 max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
             @click="goToLink(link.href)"
           >
             <template #icon>
