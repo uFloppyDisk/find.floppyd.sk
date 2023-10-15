@@ -28,6 +28,12 @@ export default <
         title: 'steam',
     },
     {
+        platform: 'github',
+        href: 'https://floppyd.sk/github',
+
+        title: 'github',
+    },
+    {
         platform: 'twitter',
         href: 'https://floppyd.sk/twitter',
 
