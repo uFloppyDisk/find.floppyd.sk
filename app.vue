@@ -72,7 +72,7 @@
 import links from '~/src/links';
 
 const goToLink = (href: string) => {
-  location.href = href;
+  window.open(href, '_blank', 'noopener')
 }
 
 const genRandomString = (length?: number, base?: number) => {
