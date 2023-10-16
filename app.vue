@@ -1,6 +1,7 @@
 <template>
   <div class="relative flex flex-col h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
     <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
+    <ThreeDeeScene />
     <div class="relative basis-12 px-6 bg-black border border-red-500">
       <div class="flex h-full justify-between items-center">
         <div>
