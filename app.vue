@@ -52,7 +52,7 @@
           >
             <template #icon>
               <font-awesome-icon 
-                class="text-3xl"
+                class="fa-1x scale-[1.7]"
                 :icon="[
                   'fab',
                   link.icon ? link.icon : link.platform,
