@@ -45,15 +45,15 @@
         <div
           v-for="link in links"
           :key="link.href"
-          class="basis-1/3 xl:basis-1/4 p-2"
+          class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
         >
           <SocialLink
-            class="p-1 max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
+            class="p-1 min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
             @click="goToLink(link.href)"
           >
             <template #icon>
               <font-awesome-icon 
-                class="fa-1x scale-[1.7]"
+                class="fa-1x scale-[1.5] md:scale-[1.7]"
                 :icon="[
                   'fab',
                   link.icon ? link.icon : link.platform,

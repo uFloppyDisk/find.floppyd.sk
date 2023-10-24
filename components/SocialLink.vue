@@ -9,7 +9,7 @@
       shadow-md hover:shadow-sm shadow-red-500
       cursor-pointer
     ">
-    <div class="flex basis-10 grow-0 shrink-0 h-full justify-center items-center">
+    <div class="flex basis-8 md:basis-10 grow-0 shrink-0 h-full justify-center items-center">
       <slot name="icon" />
     </div>
     <div class="basis-full grow px-2 capitalize font-bold">
