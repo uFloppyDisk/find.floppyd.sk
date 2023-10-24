@@ -70,6 +70,15 @@
 <script setup lang="ts">
 import links from '~/src/links';
 
+useSeoMeta({
+  title: 'Find FloppyDisk',
+  ogTitle: 'Find FloppyDisk Everywhere',
+  description: 'Find FloppyDisk in all corners of the internet.',
+  ogDescription: 'Find FloppyDisk (Pawel Bartusiak) in all corners of the internet.',
+  ogImage: 'https://cdn.floppydiskprod.com/assets/logo.png',
+  twitterCard: 'app',
+})
+
 const goToLink = (href: string) => {
   window.open(href, '_blank', 'noopener')
 }
