@@ -2,7 +2,7 @@
   <div 
     class="
       group flex justify-between items-center 
-      bg-black
+      bg-black/80
       border border-red-500
       transition
       translate-y-0 hover:-translate-y-1
