@@ -42,10 +42,9 @@ if (process.browser) {
       for (let i = 0; i < paths.length; i++) {
         const path = paths[i];
 
-        const material = new THREE.MeshBasicMaterial({
+        const material = new THREE.LineBasicMaterial({
           color: new THREE.Color(0xff0000),
-          depthWrite: false,
-          wireframe: true,
+          linewidth: 1,
         });
 
         const shapes = SVGLoader.createShapes(path);
@@ -53,12 +52,14 @@ if (process.browser) {
         for (let j = 0; j < shapes.length; j++) {
           const shape = shapes[j];
 
-          const geometry = new THREE.ExtrudeGeometry(shape, {
+          const geometryIntermediate = new THREE.ExtrudeGeometry(shape, {
             depth: 0.25,
             bevelEnabled: false,
           });
 
-          const mesh = new THREE.Mesh(geometry, material);
+          const geometry = new THREE.EdgesGeometry(geometryIntermediate);
+
+          const mesh = new THREE.LineSegments(geometry, material);
 
           logo.add(mesh);
         }
@@ -86,7 +87,7 @@ if (process.browser) {
   pivot.add(camera);
   scene.add(pivot);
 
-  camera.position.z = 2;
+  camera.position.z = 1.5;
   camera.lookAt(0, 0, 0);
 
   let delta = 0;
