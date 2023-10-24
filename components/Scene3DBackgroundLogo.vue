@@ -5,7 +5,6 @@
 </template>
 
 <script lang="ts" setup>
-import { ThreeDeeScene } from '#build/components';
 import * as THREE from 'three';
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 
