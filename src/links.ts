@@ -1,14 +1,38 @@
-export default <
+type StandardLink = {
+    platform: string | 'site';
+    href: string;
+
+    title: string;
+    subtitle?: string;
+};
+
+type CustomLink = {
+    platform: 'custom';
+    href: string;
+
+    title: string;
+    subtitle?: string;
+
+    icon: string;
+};
+
+type Link = StandardLink | CustomLink;
+
+export type { StandardLink, CustomLink, Link };
+
+export default <Link[]>[
     {
-        platform: string;
-        href: string;
+        platform: 'site',
+        href: 'https://floppydiskprod.com',
 
-        title: string;
-        subtitle?: string;
+        title: 'FloppyDiskProd',
+    },
+    {
+        platform: 'site',
+        href: 'https://io.floppyd.sk',
 
-        icon?: string;
-    }[]
->[
+        title: 'FloppyDisk I/O',
+    },
     {
         platform: 'youtube',
         href: 'https://floppyd.sk/yt-prod',

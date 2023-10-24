@@ -11,10 +11,27 @@
     ">
     <div class="flex basis-8 md:basis-10 grow-0 shrink-0 h-full justify-center items-center">
       <font-awesome-icon 
+        v-if="link.platform === 'site'"
+        class="fa-1x scale-[1.5] md:scale-[1.7]"
+        :icon="[
+          'fas',
+          'globe'
+        ]"
+      />
+      <font-awesome-icon 
+        v-else-if="(link.platform === 'custom')"
+        class="fa-1x scale-[1.5] md:scale-[1.7]"
+        :icon="[
+          'fas',
+          (link as CustomLink).icon,
+        ]"
+      />
+      <font-awesome-icon 
+        v-else
         class="fa-1x scale-[1.5] md:scale-[1.7]"
         :icon="[
           'fab',
-          link.icon ? link.icon : link.platform,
+          link.platform,
         ]"
       />
     </div>
@@ -25,10 +42,10 @@
 </template>
 
 <script lang="ts" setup>
-import type links from '~/src/links';
+import type { CustomLink, Link } from '~/src/links';
 
 defineProps<{
-  link: typeof links[number];
+  link: Link;
 }>();
 </script>
 
