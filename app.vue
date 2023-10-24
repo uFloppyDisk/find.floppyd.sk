@@ -28,16 +28,15 @@
         </div>
       </div>
       <div class="absolute top-full mt-2 text-sm md:text-md xl:text-lg">
-        <ShellPrefix />
-        <span>find -name "FloppyDisk" -type gamer -not cringe</span>
-        <div></div>
-        <ShellPrefix />
-        <span class="animate-pulse">
-          <font-awesome-icon 
-            class="scale-x-[.60] scale-y-95"
-            :icon="['fas', 'square-full']"
-          />
-        </span>
+        <Shell>find -name "FloppyDisk" -type gamer -not cringe</Shell>
+        <Shell>
+          <span class="animate-pulse">
+            <font-awesome-icon 
+              class="scale-x-[.60] scale-y-95"
+              :icon="['fas', 'square-full']"
+            />
+          </span>
+        </Shell>
       </div>
     </div>
     <div class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center">
