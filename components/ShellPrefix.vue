@@ -1,9 +1,9 @@
 <template>
-  <span class="opacity-90">
+  <span class="opacity-80">
     <span class="d-user"></span>
     <span>@localhost: ~</span>
     <span class="d-path font-bold"></span>
-    <span>$ </span> 
+    <span class="mr-1.5">$</span> 
   </span>
 </template>
 
