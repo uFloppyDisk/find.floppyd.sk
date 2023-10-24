@@ -22,6 +22,12 @@ export default <
         title: 'gaming',
     },
     {
+        platform: 'twitch',
+        href: 'https://floppyd.sk/twitch',
+
+        title: 'twitch',
+    },
+    {
         platform: 'steam',
         href: 'https://floppyd.sk/steam',
 
@@ -44,5 +50,11 @@ export default <
         href: 'https://floppyd.sk/instagram',
 
         title: 'images',
+    },
+    {
+        platform: 'discord',
+        href: 'https://floppyd.sk/discord',
+
+        title: 'discord',
     },
 ];
