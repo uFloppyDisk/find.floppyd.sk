@@ -50,18 +50,8 @@
           <SocialLink
             class="p-1 min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
             @click="goToLink(link.href)"
-          >
-            <template #icon>
-              <font-awesome-icon 
-                class="fa-1x scale-[1.5] md:scale-[1.7]"
-                :icon="[
-                  'fab',
-                  link.icon ? link.icon : link.platform,
-                ]"
-              />
-            </template>
-            <template #info>{{ link.title }}</template>
-          </SocialLink>
+            :link="link"
+          />
         </div>
       </div>
     </div>
