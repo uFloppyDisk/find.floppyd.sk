@@ -100,6 +100,8 @@ if (process.browser) {
 
 <style>
 :root {
+  --fd-bg-color: #8f0000;
+
   --scanline-off: 1px;
   --scanline-on: 1px;
 }
@@ -110,7 +112,7 @@ if (process.browser) {
 }
 
 body {
-  background: repeating-linear-gradient( 0, #000, #000 var(--scanline-off), #f00 var(--scanline-off), #f00 calc(var(--scanline-off) + var(--scanline-on)) );
+  background-color: var(--fd-bg-color);
 }
 
 div {
