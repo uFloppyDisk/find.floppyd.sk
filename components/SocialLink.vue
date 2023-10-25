@@ -1,6 +1,6 @@
 <template>
   <div class="
-      group flex justify-between items-center
+      group group/subtitle flex justify-between items-center
       h-10
       bg-black/80
       border border-red-500
@@ -37,7 +37,7 @@
         ]"
       />
     </div>
-    <div class="group/subtitle basis-full grow px-2">
+    <div class="basis-full grow px-2">
       <div 
         class="relative"
         :class="{
