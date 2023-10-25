@@ -17,7 +17,7 @@ if (process.browser) {
   }, false)
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 10);
+  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 10);
 
   const clock = new THREE.Clock();
   const interval = 1 / 1;
@@ -67,8 +67,13 @@ if (process.browser) {
       logo.translateX(-0.5);
       logo.translateY(0.5);
       logo.translateZ(0.125);
+
       logo.scale.set(0.01, 0.01, 1);
       logo.setRotationFromEuler(new THREE.Euler(Math.PI, 0.0, 0.0));
+
+      // Centering adjustments
+      logo.translateX(0.042);
+
       scene.add(logo);
     },
 
@@ -81,13 +86,12 @@ if (process.browser) {
     }
   )
 
+  camera.position.z = 3;
+  camera.lookAt(0, 0, 0);
 
   const pivot = new THREE.Group();
   pivot.add(camera);
   scene.add(pivot);
-
-  camera.position.z = 1.5;
-  camera.lookAt(0, 0, 0);
 
   let delta = 0;
   function animate() {
