@@ -26,6 +26,8 @@ export default <Link[]>[
         href: 'https://floppydiskprod.com',
 
         title: 'FloppyDiskProd',
+        subtitle:
+            'Business-oriented and client-facing portfolio and marketplace.',
     },
     {
         platform: 'site',
@@ -40,12 +42,14 @@ export default <Link[]>[
         href: 'https://floppyd.sk/yt-prod',
 
         title: 'productions',
+        subtitle: 'Professional video productions for clients or for fun!',
     },
     {
         platform: 'youtube',
         href: 'https://floppyd.sk/yt-gaming',
 
         title: 'gaming',
+        subtitle: "Videos with goofs and gaffs, don't think too hard on it.",
     },
     {
         platform: 'twitch',
@@ -64,6 +68,7 @@ export default <Link[]>[
         href: 'https://floppyd.sk/github',
 
         title: 'github',
+        subtitle: "See what I'm working on!",
     },
     {
         platform: 'twitter',
@@ -82,5 +87,6 @@ export default <Link[]>[
         href: 'https://floppyd.sk/discord',
 
         title: 'discord',
+        subtitle: 'Official unofficial FloppyDisk hangout.',
     },
 ];
