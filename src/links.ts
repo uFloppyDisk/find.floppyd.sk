@@ -31,7 +31,9 @@ export default <Link[]>[
         platform: 'site',
         href: 'https://io.floppyd.sk',
 
-        title: 'FloppyDisk I/O',
+        title: 'FD I/O',
+        subtitle:
+            'A custom-built web platform for hosting my own web applications.',
     },
     {
         platform: 'youtube',
