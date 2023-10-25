@@ -21,7 +21,10 @@
               :icon="['far', 'square-full']"
             />
           </div>
-          <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
+          <div 
+            class="flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
+            @click="goHome"
+          >
             <font-awesome-icon 
               :icon="['fas', 'xmark']"
             />
@@ -73,6 +76,30 @@ useSeoMeta({
 const goToLink = (href: string) => {
   window.open(href, '_blank', 'noopener')
 }
+
+const goHome = () => {
+  const ua = navigator.userAgent;
+  const info = {
+    browser: /Edge\/\d+/.test(ua) ? 'ed' : /MSIE 9/.test(ua) ? 'ie9' : /MSIE 10/.test(ua) ? 'ie10' : /MSIE 11/.test(ua) ? 'ie11' : /MSIE\s\d/.test(ua) ? 'ie?' : /rv\:11/.test(ua) ? 'ie11' : /Firefox\W\d/.test(ua) ? 'ff' : /Chrom(e|ium)\W\d|CriOS\W\d/.test(ua) ? 'gc' : /\bSafari\W\d/.test(ua) ? 'sa' : /\bOpera\W\d/.test(ua) ? 'op' : /\bOPR\W\d/i.test(ua) ? 'op' : typeof PointerEvent !== 'undefined' ? 'ie?' : '',
+  };
+
+  let home = 'about:blank';
+  switch (info.browser) {
+    case ('gc'):
+      home = 'https://www.google.com/_/chrome/newtab';
+      break;
+    
+    case ('op'):
+      home = 'about:speeddial';
+      break;
+
+    case ('sa'):
+      home = 'http://livepage.apple.com';
+      break;
+  }
+
+  window.location.href = home;
+};
 
 const genRandomString = (length?: number, base?: number) => {
   return Math.random().toString(base || 36).substring(2, length || 7);
