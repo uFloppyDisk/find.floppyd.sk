@@ -99,7 +99,7 @@ if (process.browser) {
     delta += clock.getDelta();
 
     if (delta > interval) {
-      pivot.rotation.y += (Math.PI / 6);
+      pivot.rotation.y = (pivot.rotation.y + (Math.PI / 6)) % (Math.PI * 2);
       delta = delta % interval;
     }
 
