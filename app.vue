@@ -49,8 +49,8 @@
         >
           <SocialLink
             class="p-1 min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
-            @click="goToLink(link.href)"
             :link="link"
+            @click="goToLink"
           />
         </div>
       </div>
