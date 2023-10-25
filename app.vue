@@ -8,9 +8,23 @@
           <span>Terminal</span>
         </div>
         <div class="flex flex-row gap-x-1">
-          <div class="flex w-7 h-7 border border-red-500 justify-center items-center">
+          <div 
+            class="relative flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
+            @click="toggleLinks"
+          >
             <font-awesome-icon 
+              class="absolute transition-opacity duration-75 delay-75"
+              :class="{
+                'opacity-0': !showLinks
+              }"
               :icon="['fas', 'minus']"
+            />
+            <font-awesome-icon
+              class="absolute transition-opacity duration-75 delay-75"
+              :class="{
+                'opacity-0': showLinks
+              }"
+              :icon="['fas', 'plus']"
             />
           </div>
           <div 
@@ -43,7 +57,12 @@
         </Shell>
       </div>
     </div>
-    <div class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center">
+    <div 
+      class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center duration-300 transition"
+      :class="{
+          'opacity-0 invisible': !showLinks,
+      }"
+    >
       <div class="group grow flex flex-wrap text-center">
         <div
           v-for="link in links"
@@ -63,6 +82,8 @@
 
 <script setup lang="ts">
 import links from '~/src/links';
+
+const showLinks = ref(true);
 
 useSeoMeta({
   title: 'Find FloppyDisk',
@@ -100,6 +121,10 @@ const goHome = () => {
 
   window.location.href = home;
 };
+
+const toggleLinks = () => {
+  showLinks.value = !showLinks.value;
+}
 
 const genRandomString = (length?: number, base?: number) => {
   return Math.random().toString(base || 36).substring(2, length || 7);
