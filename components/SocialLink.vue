@@ -37,8 +37,25 @@
         ]"
       />
     </div>
-    <div class="basis-full grow px-2 capitalize font-bold">
-      {{ link.title }}
+    <div class="group/subtitle basis-full grow px-2">
+      <div 
+        class="relative"
+        :class="{
+          'group-hover/subtitle:-translate-y-1/3 transition-transform': link.subtitle
+        }"
+      >
+        <span class="capitalize font-bold">
+          {{ link.title }}
+        </span>
+        <div
+          v-if="link.subtitle" 
+          class="absolute -translate-y-1 text-sm text-center overflow-clip"
+        >
+          <marquee class="opacity-0 group-hover/subtitle:opacity-100 transition-opacity" scrollamount="7" scrolldelay="100">
+            {{ link.subtitle }}
+          </marquee>
+        </div>
+      </div>
     </div>
   </div>
 </template>
