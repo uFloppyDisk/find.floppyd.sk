@@ -1,5 +1,5 @@
 <template>
-  <canvas id="scene" class="absolute w-screen h-screen">
+  <canvas id="scene" class="h-full" width="100" height="100">
 
   </canvas>
 </template>
@@ -9,27 +9,42 @@ import * as THREE from 'three';
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 
 if (process.browser) {
+  const sceneDom = document.getElementById('scene');
+  const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
+    width: window.innerWidth,
+    height: window.innerHeight,
+  };
+
   window.addEventListener('resize', (event) => {
-    camera.aspect = window.innerWidth / window.innerHeight;
+    const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
+      width: window.innerWidth,
+      height: window.innerHeight,
+    };
+
+    camera.aspect = sceneDomSize.width / sceneDomSize.height;
     camera.updateProjectionMatrix();
 
-    renderer.setSize(window.innerWidth, window.innerHeight, true);
+    renderer.setSize(sceneDomSize.width, sceneDomSize.height, true);
   }, false)
 
   const scene = new THREE.Scene();
-  const camera = new THREE.PerspectiveCamera(50, window.innerWidth / window.innerHeight, 0.1, 10);
+  const camera = new THREE.PerspectiveCamera(
+    45, 
+    sceneDomSize.width / sceneDomSize.height,
+    0.1,
+    10
+  );
 
   const clock = new THREE.Clock();
   const interval = 1 / 1;
 
-  const sceneDom = document.getElementById('scene');
   const renderer = new THREE.WebGLRenderer({
     canvas: sceneDom,
     alpha: true
   });
 
   renderer.setPixelRatio(window.devicePixelRatio);
-  renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setSize(sceneDomSize.width, sceneDomSize.height);
 
   const loader = new SVGLoader();
   const logo = new THREE.Group();
@@ -86,7 +101,7 @@ if (process.browser) {
     }
   )
 
-  camera.position.z = 3;
+  camera.position.z = 2;
   camera.lookAt(0, 0, 0);
 
   const pivot = new THREE.Group();
