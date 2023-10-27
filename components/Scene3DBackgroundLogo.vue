@@ -8,6 +8,10 @@
 import * as THREE from 'three';
 import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
 
+const props = defineProps<{
+  done: boolean
+}>();
+
 if (process.browser) {
   const sceneDom = document.getElementById('scene');
   const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
@@ -110,6 +114,11 @@ if (process.browser) {
 
   let delta = 0;
   function animate() {
+    // if (props.done) {
+    //   renderer.dispose();
+    //   return;
+    // }
+
     requestAnimationFrame(animate);
     delta += clock.getDelta();
 
