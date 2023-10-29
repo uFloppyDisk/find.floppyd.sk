@@ -1,6 +1,6 @@
 <template>
     <div 
-      class="absolute w-screen h-screen bg-[#2f0c0c] z-50 transition-opacity delay-500 duration-500" 
+      class="absolute w-screen h-screen bg-[#2f0c0c] z-50 transition-opacity delay-500 duration-500 select-none" 
       :class="{
         'opacity-0 pointer-events-none': done
       }"
