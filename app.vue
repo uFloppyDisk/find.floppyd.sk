@@ -63,14 +63,14 @@
           'opacity-0 invisible': !showLinks,
       }"
     >
-      <div class="group grow flex flex-wrap text-center">
+      <div class="group grow flex flex-wrap-reverse flex-row-reverse text-center">
         <div
-          v-for="link in links"
+          v-for="link in links.slice().reverse()"
           :key="link.href"
           class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
         >
           <SocialLink
-            class="p-1 min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
+            class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
             :link="link"
             @click="goToLink"
           />
