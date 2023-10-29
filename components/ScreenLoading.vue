@@ -16,8 +16,8 @@
               <div>v60.09</div>
             </div>
             <div class="px-4 py-3 bg-black/20 text-center">
-              <div ref="dispLoading" id="loading" class="flex h-6 border border-[#ff000077] text-start text-md font-mono whitespace-nowrap"></div>
               <div ref="dispLoadingStatus">// Initializing //</div>
+              <div ref="dispLoading" id="loading" class="flex h-7 p-1 border border-[#ff000077] text-start text-md font-mono whitespace-nowrap"></div>
             </div>
           </div>
         </div>  
