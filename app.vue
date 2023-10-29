@@ -63,9 +63,9 @@
           'opacity-0 invisible': !showLinks,
       }"
     >
-      <div class="group grow flex flex-wrap text-center">
+      <div class="group grow flex flex-wrap-reverse flex-row-reverse text-center">
         <div
-          v-for="link in links"
+          v-for="link in links.slice().reverse()"
           :key="link.href"
           class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
         >
