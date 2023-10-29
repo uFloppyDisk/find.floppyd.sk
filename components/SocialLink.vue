@@ -9,9 +9,12 @@
       shadow-md hover:shadow-sm shadow-red-500
       cursor-pointer
     "
+    :class="{
+      'hover:border-b-0': link.subtitle
+    }"
     @click="$emit('click', link.href)"
   >
-    <div class="flex basis-8 md:basis-10 grow-0 shrink-0 h-full justify-center items-center">
+    <div class="flex basis-8 pl-1 md:basis-10 grow-0 shrink-0 h-full justify-center items-center">
       <font-awesome-icon 
         v-if="link.platform === 'site'"
         class="fa-1x scale-[1.5] md:scale-[1.7]"
@@ -47,15 +50,19 @@
         <span class="capitalize font-bold">
           {{ link.title }}
         </span>
-        <div
-          v-if="link.subtitle" 
-          class="absolute -translate-y-1 text-sm text-center overflow-clip"
-        >
-          <marquee class="opacity-0 group-hover/subtitle:opacity-100 transition-opacity" scrollamount="7" scrolldelay="100">
-            {{ link.subtitle }}
-          </marquee>
-        </div>
       </div>
+    </div>
+    <div
+      v-if="link.subtitle"
+      class="
+        absolute top-full 
+        w-full mt-1 p-1 -translate-y-1
+        text-sm text-center
+        border border-t-0 border-red-500 bg-black/80
+        opacity-0 group-hover/subtitle:opacity-100 transition-opacity
+      "
+    >
+        {{ link.subtitle }}
     </div>
   </div>
 </template>
