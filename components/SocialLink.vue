@@ -9,6 +9,9 @@
       shadow-md hover:shadow-sm shadow-red-500
       cursor-pointer
     "
+    :class="{
+      'hover:border-b-0': link.subtitle
+    }"
     @click="$emit('click', link.href)"
   >
     <div class="flex basis-8 md:basis-10 pl-1 grow-0 shrink-0 h-full justify-center items-center">
@@ -57,7 +60,7 @@
         pointer-events-none
       "
     >
-      <div class="basis-8 md:basis-10 pl-1 grow-0 shrink-0"></div>
+      <div class="basis-8 md:basis-10 pl-1 grow-0 shrink-0 border-t border-red-500"></div>
       <div
         class="basis-full h-full p-1 border border-t-0 border-red-500 bg-black/80"
       >
