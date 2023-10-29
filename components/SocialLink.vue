@@ -43,9 +43,6 @@
     <div class="basis-full grow px-2">
       <div 
         class="relative"
-        :class="{
-          'group-hover/subtitle:-translate-y-1/3 transition-transform': link.subtitle
-        }"
       >
         <span class="capitalize font-bold">
           {{ link.title }}
@@ -61,6 +58,7 @@
         text-sm text-center
         border border-t-0 border-red-500 bg-black/80
         opacity-0 group-hover/subtitle:opacity-100 transition-opacity
+        pointer-events-none
       "
     >
         {{ link.subtitle }}
