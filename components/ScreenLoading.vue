@@ -75,7 +75,9 @@ onMounted(() => {
     if (!value) { return; }
     if (dispLoadingStatus.value == null) { return; }
 
-    dispLoadingStatus.value.innerHTML = "Welcome";
+    var donePhrase = "DONE";
+    if (Math.random() >= 0.99) { donePhrase = "DAWN"; };
+    dispLoadingStatus.value.innerHTML = donePhrase;
   })
 
   makeProgress();
