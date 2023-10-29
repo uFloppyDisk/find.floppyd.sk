@@ -55,6 +55,7 @@
     <div
       v-if="link.subtitle"
       class="
+        subtitle
         absolute top-full 
         w-full mt-1 p-1 -translate-y-1
         text-sm text-center
@@ -79,4 +80,9 @@ defineEmits<{
 }>();
 </script>
 
-<style></style>
+<style scoped>
+.subtitle {
+  width: calc(100% + 2px);
+  left: -1px;
+}
+</style>
