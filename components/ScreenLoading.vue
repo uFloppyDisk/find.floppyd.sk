@@ -7,7 +7,7 @@
     >
       <div class="container flex flex-col mx-auto h-full gap-y-2 justify-center items-center">
         <div class="flex basis-3/5 grow-0 w-full justify-center">
-          <Scene3DBackgroundLogo class="border border-[#ff000077] border-dotted" :done="done" />
+          <Scene3DBackgroundLogo class="border-2 border-[#ff000077] border-dotted" :done="done" />
         </div>
         <div class="flex basis-auto grow-0 w-full justify-center">
           <div class="basis-1/3 grow-0 h-fit">
