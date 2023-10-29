@@ -65,7 +65,7 @@ onMounted(() => {
   dispLoading.value.style.width = dispLoading.value.innerHTML.clientWidth + 'px'
 
   watch(progress, (value, old) => {
-    if (dispLoading.value == null) { return; }
+    if (dispLoading.value?.children[value] == null) { return; }
 
     dispLoading.value.children[value].classList.add('done');
     dispLoading.value.children[value].innerHTML = "#";

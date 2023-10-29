@@ -95,14 +95,6 @@ if (process.browser) {
 
       scene.add(logo);
     },
-
-    function (xhr: any) {
-      console.log((xhr.loaded / xhr.total * 100) + '% loaded');
-    },
-
-    function (error: any) {
-      console.log('An error happened');
-    }
   )
 
   camera.position.z = 2;
