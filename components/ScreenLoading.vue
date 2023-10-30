@@ -26,6 +26,8 @@
 </template>
 
 <script lang="ts" setup>
+const PROGRESS_MAX = 100;
+
 const dispLoading: Ref<HTMLDivElement | null> = ref(null);
 const dispLoadingStatus: Ref<HTMLDivElement | null> = ref(null);
 const dispLoadingSteps = ref(0);
@@ -33,17 +35,15 @@ const dispLoadingSteps = ref(0);
 const progress = ref(-1);
 const done = ref(false);
 const makeProgress = () => {
-  if (progress.value >= dispLoadingSteps.value) { 
+  if (progress.value >= PROGRESS_MAX) { 
     done.value = true;
     return;
   }
 
   progress.value += 1;
 
-  const completenessRatio = (progress.value / dispLoadingSteps.value);
-  const multiplier = Math.min(Math.max(completenessRatio, 0.01), 0.80);
-
-  setTimeout(makeProgress, (50 + ((Math.random() - 0.5) * 40)) * (1.2 - multiplier));
+  const multiplier = Math.min(Math.max((progress.value / PROGRESS_MAX), 0.01), 0.80);
+  setTimeout(makeProgress, (15 + ((Math.random() - 0.5) * 10)) * (1.2 - multiplier));
 }
 
 onMounted(() => {
@@ -65,10 +65,12 @@ onMounted(() => {
   dispLoading.value.style.width = dispLoading.value.innerHTML.clientWidth + 'px'
 
   watch(progress, (value, old) => {
-    if (dispLoading.value?.children[value] == null) { return; }
+    const curProgressStep = Math.floor((value / PROGRESS_MAX) * dispLoadingSteps.value);
+    
+    if (dispLoading.value?.children[curProgressStep] == null) { return; }
 
-    dispLoading.value.children[value].classList.add('done');
-    dispLoading.value.children[value].innerHTML = "#";
+    dispLoading.value.children[curProgressStep].classList.add('done');
+    dispLoading.value.children[curProgressStep].innerHTML = "#";
   })
 
   watch(done, (value, old) => {
