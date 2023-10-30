@@ -154,6 +154,8 @@ if (process.browser) {
 
   --scanline-off: 1px;
   --scanline-on: 1px;
+
+  background-color: var(--fd-bg-color);
 }
 
 ::selection {
@@ -162,6 +164,7 @@ if (process.browser) {
 }
 
 body {
+  position: fixed;
   background-color: var(--fd-bg-color);
 }
 
