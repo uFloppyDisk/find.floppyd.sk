@@ -1,5 +1,5 @@
 <template>
-  <canvas id="scene" class="h-full" width="100" height="100">
+  <canvas id="scene" class="w-full" width="100" height="100">
 
   </canvas>
 </template>
