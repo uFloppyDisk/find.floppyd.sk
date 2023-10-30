@@ -10,10 +10,10 @@
           <Scene3DBackgroundLogo class="basis-full md:basis-1/3 border-2 border-[#ff000077] border-dotted" :done="done" />
         </div>
         <div class="flex basis-auto grow-0 w-full justify-center">
-          <div class="basis-1/3 grow-0 h-fit">
-            <div class="flex mb-1 gap-2 text-2xl justify-center">
+          <div class="basis-full sm:basis-1/3 grow-0 h-fit">
+            <div class="flex mb-1 gap-2 text-2xl justify-center items-baseline">
               <div>FLOPPY OS</div>
-              <div>v60.09</div>
+              <div class="text-sm">v60.09</div>
             </div>
             <div class="px-4 py-3 bg-black/20 text-center">
               <div ref="dispLoadingStatus">// Initializing //</div>
