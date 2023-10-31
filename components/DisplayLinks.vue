@@ -27,7 +27,7 @@
               ]"
             />
           </div>
-          <div class="basis-full ml-2 border-b border-dashed border-red-500 font-bold text-xl capitalize opacity-75 group-hover/category:opacity-100 transition-opacity">
+          <div class="basis-full ml-2 border-b border-dashed border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity">
             {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
           </div>
         </div>
