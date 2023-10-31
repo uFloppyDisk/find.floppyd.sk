@@ -61,9 +61,11 @@
     >
       <div class="basis-8 md:basis-10 pl-1 grow-0 shrink-0 border-t border-red-500"></div>
       <div
-        class="basis-full h-full px-1.5 py-1 border border-t-0 border-dashed border-red-500 bg-black/80 break-words"
+        class="basis-full h-full px-1.5 border border-t-0 border-dashed border-red-500 bg-black/80 break-words"
       >
-        {{ link.subtitle }}
+        <div class="-translate-y-1">
+          {{ link.subtitle }}
+        </div>
       </div>
     </div>
   </div>
