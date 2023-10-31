@@ -5,11 +5,11 @@
         'opacity-0 invisible': !showLinks,
     }"
   >
-    <div class="group grow flex flex-col-reverse gap-2 p-2">
+    <div class="group flex flex-col-reverse grow gap-2 p-2">
       <div
         v-for="category in categories" 
         :key="category[0]"
-        class="grow flex flex-col"
+        class="flex flex-col grow"
       >
         <div class="ml-2 font-bold text-xl capitalize">
           {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
