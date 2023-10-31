@@ -1,6 +1,6 @@
 <template>
   <div>
-    <ShellPrefix />
+    <ElementShellPrefix />
     <span>
       <slot />
     </span>

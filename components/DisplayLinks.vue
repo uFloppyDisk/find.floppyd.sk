@@ -50,7 +50,7 @@
                 :key="link.href"
                 class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
               >
-                <SocialLink
+                <ElementLink
                   class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
                   :link="link"
                   @click="$emit('click', link.href)"
@@ -92,7 +92,7 @@ categoryPriority.forEach(category => {
 });
 
 links.forEach(link => {
-  var category = 'misc';
+  var category = 'misc.';
   if (link.category) { category = link.category };
   if (!categories.has(category)) { categories.set(category, [])}
 
