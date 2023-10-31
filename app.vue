@@ -9,10 +9,7 @@
           <span class="ml-1 text-xs">v60.09</span>
         </div>
         <div class="flex flex-row gap-x-1">
-          <div 
-            class="relative flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
-            @click="toggleLinks"
-          >
+          <ElementButton @click="toggleLinks">
             <font-awesome-icon 
               class="absolute transition-opacity duration-75 delay-75"
               :class="{
@@ -27,23 +24,17 @@
               }"
               :icon="['fas', 'plus']"
             />
-          </div>
-          <div 
-            class="flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
-            @click="goToLink('https://floppyd.sk/repo-find-floppyd-sk')"
-          >
+          </ElementButton>
+          <ElementButton @click="goToLink('https://floppyd.sk/repo-find-floppyd-sk')">
             <font-awesome-icon
               :icon="['far', 'square-full']"
             />
-          </div>
-          <div 
-            class="flex w-7 h-7 border border-red-500 justify-center items-center cursor-pointer"
-            @click="goHome"
-          >
+          </ElementButton>
+          <ElementButton @click="goHome">
             <font-awesome-icon 
               :icon="['fas', 'xmark']"
             />
-          </div>
+          </ElementButton>
         </div>
       </div>
       <div class="absolute top-full mt-2 text-sm md:text-md xl:text-lg">

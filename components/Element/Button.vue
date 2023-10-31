@@ -1,0 +1,23 @@
+<template>
+  <div 
+    class="
+      relative flex 
+      w-7 h-7 
+      border border-red-500 
+      justify-center items-center 
+      cursor-pointer
+      hover:bg-red-500 hover:text-black transition-colors
+    "
+  >
+    <slot />
+  </div>
+</template>
+
+<script lang="ts" setup>
+
+</script>
+
+<style scoped>
+
+</style>
+
