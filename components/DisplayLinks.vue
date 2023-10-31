@@ -11,11 +11,11 @@
         :key="category[0]"
         class="group/category flex flex-col grow"
       >
-        <div class="flex">
-          <div 
-            class="flex basis-4 shrink-0 opacity-50 justify-center items-center cursor-pointer hover:opacity-100 transition-opacity"
-            @click="collapse((category[0] as Categories))"
-          >
+        <div 
+          class="flex cursor-pointer"
+          @click="collapse((category[0] as Categories))"
+        >
+          <div class="flex basis-4 shrink-0 opacity-50 justify-center items-center hover:opacity-100 transition-opacity">
             <font-awesome-icon 
               class="fa-1x transition-transform duration-100"
               :class="{
@@ -27,7 +27,12 @@
               ]"
             />
           </div>
-          <div class="basis-full ml-2 border-b border-dashed border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity">
+          <div 
+            class="basis-full ml-2 border-dashed border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
+            :class="{
+              'border-b': !collapseCategory[category[0]]
+            }"
+          >
             {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
           </div>
         </div>
