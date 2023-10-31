@@ -2,10 +2,11 @@
   <div class="relative flex flex-col w-screen h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
     <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
     <ScreenLoading />
-    <div class="relative basis-12 px-6 bg-black/80 border border-red-500">
+    <div class="relative basis-12 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center">
         <div>
-          <span>Terminal</span>
+          <span>Floppy OS</span>
+          <span class="ml-1 text-xs">v60.09</span>
         </div>
         <div class="flex flex-row gap-x-1">
           <div 
