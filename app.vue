@@ -38,15 +38,15 @@
         </div>
       </div>
       <div class="absolute top-full mt-2 text-sm md:text-md xl:text-lg">
-        <Shell>find -name "FloppyDisk" -type gamer -not cringe</Shell>
-        <Shell>
+        <ElementShellLine>find -name "FloppyDisk" -type gamer -not cringe</ElementShellLine>
+        <ElementShellLine>
           <span class="animate-pulse">
             <font-awesome-icon 
               class="scale-x-[.60] scale-y-95"
               :icon="['fas', 'square-full']"
             />
           </span>
-        </Shell>
+        </ElementShellLine>
       </div>
     </div>
     <DisplayLinks :showLinks="showLinks" @click="goToLink" />
