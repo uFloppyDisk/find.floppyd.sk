@@ -37,7 +37,7 @@
           </ElementButton>
         </div>
       </div>
-      <div class="absolute top-full mt-2 text-sm md:text-md xl:text-lg">
+      <div class="absolute top-full mt-2 text-sm md:text-base">
         <ElementShellLine>find -name "FloppyDisk" -type gamer -not cringe</ElementShellLine>
         <ElementShellLine>
           <span class="animate-pulse">
