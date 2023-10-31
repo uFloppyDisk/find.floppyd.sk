@@ -1,6 +1,6 @@
 <template>
   <div 
-    class="flex basis-auto grow px-6 sm:px-12 md:px-36 xl:px-48 2xl:px-96 items-center duration-300 transition"
+    class="flex basis-auto grow px-6 sm:px-12 md:px-36 xl:px-48 2xl:px-96 items-center duration-300 transition select-none"
     :class="{
         'opacity-0 invisible': !showLinks,
     }"
