@@ -12,7 +12,6 @@
     :class="{
       'hover:border-b-0': link.subtitle
     }"
-    @click="$emit('click', link.href)"
   >
     <div class="flex basis-8 md:basis-10 pl-1 grow-0 shrink-0 h-full justify-center items-center">
       <font-awesome-icon 
@@ -75,10 +74,6 @@ import type { CustomLink, Link } from '~/src/links';
 
 defineProps<{
   link: Link;
-}>();
-
-defineEmits<{
-  (event: 'click', href: string): void
 }>();
 </script>
 

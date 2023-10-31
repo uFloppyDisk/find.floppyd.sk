@@ -1,5 +1,5 @@
 <template>
-  <div class="relative flex flex-col h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
+  <div class="relative flex flex-col w-screen h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
     <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
     <ScreenLoading />
     <div class="relative basis-12 px-6 bg-black/80 border border-red-500">
@@ -57,32 +57,11 @@
         </Shell>
       </div>
     </div>
-    <div 
-      class="flex basis-auto grow px-6 sm:px-12 md:px-36 items-center duration-300 transition"
-      :class="{
-          'opacity-0 invisible': !showLinks,
-      }"
-    >
-      <div class="group grow flex flex-wrap-reverse flex-row-reverse text-center">
-        <div
-          v-for="link in links.slice().reverse()"
-          :key="link.href"
-          class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
-        >
-          <SocialLink
-            class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
-            :link="link"
-            @click="goToLink"
-          />
-        </div>
-      </div>
-    </div>
+    <DisplayLinks :showLinks="showLinks" @click="goToLink" />
   </div>
 </template>
 
 <script setup lang="ts">
-import links from '~/src/links';
-
 const showLinks = ref(true);
 
 useSeoMeta({

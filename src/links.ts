@@ -1,17 +1,21 @@
-type StandardLink = {
-    platform: string | 'site';
+import type { Categories } from '~/src/categories';
+
+type GenericLink = {
+    platform: string;
     href: string;
 
     title: string;
     subtitle?: string;
+
+    category?: Categories;
 };
 
-type CustomLink = {
-    platform: 'custom';
-    href: string;
+type StandardLink = GenericLink & {
+    platform: string | 'site';
+};
 
-    title: string;
-    subtitle?: string;
+type CustomLink = GenericLink & {
+    platform: 'custom';
 
     icon: string;
 };
@@ -28,6 +32,8 @@ export default <Link[]>[
         title: 'FloppyDiskProd',
         subtitle:
             'Business-oriented and client-facing portfolio and marketplace.',
+
+        category: 'priority',
     },
     {
         platform: 'site',
@@ -36,6 +42,8 @@ export default <Link[]>[
         title: 'FD I/O',
         subtitle:
             'A custom-built web platform for hosting my own web applications.',
+
+        category: 'priority',
     },
     {
         platform: 'youtube',
@@ -43,44 +51,25 @@ export default <Link[]>[
 
         title: 'productions',
         subtitle: 'Professional video productions for clients or for fun!',
+
+        category: 'content',
     },
     {
         platform: 'youtube',
         href: 'https://floppyd.sk/yt-gaming',
 
         title: 'gaming',
-        subtitle: "Videos with goofs and gaffs, don't think too hard on it.",
+        subtitle: 'Laid-back videos with goofs and gaffs.',
+
+        category: 'content',
     },
     {
         platform: 'twitch',
         href: 'https://floppyd.sk/twitch',
 
         title: 'twitch',
-    },
-    {
-        platform: 'steam',
-        href: 'https://floppyd.sk/steam',
 
-        title: 'steam',
-    },
-    {
-        platform: 'github',
-        href: 'https://floppyd.sk/github',
-
-        title: 'github',
-        subtitle: "See what I'm working on!",
-    },
-    {
-        platform: 'twitter',
-        href: 'https://floppyd.sk/twitter',
-
-        title: 'tweets',
-    },
-    {
-        platform: 'instagram',
-        href: 'https://floppyd.sk/instagram',
-
-        title: 'images',
+        category: 'content',
     },
     {
         platform: 'discord',
@@ -88,5 +77,40 @@ export default <Link[]>[
 
         title: 'discord',
         subtitle: 'Official unofficial FloppyDisk hangout.',
+
+        category: 'social',
+    },
+    {
+        platform: 'steam',
+        href: 'https://floppyd.sk/steam',
+
+        title: 'steam',
+
+        category: 'social',
+    },
+    {
+        platform: 'github',
+        href: 'https://floppyd.sk/github',
+
+        title: 'github',
+        subtitle: "See what I'm working on!",
+
+        category: 'priority',
+    },
+    {
+        platform: 'twitter',
+        href: 'https://floppyd.sk/twitter',
+
+        title: 'tweets',
+
+        category: 'social',
+    },
+    {
+        platform: 'instagram',
+        href: 'https://floppyd.sk/instagram',
+
+        title: 'images',
+
+        category: 'social',
     },
 ];
