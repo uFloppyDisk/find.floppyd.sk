@@ -5,11 +5,14 @@
         'opacity-0 invisible': !showLinks,
     }"
   >
-    <div class="group flex flex-col-reverse grow gap-2 p-2">
+    <div class="group flex flex-col-reverse grow gap-2">
       <div
         v-for="category in categories" 
         :key="category[0]"
         class="group/category flex flex-col grow"
+        :class="{
+          'mb-4': category[0] === 'priority'
+        }"
       >
         <div 
           class="flex cursor-pointer"
@@ -67,13 +70,18 @@
             'hidden': collapseCategory[category[0]]
           }"
         >
-          <div class="basis-4 shrink-0 mt-2 mb-1 border border-t-0 border-r-0 border-red-500 opacity-50"></div>
+          <div class="basis-4 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-red-500 opacity-50"></div>
           <div class="basis-full">
-            <div class="flex flex-wrap-reverse flex-row-reverse text-center">
+            <div 
+              class="flex flex-wrap-reverse flex-row-reverse text-center m-1"
+              :class="{
+                'animate-[bgpulse_5s_ease-in-out_infinite]': category[0] === 'priority'
+              }"
+            >
               <div
                 v-for="link in category[1].slice().reverse()"
                 :key="link.href"
-                class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 p-2"
+                class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 m-1"
               >
                 <ElementLink
                   class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
@@ -129,6 +137,18 @@ categories = new Map([...categories.entries()].filter((cat) => cat[1].length > 0
 </script>
 
 <style>
+
+@keyframes bgpulse {
+  0% {
+    background-color: #ff000080;
+  }
+  50% {
+    background-color: #ff000022;
+  }
+  100% {
+    background-color: #ff000080;
+  }
+}
 
 </style>
 
