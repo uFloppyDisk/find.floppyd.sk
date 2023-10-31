@@ -3,7 +3,7 @@
     <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
     <ScreenLoading />
     <div class="relative basis-12 px-6 bg-black/80 border-b border-red-500">
-      <div class="flex h-full justify-between items-center">
+      <div class="flex h-full justify-between items-center select-none">
         <div>
           <span>Floppy OS</span>
           <span class="ml-1 text-xs">v60.09</span>
