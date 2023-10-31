@@ -28,12 +28,37 @@
             />
           </div>
           <div 
-            class="basis-full mx-2 border-dotted border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
+            class="flex basis-full mx-2 border-dotted border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
             :class="{
               'border-b': !collapseCategory[category[0]]
             }"
           >
-            {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
+            <span 
+              class="flex w-full"
+              :class="{
+                'animate-bounce': category[0] === 'priority'
+              }"
+            >
+              <div class="flex basis-5 pr-1 justify-center items-center">
+                <font-awesome-icon
+                  v-if="category[0] === 'priority'"
+                  :icon="['fas', 'heart']"
+                />
+                <font-awesome-icon
+                  v-else-if="category[0] === 'content'"
+                  :icon="['fas', 'video']"
+                />
+                <font-awesome-icon
+                  v-else-if="category[0] === 'social'"
+                  :icon="['fas', 'user-group']"
+                />
+                <font-awesome-icon
+                  v-else
+                  :icon="['fas', 'question']"
+                />
+              </div>
+              {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
+            </span>
           </div>
         </div>
         <div 
@@ -92,7 +117,7 @@ categoryPriority.forEach(category => {
 });
 
 links.forEach(link => {
-  var category = 'misc.';
+  var category = 'miscellaneous';
   if (link.category) { category = link.category };
   if (!categories.has(category)) { categories.set(category, [])}
 
