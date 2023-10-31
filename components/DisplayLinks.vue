@@ -28,7 +28,7 @@
             />
           </div>
           <div 
-            class="basis-full mx-2 border-dashed border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
+            class="basis-full mx-2 border-dotted border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
             :class="{
               'border-b': !collapseCategory[category[0]]
             }"
