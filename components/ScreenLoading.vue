@@ -62,7 +62,7 @@ onMounted(() => {
   }
 
   dispLoadingSteps.value = dispLoading.value?.children.length;
-  dispLoading.value.style.width = dispLoading.value.innerHTML.clientWidth + 'px'
+  dispLoading.value.style.width = dispLoading.value.clientWidth + 'px'
 
   watch(progress, (value, old) => {
     const curProgressStep = Math.floor((value / PROGRESS_MAX) * dispLoadingSteps.value);

@@ -6,14 +6,14 @@
 
 <script lang="ts" setup>
 import * as THREE from 'three';
-import { SVGLoader } from 'three/addons/loaders/SVGLoader.js';
+import { SVGLoader } from 'three/examples/jsm/loaders/SVGLoader';
 
 const props = defineProps<{
   done: boolean
 }>();
 
 if (process.browser) {
-  const sceneDom = document.getElementById('scene');
+  const sceneDom = document.getElementById('scene') ?? undefined;
   const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
     width: window.innerWidth,
     height: window.innerHeight,
