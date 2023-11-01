@@ -1,20 +1,19 @@
 <template>
   <div 
-    class="flex basis-auto grow px-6 sm:px-12 md:px-36 xl:px-48 2xl:px-96 items-start md:items-center duration-300 transition select-none overflow-y-scroll"
+    class="flex basis-auto grow px-4 sm:px-24 md:px-36 xl:px-48 2xl:px-96 items-start xl:items-center duration-300 transition select-none overflow-y-scroll"
     :class="{
         'opacity-0 invisible': !showLinks,
     }"
   >
   <div class="flex flex-col grow">
-      <div class="md:hidden pt-20"></div>
-      <div class="group flex flex-col-reverse grow gap-2">
+      <div class="xl:hidden pt-20"></div>
+      <div class="group flex flex-col-reverse grow pl-2 pr-1 gap-2 backdrop-blur-sm backdrop-brightness-[0.90]">
         <div
           v-for="category in categories" 
           :key="category[0]"
-          class="group/category flex flex-col grow py-1 pl-2 pr-1"
+          class="group/category flex flex-col grow py-1"
           :class="{
             'mb-4': category[0] === 'priority',
-            'backdrop-opacity-90 backdrop-saturate-200 backdrop-brightness-50 backdrop-blur-sm shadow-lg shadow-black/50': !collapseCategory[category[0]]
           }"
         >
           <div 
@@ -42,7 +41,7 @@
               <span 
                 class="flex w-full"
                 :class="{
-                  'animate-bounce': category[0] === 'priority'
+                  'animate-bounce': category[0] === 'priority' && collapseCategory[category[0]]
                 }"
               >
                 <div class="flex basis-5 pr-1 justify-center items-center">
@@ -97,7 +96,7 @@
           </div>
         </div>
       </div>
-      <div class="md:hidden pt-6"></div>
+      <div class="xl:hidden pt-6"></div>
     </div>
   </div>
 </template>
