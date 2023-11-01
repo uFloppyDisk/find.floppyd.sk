@@ -134,6 +134,11 @@ if (process.browser) {
   color: black;
 }
 
+::-webkit-scrollbar {
+  width: 0;
+  height: 0;
+}
+
 body {
   position: fixed;
   background-color: var(--fd-bg-color);
