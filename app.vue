@@ -37,17 +37,7 @@
           </ElementButton>
         </div>
       </div>
-      <div class="absolute top-full mt-2 text-sm md:text-base">
-        <ElementShellLine>find -name "FloppyDisk" -type gamer -not cringe</ElementShellLine>
-        <ElementShellLine>
-          <span class="animate-pulse">
-            <font-awesome-icon 
-              class="scale-x-[.60] scale-y-95"
-              :icon="['fas', 'square-full']"
-            />
-          </span>
-        </ElementShellLine>
-      </div>
+      <Shell class="mt-2 text-sm md:text-base" />
     </div>
     <DisplayLinks :showLinks="showLinks" @click="goToLink" />
   </div>
@@ -96,26 +86,6 @@ const goHome = () => {
 const toggleLinks = () => {
   showLinks.value = !showLinks.value;
 }
-
-const genRandomString = (length?: number, base?: number) => {
-  return Math.random().toString(base || 36).substring(2, length || 7);
-}
-
-if (process.browser) {
-  const vanityUserName = `user-${genRandomString()}`;
-  const vanityPath = window.location.pathname;
-
-  const vanityUserNameElements = document.getElementsByClassName("d-user");
-  Array.prototype.forEach.call(vanityUserNameElements, function (element) {
-    element.innerHTML = vanityUserName;
-  })
-
-  const vanityPathElements = document.getElementsByClassName("d-path");
-  Array.prototype.forEach.call(vanityPathElements, function (element) {
-    element.innerHTML = vanityPath;
-  })
-}
-
 
 </script>
 
