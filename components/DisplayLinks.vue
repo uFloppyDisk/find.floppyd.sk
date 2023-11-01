@@ -1,17 +1,19 @@
 <template>
   <div 
-    class="flex basis-auto grow px-6 sm:px-12 md:px-36 xl:px-48 2xl:px-96 items-center duration-300 transition select-none"
+    class="flex basis-auto grow px-6 sm:px-12 md:px-36 xl:px-48 2xl:px-96 items-start md:items-center duration-300 transition select-none overflow-y-scroll"
     :class="{
         'opacity-0 invisible': !showLinks,
     }"
   >
-    <div class="group flex flex-col-reverse grow gap-2">
+  <div class="group flex flex-col-reverse grow gap-2">
+      <div class="md:hidden pt-6"></div>
       <div
         v-for="category in categories" 
         :key="category[0]"
-        class="group/category flex flex-col grow"
+        class="group/category flex flex-col grow py-1 pl-2 pr-1"
         :class="{
-          'mb-4': category[0] === 'priority'
+          'mb-4': category[0] === 'priority',
+          'backdrop-opacity-90 backdrop-saturate-200 backdrop-brightness-50 backdrop-blur-sm shadow-lg shadow-black/50': !collapseCategory[category[0]]
         }"
       >
         <div 
@@ -93,6 +95,7 @@
           </div>
         </div>
       </div>
+      <div class="md:hidden pt-20"></div>
     </div>
   </div>
 </template>
