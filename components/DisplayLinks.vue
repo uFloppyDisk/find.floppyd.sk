@@ -2,7 +2,7 @@
   <div 
     class="flex basis-auto grow px-4 sm:px-24 md:px-36 xl:px-48 2xl:px-96 items-start xl:items-center duration-300 transition select-none overflow-y-scroll"
     :class="{
-        'opacity-0 invisible': !showLinks,
+        'opacity-0 pointer-events-none': !showLinks,
     }"
   >
   <div class="flex flex-col grow">
