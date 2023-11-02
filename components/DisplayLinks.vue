@@ -7,7 +7,7 @@
   >
   <div class="flex flex-col grow">
       <div class="xl:hidden pt-20"></div>
-      <div class="group flex flex-col-reverse grow pl-2 pr-1 gap-2 backdrop-blur-sm backdrop-brightness-[0.90]">
+      <div class="group flex flex-col-reverse grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-[0.90] border border-red-500/25">
         <div
           v-for="category in categories" 
           :key="category[0]"
