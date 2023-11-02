@@ -3,7 +3,7 @@
     <span class="text-red-500/80">
       <span>{{ $parent?.vanity.userName ?? 'user-unkwn' }}</span>
       <span>@localhost: ~</span>
-      <span class="font-bold">{{ $parent?.vanity.userName ?? '/' }}</span>
+      <span class="font-bold">{{ $parent?.vanity.path ?? '/' }}</span>
       <span>$ </span> 
     </span>
     <span>
