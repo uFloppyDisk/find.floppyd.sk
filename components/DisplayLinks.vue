@@ -72,7 +72,8 @@
               'hidden': collapseCategory[category[0]]
             }"
           >
-            <div class="basis-4 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-red-500 opacity-50"></div>
+            <div class="basis-1 shrink-0"></div>
+            <div class="basis-3 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-red-500 opacity-50"></div>
             <div class="basis-full">
               <div 
                 class="flex flex-wrap-reverse flex-row-reverse text-center m-1"
