@@ -10,18 +10,31 @@ import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
 const input: Ref<String> = ref('');
-const focussed: Ref<Boolean> = ref(false);
-
-const userName = ref('');
-const path = ref('');
 
 const history: String[] = [];
 const previous: String[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
 
+const focussed: Ref<Boolean> = ref(false);
+
+const vanity: {
+  userName: String;
+  path: String;
+} = reactive({
+  userName: '',
+  path: '',
+});
+
+onMounted(() => {    
+  vanity.userName = `user-${randomString()}`;
+  vanity.path = window.location.pathname;
+})
+
 defineExpose<{
-  userName: Ref<String>;
-  path: Ref<String>;
-}>({userName, path});
+  vanity: {
+    userName: String;
+    path: String;
+  }
+}>({vanity});
 
 const commit = (text: String) => {
   history.push(text);
@@ -69,11 +82,6 @@ const keyDownEvent = (event: KeyboardEvent) => {
 }
 
 if (process.browser) {
-  window.addEventListener('DOMContentLoaded', () => {
-    userName.value = `user-${randomString()}`;
-    path.value = window.location.pathname;
-  });
-
   watch(shell, (value, _) => {
     if (value == null) { return; }
 
