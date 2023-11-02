@@ -1,5 +1,5 @@
 <template>
-  <div ref="shell" class="absolute top-full w-full h-screen" tabindex="0">
+  <div ref="shell" tabindex="0">
     <ElementShellHistory v-for="line in previous">{{ line }}</ElementShellHistory>
     <ElementShellInput :input="input" @commit="commit" />
   </div>
