@@ -9,9 +9,8 @@
     <span>
       <span class="inline-flex basis-0 grow shrink bg-transparent whitespace-pre-wrap" role="textbox">{{ input }}</span>
       <span 
-        class="absolute h-fit -translate-x-0.5 transition-opacity"
+        class="absolute h-fit transition-opacity"
         :class="{
-          'ml-0.5': input.length > 0,
           'opacity-0': !focussed
         }"
       >
