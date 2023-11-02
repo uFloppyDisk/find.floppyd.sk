@@ -6,7 +6,6 @@
       border border-red-500
       transition
       translate-y-0 hover:-translate-y-1
-      shadow-md hover:shadow-sm shadow-red-500
       cursor-pointer
     "
     :class="{

@@ -87,6 +87,9 @@
                 >
                   <ElementLink
                     class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
+                    :class="{
+                      'shadow-md hover:shadow-sm shadow-red-500/75': category[0] !== 'priority'
+                    }"
                     :link="link"
                     @click="$emit('click', link.href)"
                   />
