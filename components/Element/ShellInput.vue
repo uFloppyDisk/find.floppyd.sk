@@ -7,7 +7,7 @@
       <span>$ </span> 
     </span>
     <span>
-      <span class="inline-flex basis-0 grow shrink bg-transparent" role="textbox">{{ input }}</span>
+      <span class="inline-flex basis-0 grow shrink bg-transparent whitespace-pre-wrap" role="textbox">{{ input }}</span>
       <span 
         class="absolute h-fit -translate-x-0.5 transition-opacity"
         :class="{

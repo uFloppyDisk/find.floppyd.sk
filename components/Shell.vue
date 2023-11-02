@@ -63,7 +63,7 @@ const keyDownEvent = (event: KeyboardEvent) => {
   }
 
   const charCode = event.key.charCodeAt(0);
-  if ((charCode >= 33 && charCode <= 126)) {
+  if ((charCode >= 32 && charCode <= 126)) {
     input.value += event.key;
   }
 }
