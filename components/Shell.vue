@@ -1,7 +1,7 @@
 <template>
   <div ref="shell" tabindex="0">
     <ElementShellHistory v-for="line in previous">{{ line }}</ElementShellHistory>
-    <ElementShellInput :input="input" @commit="commit" />
+    <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
   </div>
 </template>
 
@@ -10,6 +10,7 @@ import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
 const input: Ref<String> = ref('');
+const focussed: Ref<Boolean> = ref(false);
 
 const userName = ref('');
 const path = ref('');
@@ -75,6 +76,14 @@ if (process.browser) {
 
   watch(shell, (value, _) => {
     if (value == null) { return; }
+
+    value.addEventListener('focusin', (event) => {
+      focussed.value = true;
+    })
+
+    value.addEventListener('focusout', (event) => {
+      focussed.value = false;
+    })
 
     value.addEventListener("keydown", keyDownEvent);
   });
