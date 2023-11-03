@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="text-red-500/80">
+    <span class="text-red-500">
       <span>{{ $parent?.vanity.userName ?? 'user-unkwn' }}</span>
       <span>@localhost: ~</span>
       <span class="font-bold">{{ $parent?.vanity.path ?? '/' }}</span>

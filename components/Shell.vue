@@ -1,5 +1,11 @@
 <template>
-  <div ref="shell" tabindex="0">
+  <div 
+    ref="shell" tabindex="0"
+    class="transition-opacity"
+    :class="{
+      'opacity-70': !focussed
+    }"
+  >
     <ElementShellHistory v-for="line in previous">{{ line }}</ElementShellHistory>
     <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
   </div>
