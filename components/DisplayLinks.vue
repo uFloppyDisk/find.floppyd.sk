@@ -7,7 +7,7 @@
   >
   <div class="flex flex-col grow">
       <div class="xl:hidden pt-20"></div>
-      <div class="group flex flex-col-reverse grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-[0.90] border border-red-500/25">
+      <div class="group flex flex-col-reverse grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-red-500/25">
         <div
           v-for="category in categories" 
           :key="category[0]"
@@ -87,10 +87,7 @@
                   class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 m-1"
                 >
                   <ElementLink
-                    class="min-w-fit max-h-10 opacity-100 group-hover:opacity-60 hover:!opacity-100"
-                    :class="{
-                      'shadow-md hover:shadow-sm shadow-red-500/75': category[0] !== 'priority'
-                    }"
+                    class="min-w-fit max-h-10 opacity-100 group-hover:opacity-75 hover:!opacity-100"
                     :link="link"
                     @click="$emit('click', link.href)"
                   />
