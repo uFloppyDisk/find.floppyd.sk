@@ -1,0 +1,30 @@
+{
+  "name": "twitch-get-status",
+  "version": "1.0.0",
+  "description": "> TODO: description",
+  "author": "Pawel Bartusiak <21136755+uFloppyDisk@users.noreply.github.com>",
+  "homepage": "https://github.com/uFloppyDisk/find.floppyd.sk#readme",
+  "license": "ISC",
+  "main": "lib/twitch-get-status.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/uFloppyDisk/find.floppyd.sk.git"
+  },
+  "scripts": {
+    "test": "node ./__tests__/twitch-get-status.test.js"
+  },
+  "bugs": {
+    "url": "https://github.com/uFloppyDisk/find.floppyd.sk/issues"
+  },
+  "devDependencies": {
+    "@cloudflare/workers-types": "^4.20231025.0",
+    "typescript": "^5.2.2"
+  }
+}
