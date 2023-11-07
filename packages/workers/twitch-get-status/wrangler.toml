@@ -2,6 +2,10 @@ name = "twitch-get-status"
 main = "src/index.ts"
 compatibility_date = "2023-10-30"
 
+kv_namespaces = [
+  { binding = "FD_CONTENT_STATUS", id = "890cd9936caf4e3e87fcfef8c14b7258" }
+]
+
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)
 # Note: Use secrets to store sensitive data.
 # Docs: https://developers.cloudflare.com/workers/platform/environment-variables
