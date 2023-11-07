@@ -13,6 +13,9 @@ node_modules
 logs
 *.log
 
+# Cloudflare Wrangler
+.wrangler
+
 # Misc
 .DS_Store
 .fleet
