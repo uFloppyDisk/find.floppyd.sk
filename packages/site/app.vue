@@ -44,7 +44,19 @@
 </template>
 
 <script setup lang="ts">
+import type ContentStatus from './src/types/ContentStatus';
+
+const config = useRuntimeConfig()
+
 const showLinks = ref(true);
+const contentStatus = ref<ContentStatus>({
+  twitch: {
+    live: false,
+    started_at: ''
+  }
+});
+
+provide("contentStatus", readonly(contentStatus))
 
 useSeoMeta({
   title: 'Find FloppyDisk',
@@ -85,6 +97,14 @@ const goHome = () => {
 
 const toggleLinks = () => {
   showLinks.value = !showLinks.value;
+}
+
+if (process.browser) {
+  const {data} = await useFetch(config.public.CFWorkerTwitchGetStatus, { })
+
+  watch(data, (value, _) => {
+    contentStatus.value = { twitch: (value as ContentStatus['twitch']) };
+  })
 }
 
 </script>

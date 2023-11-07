@@ -67,11 +67,37 @@
         </div>
       </div>
     </div>
+    <div class="absolute top-0 right-0 p-0.5 text-xs" v-if="link.platform === 'twitch'">
+      <span v-if="status.twitch.live">
+        <font-awesome-icon
+          class="fa-1x animate-pulse"
+          :icon="[
+            'fas',
+            'circle'
+          ]"
+        />
+        <span class="mx-1">
+          {{ new Date(Date.now() - new Date(status.twitch.started_at).getTime()).toISOString().slice(11, 19) }}
+        </span>
+      </span>
+      <span v-else>
+        <font-awesome-icon
+          class="fa-1x"
+          :icon="[
+            'far',
+            'circle'
+          ]"
+        />
+      </span>
+    </div>
   </div>
 </template>
 
 <script lang="ts" setup>
+import type ContentStatus from '~/src/types/ContentStatus'
 import type { CustomLink, Link } from '~/src/links';
+
+const status: ContentStatus | undefined = inject("contentStatus", { twitch: { live: false, started_at: '' }});
 
 defineProps<{
   link: Link;

@@ -29,6 +29,11 @@ export default {
 		return new Response(value, {
 			headers: {
 				'content-type': 'application/json;charset=UTF-8',
+
+				'Access-Control-Allow-Credentials': 'true',
+				'Access-Control-Allow-Methods': 'GET',
+				'Access-Control-Allow-Origin': '*',
+				'Access-Control-Allow-Headers': 'Content-Type'
 			},
 		});
 	},
