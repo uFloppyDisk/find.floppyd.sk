@@ -9,7 +9,7 @@
       cursor-pointer
     "
     :class="{
-      'hover:border-b-0': link.subtitle
+      'hover:border-b-0': link.subtitle,
     }"
   >
     <div class="flex basis-8 md:basis-10 pl-1 grow-0 shrink-0 h-full justify-center items-center">
@@ -77,7 +77,7 @@
           ]"
         />
         <span class="mx-1">
-          {{ new Date(Date.now() - new Date(status.twitch.started_at).getTime()).toISOString().slice(11, 19) }}
+            {{ uptimeString }}
         </span>
       </span>
       <span v-else>
@@ -96,8 +96,35 @@
 <script lang="ts" setup>
 import type ContentStatus from '~/src/types/ContentStatus'
 import type { CustomLink, Link } from '~/src/links';
+604800000
+const status: ContentStatus = inject("contentStatus", { twitch: { live: false, started_at: '' }});
+const uptime: number = inject("contentTwitchUptimeSeconds", 0);
 
-const status: ContentStatus | undefined = inject("contentStatus", { twitch: { live: false, started_at: '' }});
+const uptimeString: ComputedRef<string> = computed(() => {
+    const value = uptime.value;
+    var str = "";
+
+    const days = Math.floor(value / 86400000);
+    if (days > 0) {
+        str += `${days}d `;
+    }
+
+    const hours = Math.floor(value / 3600000);
+    const minutes = Math.floor(value / 60000);
+    const seconds = Math.floor(value / 1000);
+
+    if (hours > 0) {
+        str += `${(hours % 24).toString().padStart(2, '0')}:`;
+    }
+
+    if (minutes > 0) {
+        str += `${(minutes % 60).toString().padStart(2, '0')}:`;
+    }
+
+    str += `${(seconds % 60).toString().padStart(2, '0')}`;
+
+    return str;
+})
 
 defineProps<{
   link: Link;
