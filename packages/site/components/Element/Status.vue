@@ -2,7 +2,10 @@
   <span class="flex gap-1">
     <span class="flex justify-center items-center" v-if="icon">
       <font-awesome-icon
-        class="fa-1x animate-pulse"
+        class="fa-1x"
+        :class="{
+          'animate-pulse': pulse
+        }"
         :icon="icon"
       />
     </span>
@@ -14,6 +17,7 @@
 <script lang="ts" setup>
 defineProps<{
   icon?: String[];
+  pulse?: Boolean,
   description?: {
     text: String;
     condition: Boolean;

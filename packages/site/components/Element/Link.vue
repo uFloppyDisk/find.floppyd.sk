@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="absolute top-0 right-0 mx-1 p-0.5 text-xs" v-if="link.platform === 'twitch'">
-      <ElementStatus v-if="status?.twitch.live" :icon="['fas', 'circle']" :description="{ text: 'LIVE', condition: uptime < 86400000 }">
+      <ElementStatus v-if="status?.twitch.live" :icon="['fas', 'circle']" :pulse="true" :description="{ text: 'LIVE', condition: uptime < 86400000 }">
         <span>
             {{ uptimeString }}
         </span>
