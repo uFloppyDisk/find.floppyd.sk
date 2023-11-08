@@ -104,26 +104,21 @@ const uptime: number = inject("contentTwitchUptimeSeconds", 0);
 
 const uptimeString: ComputedRef<string> = computed(() => {
     const value = uptime.value;
+
     var str = "";
+    var include = false;
 
-    const days = Math.floor(value / 86400000);
-    if (days > 0) {
-        str += `${days}d `;
+    if (value > 86400000) {
+        str += Math.floor(value / 86400000) + "d ";
+        include = true;
     }
 
-    const hours = Math.floor(value / 3600000);
-    const minutes = Math.floor(value / 60000);
-    const seconds = Math.floor(value / 1000);
-
-    if (hours > 0) {
-        str += `${(hours % 24).toString().padStart(2, '0')}:`;
+    if (include || value > 3600000) {
+        str += (Math.floor(value / 3600000) % 24).toString().padStart(2, '0') + ":";
     }
 
-    if (minutes > 0) {
-        str += `${(minutes % 60).toString().padStart(2, '0')}:`;
-    }
-
-    str += `${(seconds % 60).toString().padStart(2, '0')}`;
+    str += (Math.floor(value / 60000) % 60).toString().padStart(2, '0') + ":";
+    str += (Math.floor(value / 1000) % 60).toString().padStart(2, '0');
 
     return str;
 })
