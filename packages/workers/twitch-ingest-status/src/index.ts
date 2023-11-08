@@ -8,15 +8,15 @@
  * Learn more at https://developers.cloudflare.com/workers/
  */
 
-export type TwitchEventSubStatusEnabled = {
+type TwitchEventSubStatusEnabled = {
 	status: 'enabled'
 }
 
-export type TwitchEventSubStatusVerification = {
+type TwitchEventSubStatusVerification = {
 	status: 'webhook_callback_verification_pending'
 }
 
-export type TwitchEventSubBody = {
+type TwitchEventSubBody = {
 	id: string,
 	version: string,
 	condition: { broadcaster_user_id: string },
@@ -25,7 +25,7 @@ export type TwitchEventSubBody = {
 	cost: number
 } & TwitchEventSubStatusEnabled | TwitchEventSubStatusVerification;
 
-export type TwitchEventStreamOnline = {
+type TwitchEventStreamOnline = {
 	subscription: TwitchEventSubBody & {
 		type: 'stream.online',
 	},
@@ -39,7 +39,7 @@ export type TwitchEventStreamOnline = {
 	}
 }
 
-export type TwitchEventStreamOffline = {
+type TwitchEventStreamOffline = {
 	subscription: TwitchEventSubBody & {
 		type: 'stream.offline',
 	},
@@ -50,7 +50,7 @@ export type TwitchEventStreamOffline = {
 	}
 }
 
-export type TwitchEvent = TwitchEventStreamOnline | TwitchEventStreamOffline;
+type TwitchEvent = TwitchEventStreamOnline | TwitchEventStreamOffline;
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
