@@ -67,8 +67,8 @@
         </div>
       </div>
     </div>
-    <div class="absolute top-0 right-0 p-0.5 text-xs" v-if="link.platform === 'twitch'">
-      <span class="flex" v-if="status.twitch.live">
+    <div class="absolute top-0 right-0 mx-1 p-0.5 text-xs" v-if="link.platform === 'twitch'">
+      <span class="flex gap-1" v-if="status.twitch.live">
         <span class="flex justify-center items-center">
           <font-awesome-icon
             class="fa-1x animate-pulse"
@@ -78,18 +78,22 @@
             ]"
           />
         </span>
-        <span class="mx-1">
+        <span class="font-extrabold" v-if="uptime < 86400000">LIVE</span>
+        <span>
             {{ uptimeString }}
         </span>
       </span>
-      <span v-else>
-        <font-awesome-icon
-          class="fa-1x"
-          :icon="[
-            'far',
-            'circle'
-          ]"
-        />
+      <span class="flex gap-1" v-else>
+        <span class="flex justify-center items-center">
+          <font-awesome-icon
+            class="fa-1x"
+            :icon="[
+              'far',
+              'circle'
+            ]"
+          />
+        </span>
+        <span class="font-extrabold">OFFLINE</span>
       </span>
     </div>
   </div>
