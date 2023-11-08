@@ -98,7 +98,7 @@
 <script lang="ts" setup>
 import type ContentStatus from '~/src/types/ContentStatus'
 import type { CustomLink, Link } from '~/src/links';
-604800000
+
 const status: ContentStatus = inject("contentStatus", { twitch: { live: false, started_at: '' }});
 const uptime: number = inject("contentTwitchUptimeSeconds", 0);
 
@@ -108,12 +108,12 @@ const uptimeString: ComputedRef<string> = computed(() => {
     var str = "";
     var include = false;
 
-    if (value > 86400000) {
+    if (value >= 86400000) {
         str += Math.floor(value / 86400000) + "d ";
         include = true;
     }
 
-    if (include || value > 3600000) {
+    if (include || value >= 3600000) {
         str += (Math.floor(value / 3600000) % 24).toString().padStart(2, '0') + ":";
     }
 
