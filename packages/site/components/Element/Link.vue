@@ -68,14 +68,16 @@
       </div>
     </div>
     <div class="absolute top-0 right-0 p-0.5 text-xs" v-if="link.platform === 'twitch'">
-      <span v-if="status.twitch.live">
-        <font-awesome-icon
-          class="fa-1x animate-pulse"
-          :icon="[
-            'fas',
-            'circle'
-          ]"
-        />
+      <span class="flex" v-if="status.twitch.live">
+        <span class="flex justify-center items-center">
+          <font-awesome-icon
+            class="fa-1x animate-pulse"
+            :icon="[
+              'fas',
+              'circle'
+            ]"
+          />
+        </span>
         <span class="mx-1">
             {{ uptimeString }}
         </span>
