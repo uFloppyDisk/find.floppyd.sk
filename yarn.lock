@@ -343,7 +343,7 @@
 
 "@cloudflare/workerd-linux-64@1.20231025.0":
   version "1.20231025.0"
-  resolved "https://registry.npmjs.org/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20231025.0.tgz"
+  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-linux-64/-/workerd-linux-64-1.20231025.0.tgz#cdb58bbebc3401c35a90ebd3320cf81d4f5f55de"
   integrity sha512-AT9dxgKXOa9xZxZ3k2a432axPJJ58KpoNWnPiPYGpuAuLoWnfcYwwh6mr9sZVcTdAdTAK9Xu9c81tp0YABanUw==
 
 "@cloudflare/workerd-linux-arm64@1.20231025.0":
@@ -353,7 +353,7 @@
 
 "@cloudflare/workerd-windows-64@1.20231025.0":
   version "1.20231025.0"
-  resolved "https://registry.yarnpkg.com/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20231025.0.tgz#a585467c9f2ffee23148f7ed7ad36e565a6b403f"
+  resolved "https://registry.npmjs.org/@cloudflare/workerd-windows-64/-/workerd-windows-64-1.20231025.0.tgz"
   integrity sha512-7vtq0mO22A2v0OOsKXa760r9a84Gg8CK0gDu5uNWlj6hojmt011iz7jJt76I7oo/XrVwVlVfu69GnA3ljx6U8w==
 
 "@cloudflare/workers-types@^4.20230419.0":
@@ -621,17 +621,17 @@
 
 "@esbuild/linux-x64@0.17.19":
   version "0.17.19"
-  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.17.19.tgz"
+  resolved "https://registry.yarnpkg.com/@esbuild/linux-x64/-/linux-x64-0.17.19.tgz#8a0e9738b1635f0c53389e515ae83826dec22aa4"
   integrity sha512-68ngA9lg2H6zkZcyp22tsVt38mlhWde8l3eJLWkyLrp4HwMUr3c1s/M2t7+kHIhvMjglIBrFpncX1SzMckomGw==
 
 "@esbuild/linux-x64@0.18.20":
   version "0.18.20"
-  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz"
+  resolved "https://registry.yarnpkg.com/@esbuild/linux-x64/-/linux-x64-0.18.20.tgz#c7690b3417af318a9b6f96df3031a8865176d338"
   integrity sha512-UYqiqemphJcNsFEskc73jQ7B9jgwjWrSayxawS6UVFZGWrAAtkzjxSqnoclCXxWtfwLdzU+vTpcNYhpn43uP1w==
 
 "@esbuild/linux-x64@0.19.5":
   version "0.19.5"
-  resolved "https://registry.npmjs.org/@esbuild/linux-x64/-/linux-x64-0.19.5.tgz"
+  resolved "https://registry.yarnpkg.com/@esbuild/linux-x64/-/linux-x64-0.19.5.tgz#46feba2ad041a241379d150f415b472fe3885075"
   integrity sha512-psagl+2RlK1z8zWZOmVdImisMtrUxvwereIdyJTmtmHahJTKb64pAcqoPlx6CewPdvGvUKe2Jw+0Z/0qhSbG1A==
 
 "@esbuild/netbsd-x64@0.17.19":
@@ -711,17 +711,17 @@
 
 "@esbuild/win32-x64@0.17.19":
   version "0.17.19"
-  resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.17.19.tgz#8cfaf2ff603e9aabb910e9c0558c26cf32744061"
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.17.19.tgz"
   integrity sha512-lAhycmKnVOuRYNtRtatQR1LPQf2oYCkRGkSFnseDAKPl8lu5SOsK/e1sXe5a0Pc5kHIHe6P2I/ilntNv2xf3cA==
 
 "@esbuild/win32-x64@0.18.20":
   version "0.18.20"
-  resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz#786c5f41f043b07afb1af37683d7c33668858f6d"
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.18.20.tgz"
   integrity sha512-kTdfRcSiDfQca/y9QIkng02avJ+NCaQvrMejlsB3RRv5sE9rRoeBPISaZpKxHELzRxZyLvNts1P27W3wV+8geQ==
 
 "@esbuild/win32-x64@0.19.5":
   version "0.19.5"
-  resolved "https://registry.yarnpkg.com/@esbuild/win32-x64/-/win32-x64-0.19.5.tgz#faad84c41ba12e3a0acb52571df9bff37bee75f6"
+  resolved "https://registry.npmjs.org/@esbuild/win32-x64/-/win32-x64-0.19.5.tgz"
   integrity sha512-czTrygUsB/jlM8qEW5MD8bgYU2Xg14lo6kBDXW6HdxKjh8M5PzETGiSHaz9MtbXBYDloHNUAUW2tMiKW4KM9Mw==
 
 "@fastify/busboy@^2.0.0":
@@ -1378,12 +1378,12 @@
 
 "@nx/nx-linux-x64-gnu@16.10.0":
   version "16.10.0"
-  resolved "https://registry.npmjs.org/@nx/nx-linux-x64-gnu/-/nx-linux-x64-gnu-16.10.0.tgz"
+  resolved "https://registry.yarnpkg.com/@nx/nx-linux-x64-gnu/-/nx-linux-x64-gnu-16.10.0.tgz#d36c2bcf94d49eaa24e3880ddaf6f1f617de539b"
   integrity sha512-134PW/u/arNFAQKpqMJniC7irbChMPz+W+qtyKPAUXE0XFKPa7c1GtlI/wK2dvP9qJDZ6bKf0KtA0U/m2HMUOA==
 
 "@nx/nx-linux-x64-musl@16.10.0":
   version "16.10.0"
-  resolved "https://registry.npmjs.org/@nx/nx-linux-x64-musl/-/nx-linux-x64-musl-16.10.0.tgz"
+  resolved "https://registry.yarnpkg.com/@nx/nx-linux-x64-musl/-/nx-linux-x64-musl-16.10.0.tgz#78bd2ab97a583b3d4ea3387b67fd7b136907493c"
   integrity sha512-q8sINYLdIJxK/iUx9vRk5jWAWb/2O0PAbOJFwv4qkxBv4rLoN7y+otgCZ5v0xfx/zztFgk/oNY4lg5xYjIso2Q==
 
 "@nx/nx-win32-arm64-msvc@16.10.0":
@@ -1393,7 +1393,7 @@
 
 "@nx/nx-win32-x64-msvc@16.10.0":
   version "16.10.0"
-  resolved "https://registry.yarnpkg.com/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-16.10.0.tgz#7410a51d0f8be631eec9552f01b2e5946285927c"
+  resolved "https://registry.npmjs.org/@nx/nx-win32-x64-msvc/-/nx-win32-x64-msvc-16.10.0.tgz"
   integrity sha512-5iV2NKZnzxJwZZ4DM5JVbRG/nkhAbzEskKaLBB82PmYGKzaDHuMHP1lcPoD/rtYMlowZgNA/RQndfKvPBPwmXA==
 
 "@octokit/auth-token@^3.0.0":
@@ -1549,12 +1549,12 @@
 
 "@parcel/watcher-linux-x64-glibc@2.3.0":
   version "2.3.0"
-  resolved "https://registry.npmjs.org/@parcel/watcher-linux-x64-glibc/-/watcher-linux-x64-glibc-2.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@parcel/watcher-linux-x64-glibc/-/watcher-linux-x64-glibc-2.3.0.tgz#193dd1c798003cdb5a1e59470ff26300f418a943"
   integrity sha512-P7Wo91lKSeSgMTtG7CnBS6WrA5otr1K7shhSjKHNePVmfBHDoAOHYRXgUmhiNfbcGk0uMCHVcdbfxtuiZCHVow==
 
 "@parcel/watcher-linux-x64-musl@2.3.0":
   version "2.3.0"
-  resolved "https://registry.npmjs.org/@parcel/watcher-linux-x64-musl/-/watcher-linux-x64-musl-2.3.0.tgz"
+  resolved "https://registry.yarnpkg.com/@parcel/watcher-linux-x64-musl/-/watcher-linux-x64-musl-2.3.0.tgz#6dbdb86d96e955ab0fe4a4b60734ec0025a689dd"
   integrity sha512-+kiRE1JIq8QdxzwoYY+wzBs9YbJ34guBweTK8nlzLKimn5EQ2b2FSC+tAOpq302BuIMjyuUGvBiUhEcLIGMQ5g==
 
 "@parcel/watcher-wasm@2.3.0":
@@ -1578,7 +1578,7 @@
 
 "@parcel/watcher-win32-x64@2.3.0":
   version "2.3.0"
-  resolved "https://registry.yarnpkg.com/@parcel/watcher-win32-x64/-/watcher-win32-x64-2.3.0.tgz#14e7246289861acc589fd608de39fe5d8b4bb0a7"
+  resolved "https://registry.npmjs.org/@parcel/watcher-win32-x64/-/watcher-win32-x64-2.3.0.tgz"
   integrity sha512-dLx+0XRdMnVI62kU3wbXvbIRhLck4aE28bIGKbRGS7BJNt54IIj9+c/Dkqb+7DJEbHUZAX1bwaoM8PqVlHJmCA==
 
 "@parcel/watcher@2.0.4":
