@@ -68,7 +68,7 @@
       </div>
     </div>
     <div class="absolute top-0 right-0 mx-1 p-0.5 text-xs" v-if="link.platform === 'twitch'">
-      <span class="flex gap-1" v-if="status.twitch.live">
+      <span class="flex gap-1" v-if="status?.twitch.live">
         <span class="flex justify-center items-center">
           <font-awesome-icon
             class="fa-1x animate-pulse"
@@ -103,7 +103,7 @@
 import type ContentStatus from '~/src/types/ContentStatus'
 import type { CustomLink, Link } from '~/src/links';
 
-const status: ContentStatus = inject("contentStatus", { twitch: { live: false, started_at: '' }});
+const status: ContentStatus | undefined = inject("contentStatus");
 const uptime: number = inject("contentTwitchUptimeSeconds", 0);
 
 const uptimeString: ComputedRef<string> = computed(() => {
