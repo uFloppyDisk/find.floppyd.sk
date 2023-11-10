@@ -1,6 +1,6 @@
 type ContentStatus = {
     twitch: {
-        live: Boolean,
+        live: boolean,
         started_at: string
     }
 }
