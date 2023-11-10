@@ -1,6 +1,6 @@
 <template>
   <span class="flex gap-1">
-    <span class="flex justify-center items-center" v-if="icon">
+    <span class="flex" v-if="icon">
       <font-awesome-icon
         class="fa-1x"
         :class="{
