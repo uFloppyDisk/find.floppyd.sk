@@ -10,7 +10,7 @@
       />
     </span>
     <span class="font-extrabold uppercase" v-if="description?.condition">{{ description?.text }}</span>
-    <slot />
+    <slot v-if="!slotEmpty" />
   </span>
 </template>
   
@@ -23,6 +23,16 @@ defineProps<{
     condition: boolean;
   };
 }>();
+
+const slots = useSlots();
+
+const slotEmpty: ComputedRef<boolean> = computed(() => {
+  if (typeof slots?.default === 'function') {
+    return slots.default().length <= 0;
+  }
+
+  return true;
+})
 </script>
 
 <style scoped>
