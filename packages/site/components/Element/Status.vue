@@ -16,11 +16,11 @@
   
 <script lang="ts" setup>
 defineProps<{
-  icon?: String[];
-  pulse?: Boolean,
+  icon?: string[];
+  pulse?: boolean,
   description?: {
-    text: String;
-    condition: Boolean;
+    text: string;
+    condition: boolean;
   };
 }>();
 </script>

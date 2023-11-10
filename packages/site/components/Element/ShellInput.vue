@@ -24,8 +24,8 @@
 
 <script lang="ts" setup>
 defineProps<{
-  input: String;
-  focussed: Boolean;
+  input: string;
+  focussed: boolean;
 }>();
 </script>
 

@@ -15,16 +15,16 @@
 import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
-const input: Ref<String> = ref('');
+const input: Ref<string> = ref('');
 
-const history: String[] = [];
-const previous: String[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
+const history: string[] = [];
+const previous: string[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
 
-const focussed: Ref<Boolean> = ref(false);
+const focussed: Ref<boolean> = ref(false);
 
 const vanity: {
-  userName: String;
-  path: String;
+  userName: string;
+  path: string;
 } = reactive({
   userName: '',
   path: '',
@@ -37,12 +37,12 @@ onMounted(() => {
 
 defineExpose<{
   vanity: {
-    userName: String;
-    path: String;
+    userName: string;
+    path: string;
   }
 }>({vanity});
 
-const commit = (text: String) => {
+const commit = (text: string) => {
   history.push(text);
 
   if (text === 'clear') {
