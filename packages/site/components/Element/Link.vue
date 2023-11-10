@@ -68,8 +68,8 @@
       </div>
     </div>
     <div class="absolute top-0 right-0 mx-1 p-0.5 text-xs" v-if="link.platform === 'twitch'">
-      <ElementStatus v-if="status?.twitch.live" :icon="['fas', 'circle']" :pulse="true" :description="{ text: 'LIVE', condition: uptime < 86400000 }">
-        <span>
+      <ElementStatus v-if="status?.twitch.live" :icon="['fas', 'circle']" :pulse="true" :description="{ text: 'LIVE', condition: !uptimeString || (uptime < 86400000)}">
+        <span v-if="uptimeString">
             {{ uptimeString }}
         </span>
       </ElementStatus>
@@ -85,24 +85,21 @@ import type { CustomLink, Link } from '~/src/links';
 const status: ContentStatus | undefined = inject("contentStatus");
 const uptime: number = inject("contentTwitchUptimeSeconds", 0);
 
-const uptimeString: ComputedRef<string> = computed(() => {
-    const value = uptime.value;
+const uptimeString: ComputedRef<string | null> = computed(() => {
+    const value = uptime.value / 1000;
 
-    var str = "";
-    var include = false;
+    if (typeof value === 'number' && isNaN(value)) { return null; }
 
-    if (value >= 86400000) {
-        str += Math.floor(value / 86400000) + "d ";
-        include = true;
-    }
+    var str = (Math.floor(value) % 60).toString().padStart(2, '0');
+    str = `${(Math.floor(value / 60) % 60).toString().padStart(2, '0')}:${str}`;
 
-    if (include || value >= 3600000) {
-        str += (Math.floor(value / 3600000) % 24).toString().padStart(2, '0') + ":";
-    }
+    if (value < 3600) { return str; }
 
-    str += (Math.floor(value / 60000) % 60).toString().padStart(2, '0') + ":";
-    str += (Math.floor(value / 1000) % 60).toString().padStart(2, '0');
+    str = `${(Math.floor(value / 3600) % 24).toString().padStart(2, '0')}:${str}`;
 
+    if (value < 86400) { return str; }
+
+    str = `${Math.floor(value / 86400)}d ${str}`;
     return str;
 })
 
