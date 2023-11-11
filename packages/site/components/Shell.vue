@@ -22,25 +22,17 @@ const previous: String[] = reactive(['find -name "FloppyDisk" -type gamer -not c
 
 const focussed: Ref<Boolean> = ref(false);
 
-const vanity: {
-  userName: String;
-  path: String;
-} = reactive({
+const vanity = reactive({
   userName: '',
   path: '',
 });
+
+provide('vanity', vanity);
 
 onMounted(() => {    
   vanity.userName = `user-${randomString()}`;
   vanity.path = window.location.pathname;
 })
-
-defineExpose<{
-  vanity: {
-    userName: String;
-    path: String;
-  }
-}>({vanity});
 
 const commit = (text: String) => {
   history.push(text);

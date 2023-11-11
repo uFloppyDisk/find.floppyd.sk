@@ -1,9 +1,9 @@
 <template>
   <div>
     <span class="text-red-500">
-      <span>{{ $parent?.vanity.userName ?? 'user-unkwn' }}</span>
+      <span>{{ vanity?.userName ?? 'user-unkwn' }}</span>
       <span>@localhost: ~</span>
-      <span class="font-bold">{{ $parent?.vanity.path ?? '/' }}</span>
+      <span class="font-bold">{{ vanity?.path ?? '/' }}</span>
       <span>$ </span> 
     </span>
     <span>
@@ -27,6 +27,8 @@ defineProps<{
   input: String;
   focussed: Boolean;
 }>();
+
+const vanity: { userName: string, path: string} | undefined = inject("vanity");
 </script>
 
 <style scoped>
