@@ -12,13 +12,14 @@
 </template>
 
 <script lang="ts" setup>
+import commands from '~/src/commands';
 import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
-const input: Ref<String> = ref('');
+const input: Ref<string> = ref('');
 
-const history: String[] = [];
-const previous: String[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
+const history: string[] = [];
+const previous: string[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
 
 const focussed: Ref<Boolean> = ref(false);
 
@@ -34,15 +35,18 @@ onMounted(() => {
   vanity.path = window.location.pathname;
 })
 
-const commit = (text: String) => {
+const commit = (text: string) => {
   history.push(text);
 
-  if (text === 'clear') {
-    previous.splice(0, previous.length)
-    return;
-  }
+  const cmdKeyword = text.split(" ", 1)[0];
+  const cmdArgs = text.slice(cmdKeyword.length).split(" ");
 
   previous.push(text);
+
+  const command = commands.get(cmdKeyword);
+  if (typeof command === 'undefined') { return; }
+
+  command.do({ history, previous }, cmdArgs);
 }
 
 const keyDownEvent = (event: KeyboardEvent) => {
