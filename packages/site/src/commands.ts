@@ -1,6 +1,8 @@
+import type { ShellPrevious } from '~/src/types/shell';
+
 type ShellContext = {
     history: string[],
-    previous: string[],
+    previous: ShellPrevious[],
 }
 
 interface Command {

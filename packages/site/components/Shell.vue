@@ -6,20 +6,24 @@
       'opacity-70': !focussed
     }"
   >
-    <ElementShellHistory v-for="line in previous">{{ line }}</ElementShellHistory>
+    <ElementShellHistory v-for="cmd in previous" :cmd="cmd.command">{{ cmd.output }}</ElementShellHistory>
     <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
   </div>
 </template>
 
 <script lang="ts" setup>
 import commands from '~/src/commands';
+import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
 const input: Ref<string> = ref('');
 
 const history: string[] = [];
-const previous: string[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
+const previous: ShellPrevious[] = reactive([{
+    command: 'find -name "FloppyDisk" -type gamer -not cringe',
+    output: null,
+}]);
 
 const focussed: Ref<Boolean> = ref(false);
 
@@ -41,12 +45,18 @@ const commit = (text: string) => {
   const cmdKeyword = text.split(" ", 1)[0];
   const cmdArgs = text.slice(cmdKeyword.length).split(" ");
 
-  previous.push(text);
 
   const command = commands.get(cmdKeyword);
-  if (typeof command === 'undefined') { return; }
+  if (typeof command === 'undefined') {
+      previous.push({ command: text, output: null });
+      return;
+  }
 
-  command.do({ history, previous }, cmdArgs);
+  const output = command.do({ history, previous }, cmdArgs);
+
+  if (!(cmdKeyword === 'clear')) {
+    previous.push({ command: text, output: output });
+  }
 }
 
 const keyDownEvent = (event: KeyboardEvent) => {
