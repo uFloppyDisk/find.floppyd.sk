@@ -1,46 +1,4 @@
-type TwitchEventSubStatusEnabled = {
-	status: 'enabled'
-}
-
-type TwitchEventSubStatusVerification = {
-	status: 'webhook_callback_verification_pending'
-}
-
-type TwitchEventSubBody = {
-	id: string,
-	version: string,
-	condition: { broadcaster_user_id: string },
-	transport: { method: 'webhook', callback: string },
-	created_at: string,
-	cost: number
-} & TwitchEventSubStatusEnabled | TwitchEventSubStatusVerification;
-
-type TwitchEventStreamOnline = {
-	subscription: TwitchEventSubBody & {
-		type: 'stream.online',
-	},
-	event: {
-		id: string,
-		broadcaster_user_id: string,
-		broadcaster_user_login: string,
-		broadcaster_user_name: string,
-		type: 'live' | 'playlist' | 'watch_party' | 'premiere' | 'rerun',
-		started_at: string
-	}
-}
-
-type TwitchEventStreamOffline = {
-	subscription: TwitchEventSubBody & {
-		type: 'stream.offline',
-	},
-	event: {
-		broadcaster_user_id: string,
-		broadcaster_user_login: string,
-		broadcaster_user_name: string
-	}
-}
-
-type TwitchEvent = TwitchEventStreamOnline | TwitchEventStreamOffline;
+import { TwitchEvent, TwitchEventStreamOnline } from "./types/twitch/events";
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
