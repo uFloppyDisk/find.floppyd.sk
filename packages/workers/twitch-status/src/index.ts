@@ -1,4 +1,7 @@
-import { TwitchEvent, TwitchEventStreamOnline } from "./types/twitch/events";
+import { Buffer } from 'node:buffer';
+import crypto from 'node:crypto';
+
+import type { TwitchEvent, TwitchEventStreamOnline } from "./types/twitch/events";
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
@@ -17,6 +20,11 @@ export interface Env {
 	// MY_QUEUE: Queue;
 }
 
+const HMAC_PREFIX = 'sha256=';
+const TWITCH_MESSAGE_ID = 'Twitch-Eventsub-Message-Id'.toLowerCase();
+const TWITCH_MESSAGE_TIMESTAMP = 'Twitch-Eventsub-Message-Timestamp'.toLowerCase();
+const TWITCH_MESSAGE_SIGNATURE = 'Twitch-Eventsub-Message-Signature'.toLowerCase();
+
 const HEADERS_GET = {
 	'content-type': 'application/json;charset=UTF-8',
 
@@ -28,9 +36,39 @@ const HEADERS_GET = {
 
 const SUBSCRIPTIONS = ['stream.online', 'stream.offline'];
 
+const getHmacPrecursor = (headers: Request['headers'], body: string): string => {
+	const id = headers.get(TWITCH_MESSAGE_ID) ?? '';
+	const timestamp = headers.get(TWITCH_MESSAGE_TIMESTAMP) ?? '';
+	return (id + timestamp + body);
+}
+
+const makeHmac = (secret: string, message: string) => {
+    return crypto.createHmac('sha256', secret)
+    .update(message)
+    .digest('hex');
+}
+
+const verifyMessage = (ours: string, theirs: string): boolean => {
+	return crypto.subtle.timingSafeEqual(Buffer.from(ours), Buffer.from(theirs));
+}
+
+const compareHmac = (headers: Request['headers'], body: string): boolean => {
+	const secret = 'testtesttest'; // TODO: Use secret stored in KV
+	const precursor = getHmacPrecursor(headers, body);
+
+	const ours = HMAC_PREFIX + makeHmac(secret, precursor);
+	const theirs = headers.get(TWITCH_MESSAGE_SIGNATURE);
+
+	if (theirs === null) {
+		return false;
+	}
+
+	return verifyMessage(ours, theirs);
+}
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		async function handlePost(data: TwitchEvent): Promise<boolean> {
+		async function handleIngest(data: TwitchEvent): Promise<boolean> {
 			if (!(SUBSCRIPTIONS.includes(data.subscription.type))) { return true; }
 
 			if ("stream.online" === data.subscription.type) {
@@ -52,30 +90,38 @@ export default {
 			return true;
 		}
 
-		if (request.method.toUpperCase() === 'GET') {
-			const value = await env.FD_CONTENT_STATUS.get('twitch');
+		try {
+			if (request.method.toUpperCase() === 'GET') {
+				const value = await env.FD_CONTENT_STATUS.get('twitch');
 
-			if (value === null) {
-				return new Response(JSON.stringify({
-					live: false,
-					started_at: '',
-				}), { headers: HEADERS_GET })
+				if (value === null) {
+					return new Response(JSON.stringify({
+						live: false,
+						started_at: '',
+					}), { headers: HEADERS_GET })
+				}
+
+				return new Response(value, { headers: HEADERS_GET })
 			}
 
-			return new Response(value, { headers: HEADERS_GET })
-		}
+			if (request.method.toUpperCase() === 'POST') {
+				const body = JSON.stringify(await request.json());
+				if (!compareHmac(request.headers, body)) { return new Response('', { status: 403 })}
 
-		if (request.method.toUpperCase() === 'POST') {
-			const data: TwitchEvent = JSON.parse(await request.text());
+				const data: TwitchEvent = JSON.parse(body);
 
-			if (data.subscription.status === 'webhook_callback_verification_pending') {
-				return new Response((data as TwitchEvent & { challenge: string }).challenge);
+				if (data.subscription.status === 'webhook_callback_verification_pending') {
+					return new Response((data as TwitchEvent & { challenge: string }).challenge);
+				}
+
+				await handleIngest(data);
+				return new Response('');
 			}
 
-			await handlePost(data);
-			return new Response('');
+			return new Response('', { status: 405 });
+		} catch (error) {
+			console.error(error);
+			return new Response('', { status: 500 });
 		}
-
-		return new Response('', { status: 405 });
 	}
 };
