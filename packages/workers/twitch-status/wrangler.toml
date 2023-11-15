@@ -1,4 +1,4 @@
-name = "twitch-ingest-status"
+name = "twitch-status"
 main = "src/index.ts"
 compatibility_date = "2023-10-30"
 
@@ -7,7 +7,7 @@ kv_namespaces = [
 ]
 
 [dev]
-port = 44001
+port = 44000
 local_protocol = "http"
 
 # Variable bindings. These are arbitrary, plaintext strings (similar to environment variables)

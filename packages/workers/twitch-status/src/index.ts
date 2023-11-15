@@ -1,13 +1,3 @@
-/**
- * Welcome to Cloudflare Workers! This is your first worker.
- *
- * - Run `npm run dev` in your terminal to start a development server
- * - Open a browser tab at http://localhost:8787/ to see your worker in action
- * - Run `npm run deploy` to publish your worker
- *
- * Learn more at https://developers.cloudflare.com/workers/
- */
-
 type TwitchEventSubStatusEnabled = {
 	status: 'enabled'
 }
@@ -69,42 +59,65 @@ export interface Env {
 	// MY_QUEUE: Queue;
 }
 
+const HEADERS_GET = {
+	'content-type': 'application/json;charset=UTF-8',
+
+	'Access-Control-Allow-Credentials': 'true',
+	'Access-Control-Allow-Methods': 'GET',
+	'Access-Control-Allow-Origin': '*',
+	'Access-Control-Allow-Headers': 'Content-Type'
+}
+
+const SUBSCRIPTIONS = ['stream.online', 'stream.offline'];
+
 export default {
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
-		const SUBSCRIPTIONS = ['stream.online', 'stream.offline'];
+		async function handlePost(data: TwitchEvent): Promise<boolean> {
+			if (!(SUBSCRIPTIONS.includes(data.subscription.type))) { return true; }
 
-		if (!(request.method.toUpperCase() === 'POST')) { return new Response(''); }
-		
-		const data: TwitchEvent = JSON.parse(await request.text());
-		if (data.subscription.status === 'webhook_callback_verification_pending') {
-			return new Response((data as TwitchEvent & { challenge: string }).challenge);
-		}
-
-		if (!(SUBSCRIPTIONS.includes(data.subscription.type))) { return new Response(''); }
-
-		switch (data.subscription.type) {
-			case "stream.online":
-				if (['playlist', 'rerun'].includes((data as TwitchEventStreamOnline).event.type)) { break;}
+			if ("stream.online" === data.subscription.type) {
+				if (['playlist', 'rerun'].includes((data as TwitchEventStreamOnline).event.type)) { return true;}
 
 				await env.FD_CONTENT_STATUS.put("twitch", JSON.stringify({
 					live: true,
 					started_at: (data as TwitchEventStreamOnline).event.started_at
 				}))
+			}
 
-				break;
-
-			case "stream.offline":
+			if ("stream.offline" === data.subscription.type) {
 				await env.FD_CONTENT_STATUS.put("twitch", JSON.stringify({
 					live: false,
 					started_at: ''
 				}))
+			}
 
-				break;
-		
-			default:
-				break;
+			return true;
 		}
 
-		return new Response('');
-	},
+		if (request.method.toUpperCase() === 'GET') {
+			const value = await env.FD_CONTENT_STATUS.get('twitch');
+
+			if (value === null) {
+				return new Response(JSON.stringify({
+					live: false,
+					started_at: '',
+				}), { headers: HEADERS_GET })
+			}
+
+			return new Response(value, { headers: HEADERS_GET })
+		}
+
+		if (request.method.toUpperCase() === 'POST') {
+			const data: TwitchEvent = JSON.parse(await request.text());
+
+			if (data.subscription.status === 'webhook_callback_verification_pending') {
+				return new Response((data as TwitchEvent & { challenge: string }).challenge);
+			}
+
+			await handlePost(data);
+			return new Response('');
+		}
+
+		return new Response('', { status: 405 });
+	}
 };
