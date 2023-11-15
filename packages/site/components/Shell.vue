@@ -39,23 +39,23 @@ onMounted(() => {
   vanity.path = window.location.pathname;
 })
 
-const commit = (text: string) => {
-  history.push(text);
+const commit = (input: string) => {
+  history.push(input);
 
-  const cmdKeyword = text.split(" ", 1)[0];
-  const cmdArgs = text.slice(cmdKeyword.length).split(" ");
+  const cmdKeyword = input.split(" ", 1)[0];
+  const cmdArgs = input.slice(cmdKeyword.length).split(" ");
 
 
   const command = commands.get(cmdKeyword);
   if (typeof command === 'undefined') {
-      previous.push({ command: text, output: null });
-      return;
+    previous.push({ command: input, output: null });
+    return;
   }
 
   const output = command.do({ history, previous }, cmdArgs);
 
   if (!(cmdKeyword === 'clear')) {
-    previous.push({ command: text, output: output });
+    previous.push({ command: input, output: output });
   }
 }
 
