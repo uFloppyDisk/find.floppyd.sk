@@ -1,6 +1,7 @@
 name = "twitch-eventsub-sched"
 main = "src/index.ts"
 compatibility_date = "2023-05-15"
+compatibility_flags = [ "nodejs_compat" ]
 
 triggers = { crons = ["0 11 * * 6"] }
 
