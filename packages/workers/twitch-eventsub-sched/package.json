@@ -1,5 +1,5 @@
 {
-  "name": "twitch-auth-flow",
+  "name": "twitch-eventsub-sched",
   "version": "0.0.0",
   "private": true,
   "scripts": {
