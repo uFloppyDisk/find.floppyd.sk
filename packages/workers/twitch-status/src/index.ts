@@ -5,6 +5,7 @@ import type { TwitchEvent, TwitchEventStreamOnline } from "./types/twitch/events
 
 export interface Env {
 	// Example binding to KV. Learn more at https://developers.cloudflare.com/workers/runtime-apis/kv/
+	FD_CONTENT_SECRETS: KVNamespace;
 	FD_CONTENT_STATUS: KVNamespace;
 	//
 	// Example binding to Durable Object. Learn more at https://developers.cloudflare.com/workers/runtime-apis/durable-objects/
@@ -19,6 +20,9 @@ export interface Env {
 	// Example binding to a Queue. Learn more at https://developers.cloudflare.com/queues/javascript-apis/
 	// MY_QUEUE: Queue;
 }
+
+const KV_STATUS = 'twitch-live';
+const KV_SECRET_WEBHOOK = 'twitch-webhook-secret';
 
 const HMAC_PREFIX = 'sha256=';
 const TWITCH_MESSAGE_ID = 'Twitch-Eventsub-Message-Id'.toLowerCase();
@@ -52,16 +56,8 @@ const verifyMessage = (ours: string, theirs: string): boolean => {
 	return crypto.subtle.timingSafeEqual(Buffer.from(ours), Buffer.from(theirs));
 }
 
-const compareHmac = (headers: Request['headers'], body: string): boolean => {
-	const secret = 'testtesttest'; // TODO: Use secret stored in KV
-	const precursor = getHmacPrecursor(headers, body);
-
+const compareHmac = (secret: string, precursor: string, theirs: string): boolean => {
 	const ours = HMAC_PREFIX + makeHmac(secret, precursor);
-	const theirs = headers.get(TWITCH_MESSAGE_SIGNATURE);
-
-	if (theirs === null) {
-		return false;
-	}
 
 	return verifyMessage(ours, theirs);
 }
@@ -74,14 +70,14 @@ export default {
 			if ("stream.online" === data.subscription.type) {
 				if (['playlist', 'rerun'].includes((data as TwitchEventStreamOnline).event.type)) { return true;}
 
-				await env.FD_CONTENT_STATUS.put("twitch", JSON.stringify({
+				await env.FD_CONTENT_STATUS.put(KV_STATUS, JSON.stringify({
 					live: true,
 					started_at: (data as TwitchEventStreamOnline).event.started_at
 				}))
 			}
 
 			if ("stream.offline" === data.subscription.type) {
-				await env.FD_CONTENT_STATUS.put("twitch", JSON.stringify({
+				await env.FD_CONTENT_STATUS.put(KV_STATUS, JSON.stringify({
 					live: false,
 					started_at: ''
 				}))
@@ -92,7 +88,7 @@ export default {
 
 		try {
 			if (request.method.toUpperCase() === 'GET') {
-				const value = await env.FD_CONTENT_STATUS.get('twitch');
+				const value = await env.FD_CONTENT_STATUS.get(KV_STATUS);
 
 				if (value === null) {
 					return new Response(JSON.stringify({
@@ -105,8 +101,20 @@ export default {
 			}
 
 			if (request.method.toUpperCase() === 'POST') {
+				const signiture = request.headers.get(TWITCH_MESSAGE_SIGNATURE);
+				if (signiture == null) { return new Response('', { status: 401 }); }
+
+				const secret = await env.FD_CONTENT_SECRETS.get(KV_SECRET_WEBHOOK);
+				if (secret == null) { throw new Error('Webhook secret is not set.'); }
+
 				const body = JSON.stringify(await request.json());
-				if (!compareHmac(request.headers, body)) { return new Response('', { status: 403 })}
+				if (!compareHmac(
+					secret,
+					getHmacPrecursor(request.headers, body),
+					signiture
+				)) {
+					return new Response('', { status: 403 });
+				}
 
 				const data: TwitchEvent = JSON.parse(body);
 

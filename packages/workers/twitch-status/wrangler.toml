@@ -4,6 +4,7 @@ compatibility_date = "2023-10-30"
 compatibility_flags = [ "nodejs_compat" ]
 
 kv_namespaces = [
+	{ binding = "FD_CONTENT_SECRETS", id = "e04a61c08bca4d07a3ecaa57e77769d7"},
   { binding = "FD_CONTENT_STATUS", id = "890cd9936caf4e3e87fcfef8c14b7258" }
 ]
 
