@@ -25,7 +25,7 @@ const SUBSCRIPTIONS = [
 	 	type: "stream.offline",
 	 	version: "1",
 		condition: {
-			"broadcaster_user_id": TWITCH_USER_ID
+			broadcaster_user_id: TWITCH_USER_ID
 		}
 	}
 ]
