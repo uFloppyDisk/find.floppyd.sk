@@ -104,8 +104,10 @@ export default {
 					}
 				);
 
-				const response_body = await response.json();
-				console.log(response.status, response_body);
+				if (!(response.status >= 200 && response.status <= 299)) {
+					const body = await response.json();
+					throw new Error(`Create Eventsub request has returned error: ${response.status} | ${body}`);
+				}
 			}
 		} catch (e) {
 			console.error(e);
