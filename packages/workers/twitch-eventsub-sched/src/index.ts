@@ -21,17 +21,39 @@ const SUBSCRIPTIONS = [
 			broadcaster_user_id: TWITCH_USER_ID
 		}
 	},
-	//{
-	// 	type: "stream.offline",
-	// 	version: "1",
-	//	condition: {
-	//		"broadcaster_user_id": TWITCH_USER_ID
-	//	}
-	//}
+	{
+	 	type: "stream.offline",
+	 	version: "1",
+		condition: {
+			"broadcaster_user_id": TWITCH_USER_ID
+		}
+	}
 ]
 
 export default {
 	async scheduled(event: ScheduledEvent, env: Env, ctx: ExecutionContext): Promise<void> {
+		async function checkSubscriptions(id: string, token:string): Promise<typeof SUBSCRIPTIONS> {
+			const response = await fetch(URI_TWITCH_EVENTSUB, {
+				headers: {
+					"Authorization": `Bearer ${token}`,
+					"Client-Id": id,
+				}
+			});
+
+			if (response.status !== 200) { return []; }
+
+			let needed = SUBSCRIPTIONS;
+
+			const body: typeof Response.json & { data: any } = await response.json();
+			for (const sub of body.data) {
+				if (["enabled", "webhook_callback_verification_pending"].includes(sub.status)) {
+					needed = needed.filter((x) => !(x.type === sub.type));
+				}
+			}
+
+			return needed;
+		}
+
 		console.log(`Ran at ${event.scheduledTime}`);
 
 		const APP_TOKEN = await env.FD_CONTENT_SECRETS.get(KV_SECRET_APPTOKEN);
@@ -46,13 +68,15 @@ export default {
 			return;
 		}
 
+		const subscriptions_needed = await checkSubscriptions(CLIENT_ID, APP_TOKEN);
+
 		let secret = await env.FD_CONTENT_SECRETS.get(KV_SECRET_WEBHOOK) ?? '';
 		if (secret == '') {
 			secret = crypto.randomBytes(32).toString();
 			await env.FD_CONTENT_SECRETS.put(KV_SECRET_WEBHOOK, secret)
 		}
 
-		for (const sub of SUBSCRIPTIONS) {
+		for (const sub of subscriptions_needed) {
 			const body = {
 				"version": sub.version,
 				"type": sub.type,
