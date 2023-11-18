@@ -7,8 +7,7 @@
     "packages/workers/**"
   ],
   "devDependencies": {
-    "lerna": "^7.4.2",
-    "wrangler": "^3.15.0"
+    "lerna": "^7.4.2"
   },
   "dependencies": {}
 }
