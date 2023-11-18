@@ -69,6 +69,7 @@ export default {
 		}
 
 		const subscriptions_needed = await checkSubscriptions(CLIENT_ID, APP_TOKEN);
+		if (subscriptions_needed.length <= 0) { return; }
 
 		let secret = await env.FD_CONTENT_SECRETS.get(KV_SECRET_WEBHOOK) ?? '';
 		if (secret == '') {
@@ -76,19 +77,19 @@ export default {
 			await env.FD_CONTENT_SECRETS.put(KV_SECRET_WEBHOOK, secret)
 		}
 
-		for (const sub of subscriptions_needed) {
-			const body = {
-				"version": sub.version,
-				"type": sub.type,
-				"condition": sub.condition,
-				"transport": {
-					"method": "webhook",
-					"callback": env.API_WEBHOOK_CALLBACK,
-					"secret": secret
+		try {
+			for (const sub of subscriptions_needed) {
+				const body = {
+					"version": sub.version,
+					"type": sub.type,
+					"condition": sub.condition,
+					"transport": {
+						"method": "webhook",
+						"callback": env.API_WEBHOOK_CALLBACK,
+						"secret": secret
+					}
 				}
-			}
 
-			try {
 				const response = await fetch(
 					URI_TWITCH_EVENTSUB,
 					{
@@ -105,9 +106,9 @@ export default {
 
 				const response_body = await response.json();
 				console.log(response.status, response_body);
-			} catch (e) {
-				console.error(e);
 			}
+		} catch (e) {
+			console.error(e);
 		}
 	},
 	async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
