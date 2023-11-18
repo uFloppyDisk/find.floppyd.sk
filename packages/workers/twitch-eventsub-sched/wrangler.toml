@@ -3,7 +3,7 @@ main = "src/index.ts"
 compatibility_date = "2023-05-15"
 compatibility_flags = [ "nodejs_compat" ]
 
-triggers = { crons = ["0 11 * * 6"] }
+triggers = { crons = ["0 19 * * 7"] }
 
 workers_dev = false
 kv_namespaces = [
