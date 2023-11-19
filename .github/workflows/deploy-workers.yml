@@ -14,12 +14,16 @@ jobs:
     
       - name: Deploy Twitch-Get-Status
         uses: cloudflare/wrangler-action@v3.1.0
-        env: 
-          ROUTE: ${{ secrets.CF_WORKER_ROUTE_TWITCH_GET_STATUS }}
         with:
           accountId: ${{ secrets.CF_ACCOUNT_ID }}
           apiToken: ${{ secrets.CF_API_TOKEN }}
-          secrets: ROUTE
           
           workingDirectory: packages/workers/twitch-get-status
-          command: deploy --route
+
+      - name: Deploy Twitch-EventSub-Sched
+        uses: cloudflare/wrangler-action@v3.1.0
+        with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          
+          workingDirectory: packages/workers/twitch-eventsub-sched
