@@ -44,7 +44,33 @@
 </template>
 
 <script setup lang="ts">
+import type ContentStatus from './src/types/ContentStatus';
+
+const config = useRuntimeConfig()
+
+const now = ref(Date.now());
+
 const showLinks = ref(true);
+const contentStatus = ref<ContentStatus>({
+  twitch: {
+    live: false,
+    started_at: ''
+  }
+});
+
+const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
+    var dateStarted = null;
+    try {
+       dateStarted = new Date(contentStatus.value.twitch.started_at);
+    } catch {
+        return 0;
+    }
+
+    return now.value - (dateStarted.getTime());
+})
+
+provide("contentStatus", readonly(contentStatus));
+provide("contentTwitchUptimeSeconds", contentTwitchUptimeSeconds);
 
 useSeoMeta({
   title: 'Find FloppyDisk',
@@ -85,6 +111,20 @@ const goHome = () => {
 
 const toggleLinks = () => {
   showLinks.value = !showLinks.value;
+}
+
+const updateNow = () => {
+    now.value = Date.now();
+}
+
+if (process.browser) {
+  const {data} = await useFetch(config.public.CFWorkerTwitchGetStatus, { })
+
+  setInterval(updateNow, 1000);
+
+  watch(data, (value, _) => {
+    contentStatus.value = { twitch: (value as ContentStatus['twitch']) };
+  })
 }
 
 </script>

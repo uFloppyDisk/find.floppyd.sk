@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "workspaces": [
-    "packages/**"
+    "packages/**",
+    "packages/workers/**"
   ],
   "devDependencies": {
     "lerna": "^7.4.2"
   },
-  "dependencies": { }
+  "dependencies": {}
 }

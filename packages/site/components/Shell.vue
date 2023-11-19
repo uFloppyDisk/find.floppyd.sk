@@ -15,12 +15,12 @@
 import { randomString } from '~/src/utils';
 
 const shell: Ref<HTMLSpanElement | null> = ref(null);
-const input: Ref<String> = ref('');
+const input: Ref<string> = ref('');
 
-const history: String[] = [];
-const previous: String[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
+const history: string[] = [];
+const previous: string[] = reactive(['find -name "FloppyDisk" -type gamer -not cringe'])
 
-const focussed: Ref<Boolean> = ref(false);
+const focussed: Ref<boolean> = ref(false);
 
 const vanity = reactive({
   userName: '',
@@ -34,7 +34,7 @@ onMounted(() => {
   vanity.path = window.location.pathname;
 })
 
-const commit = (text: String) => {
+const commit = (text: string) => {
   history.push(text);
 
   if (text === 'clear') {
