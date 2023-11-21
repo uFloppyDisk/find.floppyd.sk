@@ -13,6 +13,7 @@
 
 <script lang="ts" setup>
 import commands from '~/src/commands';
+import { Command } from '~/src/commands';
 import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 
@@ -45,17 +46,22 @@ const commit = (input: string) => {
   const cmdKeyword = input.split(" ", 1)[0];
   const cmdArgs = input.slice(cmdKeyword.length).split(" ");
 
+  const commandDef: Command | undefined = commands.get(cmdKeyword);
 
-  const command = commands.get(cmdKeyword);
-  if (typeof command === 'undefined') {
-    previous.push({ command: input, output: null });
-    return;
-  }
+  try {
+    if (typeof commandDef === 'undefined') {
+      throw new Error(`${cmdKeyword}: command not found`);
+    }
 
-  const output = command.do({ history, previous }, cmdArgs);
+    const command = new commandDef(cmdArgs);
 
-  if (!(cmdKeyword === 'clear')) {
-    previous.push({ command: input, output: output });
+    const output = command.execute({ history, previous });
+
+    if (command.push) {
+      previous.push({ command: input, output: output });
+    }
+  } catch(err) {
+    previous.push({ command: input, output: (err as Error).message});
   }
 }
 

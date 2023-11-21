@@ -5,20 +5,40 @@ type ShellContext = {
     previous: ShellPrevious[],
 }
 
-interface Command {
-    do: (ctx: ShellContext, input: string[]) => string | null
+export class Command {
+    push = true;
+    input: string[] | null = null;
+
+    constructor(input: string[]);
+    constructor() {
+        if (this.constructor === Command) { 
+            throw new Error(`Cannot construct Command base class.`);
+        }
+    }
+
+    execute(_ctx: ShellContext): string | null {
+        throw new Error(`${this.constructor["name"]} execute function is not implemented!`);
+    }
 }
 
-export default <Map<string, Command>> new Map([
-    ["clear", {
-        do: (ctx: ShellContext, input: string[]): string | null => {
+export default <Map<string, typeof Command>> new Map([
+    ["clear", class ClearCommand extends Command {
+        constructor() {
+            super([]);
+            this.push = false;
+        }
+        execute(ctx: ShellContext): string | null {
             ctx.previous.splice(0, ctx.previous.length)
             return null;
         }
     }],
-    ["echo", {
-        do: (ctx: ShellContext, input: string[]): string | null => {
-            return input.join(" ");
+    ["echo", class EchoCommand extends Command {
+        constructor(input: string[]) {
+            super(input);
+            this.input = input;
+        };
+        execute(_ctx: ShellContext): string | null {
+            return this.input?.join(" ") ?? null;
         }
-    }]
+    }],
 ])
