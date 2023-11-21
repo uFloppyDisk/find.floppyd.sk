@@ -1,0 +1,11 @@
+name = "twitch-eventsub-sched"
+main = "src/index.ts"
+compatibility_date = "2023-05-15"
+compatibility_flags = [ "nodejs_compat" ]
+
+triggers = { crons = ["0 0 * * 7"] }
+
+workers_dev = false
+kv_namespaces = [
+	{ binding = "FD_CONTENT_SECRETS", id = "e04a61c08bca4d07a3ecaa57e77769d7"}
+]

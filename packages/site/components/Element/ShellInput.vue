@@ -25,7 +25,7 @@
 <script lang="ts" setup>
 defineProps<{
   input: string;
-  focussed: Boolean;
+  focussed: boolean;
 }>();
 
 const vanity: { userName: string, path: string} | undefined = inject("vanity");

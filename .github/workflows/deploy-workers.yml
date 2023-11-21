@@ -1,0 +1,40 @@
+name: Deploy Workers to Cloudflare
+
+on:
+  push:
+    branches:
+    - main
+
+jobs:
+  deploy-twitch-status:
+    runs-on: ubuntu-20.04
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+    
+      - name: Deploy twitch-status
+        uses: cloudflare/wrangler-action@v3.1.0
+        with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          
+          workingDirectory: packages/workers/twitch-status
+
+  deploy-twitch-eventsub-sched:
+    runs-on: ubuntu-20.04
+    environment: production
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v3.5.2
+
+      - name: Deploy twitch-eventsub-sched
+        uses: cloudflare/wrangler-action@v3.1.0
+        with:
+          accountId: ${{ secrets.CF_ACCOUNT_ID }}
+          apiToken: ${{ secrets.CF_API_TOKEN }}
+          secrets: |
+            API_WEBHOOK_CALLBACK
+          
+          workingDirectory: packages/workers/twitch-eventsub-sched
+        env:
+          API_WEBHOOK_CALLBACK: ${{ secrets.CF_WORKER_ROUTE_TWITCH_STATUS }}

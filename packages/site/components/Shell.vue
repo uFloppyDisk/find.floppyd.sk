@@ -25,7 +25,7 @@ const previous: ShellPrevious[] = reactive([{
     output: null,
 }]);
 
-const focussed: Ref<Boolean> = ref(false);
+const focussed: Ref<boolean> = ref(false);
 
 const vanity = reactive({
   userName: '',
