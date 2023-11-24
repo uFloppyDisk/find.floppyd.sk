@@ -1,5 +1,7 @@
 import type { ShellPrevious } from '~/src/types/shell';
 
+type CommandMap = Map<string, typeof Command>;
+
 type ShellContext = {
     history: string[],
     previous: ShellPrevious[],
@@ -9,7 +11,6 @@ export class Command {
     push = true;
     input: string[] | null = null;
 
-    constructor(input: string[]);
     constructor() {
         if (this.constructor === Command) { 
             throw new Error(`Cannot construct Command base class.`);
@@ -21,10 +22,17 @@ export class Command {
     }
 }
 
-export default <Map<string, typeof Command>> new Map([
+export class CommandWithInput extends Command {
+    constructor(input: string[]) {
+        super();
+        this.input = input;
+    }
+}
+
+export default <CommandMap> new Map([
     ["clear", class ClearCommand extends Command {
         constructor() {
-            super([]);
+            super();
             this.push = false;
         }
         execute(ctx: ShellContext): string | null {
@@ -32,13 +40,14 @@ export default <Map<string, typeof Command>> new Map([
             return null;
         }
     }],
-    ["echo", class EchoCommand extends Command {
+    ["help", class HelpCommand extends Command {
+    }],
+    ["echo", class EchoCommand extends CommandWithInput {
         constructor(input: string[]) {
             super(input);
-            this.input = input;
         };
         execute(_ctx: ShellContext): string | null {
             return this.input?.join(" ") ?? null;
         }
     }],
-])
+]);

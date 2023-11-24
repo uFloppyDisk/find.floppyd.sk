@@ -46,7 +46,7 @@ const commit = (input: string) => {
   const cmdKeyword = input.split(" ", 1)[0];
   const cmdArgs = input.slice(cmdKeyword.length).split(" ");
 
-  const commandDef: Command | undefined = commands.get(cmdKeyword);
+  const commandDef: typeof Command | undefined = commands.get(cmdKeyword);
 
   try {
     if (typeof commandDef === 'undefined') {
