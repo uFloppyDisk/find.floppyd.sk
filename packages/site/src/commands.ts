@@ -34,6 +34,10 @@ export class Command {
     }
 }
 
+export class CommandWithoutPush extends Command {
+    shouldPush = false;
+}
+
 export class CommandWithInput extends Command {
     constructor(input: string[]) {
         super();
@@ -42,8 +46,7 @@ export class CommandWithInput extends Command {
 }
 
 export default <CommandMap> new Map([
-    ["clear", class ClearCommand extends Command {
-        shouldPush = false;
+    ["clear", class ClearCommand extends CommandWithoutPush {
         keyword = "clear";
         description = "Clear shell of all previously ran commands and output.";
         execute(ctx: ShellContext): string | null {
