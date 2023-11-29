@@ -57,7 +57,7 @@ const commit = (input: string) => {
 
     const output = command.execute({ history, previous });
 
-    if (command.push) {
+    if (command.shouldPush) {
       previous.push({ command: input, output: output });
     }
   } catch(err) {

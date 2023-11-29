@@ -8,7 +8,7 @@ type ShellContext = {
 }
 
 export class Command {
-    push = true;
+    shouldPush = true;
     input: string[] | null = null;
 
     constructor() {
@@ -31,10 +31,7 @@ export class CommandWithInput extends Command {
 
 export default <CommandMap> new Map([
     ["clear", class ClearCommand extends Command {
-        constructor() {
-            super();
-            this.push = false;
-        }
+        shouldPush = false;
         execute(ctx: ShellContext): string | null {
             ctx.previous.splice(0, ctx.previous.length)
             return null;
@@ -43,9 +40,6 @@ export default <CommandMap> new Map([
     ["help", class HelpCommand extends Command {
     }],
     ["echo", class EchoCommand extends CommandWithInput {
-        constructor(input: string[]) {
-            super(input);
-        };
         execute(_ctx: ShellContext): string | null {
             return this.input?.join(" ") ?? null;
         }
