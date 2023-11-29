@@ -44,7 +44,10 @@ const commit = (input: string) => {
   history.push(input);
 
   const cmdKeyword = input.split(" ", 1)[0];
-  const cmdArgs = input.slice(cmdKeyword.length).split(" ");
+  if (cmdKeyword.trim().length <= 0) {
+    previous.push({ command: input, output: null });
+    return;
+  }
 
   const commandDef: typeof Command | undefined = commands.get(cmdKeyword);
 
@@ -53,6 +56,7 @@ const commit = (input: string) => {
       throw new Error(`${cmdKeyword}: command not found`);
     }
 
+    const cmdArgs = input.slice(cmdKeyword.length).split(" ");
     const command = new commandDef(cmdArgs);
 
     const output = command.execute({ history, previous, commands });
