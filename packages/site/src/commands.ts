@@ -55,16 +55,17 @@ export default <CommandMap> new Map([
         keyword = "help";
         description = "Display available commands or explain usage of other commands in detail.";
         execute(ctx: ShellContext): string | null {
-            if ((this.input?.length ?? 0) > 1) {
-                const keyword = this.input?.at(1);
-                const commandDef = ctx.commands.get(keyword ?? "");
-                if (typeof commandDef == "undefined") { return null; }
-
-                const command = new commandDef();
-                return `${keyword}: ${command.help()}`;
+            if ((this.input?.length ?? 0) <= 1) {
+                return [...ctx.commands.keys()].sort().join(" ");
             }
 
-            return [...ctx.commands.keys()].sort().join(" ");
+            const keyword = this.input?.at(1);
+
+            const commandDef = ctx.commands.get(keyword ?? "");
+            if (typeof commandDef == "undefined") { return null; }
+
+            const command = new commandDef();
+            return `${keyword}: ${command.help()}`;
         }
     }],
     ["echo", class EchoCommand extends CommandWithInput {
