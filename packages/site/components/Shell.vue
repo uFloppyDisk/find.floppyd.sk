@@ -55,7 +55,7 @@ const commit = (input: string) => {
 
     const command = new commandDef(cmdArgs);
 
-    const output = command.execute({ history, previous });
+    const output = command.execute({ history, previous, commands });
 
     if (command.shouldPush) {
       previous.push({ command: input, output: output });
