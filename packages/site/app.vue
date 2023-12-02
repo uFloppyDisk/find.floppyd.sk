@@ -5,12 +5,23 @@
     <Shell class="absolute w-full h-full px-6 pt-14 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center select-none">
-        <div>
-          <span>Floppy OS</span>
-          <span class="ml-1 text-xs">v60.09</span>
+        <div class="flex gap-2">
+          <div>
+            <span>Floppy OS</span>
+            <span class="ml-1 text-xs">v60.09</span>
+          </div>
+          <NuxtLink to="/">
+            <ElementButton class="inline-flex px-2">Find me</ElementButton>
+          </NuxtLink>
+          <NuxtLink to="/about">
+            <ElementButton class="inline-flex px-2">About</ElementButton>
+          </NuxtLink>
         </div>
         <div class="flex flex-row gap-x-1">
-          <ElementButton @click="toggleLinks">
+          <ElementButton 
+            class="w-7 h-7"
+            @click="toggleLinks"
+          >
             <font-awesome-icon 
               class="absolute transition-opacity duration-75 delay-75"
               :class="{
@@ -26,12 +37,18 @@
               :icon="['fas', 'plus']"
             />
           </ElementButton>
-          <ElementButton @click="goToLink('https://floppyd.sk/repo-find-floppyd-sk')">
+          <ElementButton 
+            class="w-7 h-7"
+            @click="goToLink('https://floppyd.sk/repo-find-floppyd-sk')"
+          >
             <font-awesome-icon
               :icon="['far', 'square-full']"
             />
           </ElementButton>
-          <ElementButton @click="goHome">
+          <ElementButton
+            class="w-7 h-7"
+            @click="goHome"
+          >
             <font-awesome-icon 
               :icon="['fas', 'xmark']"
             />
@@ -39,7 +56,18 @@
         </div>
       </div>
     </div>
-    <DisplayLinks :showLinks="showLinks" @click="goToLink" />
+    <div 
+      class="flex basis-auto grow px-4 sm:px-24 md:px-36 xl:px-48 2xl:px-96 items-start xl:items-center duration-300 transition select-none overflow-y-scroll"
+      :class="{
+        'opacity-0 pointer-events-none': !showLinks,
+      }"
+      >
+      <div class="flex flex-col grow">
+        <div class="xl:hidden pt-20"></div>
+        <NuxtPage class="group flex grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-red-500/25" />
+        <div class="xl:hidden pt-6"></div>
+      </div>
+    </div>
   </div>
 </template>
 

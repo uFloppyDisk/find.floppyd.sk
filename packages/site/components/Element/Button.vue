@@ -1,8 +1,7 @@
 <template>
   <div 
     class="
-      relative flex 
-      w-7 h-7 
+      relative flex  
       border border-red-500 
       justify-center items-center 
       cursor-pointer
