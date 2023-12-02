@@ -13,7 +13,7 @@
 
 <script lang="ts" setup>
 import commands from '~/src/commands';
-import { Command } from '~/src/commands';
+import { Command } from '~/src/classes/command';
 import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 

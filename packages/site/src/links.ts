@@ -1,4 +1,4 @@
-import type { Categories } from '~/src/categories';
+import type { Categories } from './categories.ts';
 
 type GenericLink = {
     platform: string;
