@@ -12,8 +12,8 @@
 </template>
 
 <script lang="ts" setup>
-import commands from '~/src/commands';
-import { Command } from '~/src/classes/command';
+import commands, { getCommand, initCommand } from '~/src/commands';
+import { NullCommand, Command } from '~/src/classes/command';
 import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 
@@ -43,21 +43,20 @@ onMounted(() => {
 const commit = (input: string) => {
   history.push(input);
 
-  const cmdKeyword = input.split(" ", 1)[0];
-  if (cmdKeyword.trim().length <= 0) {
+  const keyword = input.split(" ", 1)[0];
+  if (keyword.trim().length <= 0) {
     previous.push({ command: input, output: null });
     return;
   }
 
-  const commandDef: typeof Command | undefined = commands.get(cmdKeyword);
-
   try {
-    if (typeof commandDef === 'undefined') {
-      throw new Error(`${cmdKeyword}: command not found`);
+    const def = getCommand(commands, keyword);
+    if (def === NullCommand) {
+      throw new Error(`${keyword}: command not found`);
     }
 
-    const cmdArgs = input.slice(cmdKeyword.length).split(" ");
-    const command = new commandDef(cmdArgs);
+    const args = input.slice(keyword.length).split(" ");
+    const command = initCommand((def as typeof Command), args);
 
     const output = command.execute({ history, previous, commands });
 

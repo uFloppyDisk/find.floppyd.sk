@@ -1,9 +1,26 @@
 import type { ShellContext } from './types/shell.d.ts';
 import type { CommandMap } from './types/command.d.ts';
 import {
+    NullCommand,
+    Command,
     CommandWithInput,
     CommandWithoutPush
 } from './classes/command.ts';
+
+export function getCommand(commands: CommandMap, keyword: string): typeof Command | typeof NullCommand {
+    const def = commands.get(keyword);
+    if (typeof def == "undefined") { return NullCommand; }
+
+    return def;
+}
+
+export function initCommand(def: typeof Command, input: string[]): Command {
+    if (def.prototype instanceof CommandWithInput) {
+        return new (def as typeof CommandWithInput)(input);
+    }
+
+    return new def();
+}
 
 export default <CommandMap> new Map([
     ["clear", class ClearCommand extends CommandWithoutPush {
@@ -23,12 +40,14 @@ export default <CommandMap> new Map([
                 return [...ctx.commands.keys()].sort().join(" ");
             }
 
-            const keyword = this.input?.at(1);
+            const keyword = this.input?.at(1) ?? "";
+            const def = getCommand(ctx.commands, keyword);
+            if (def === NullCommand) {
+                return `${keyword}: command not found`;
+            }
 
-            const commandDef = ctx.commands.get(keyword ?? "");
-            if (typeof commandDef == "undefined") { return null; }
+            const command = initCommand((def as typeof Command), []);
 
-            const command = new commandDef();
             return `${keyword}: ${command.help()}`;
         }
     }],
