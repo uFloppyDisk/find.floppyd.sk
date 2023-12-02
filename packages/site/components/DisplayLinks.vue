@@ -8,6 +8,10 @@
   <div class="flex flex-col grow">
       <div class="xl:hidden pt-20"></div>
       <div class="group flex flex-col-reverse grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-red-500/25">
+        <div class="flex text-lg order-last">
+            <div class="basis-4 mr-2 text-center opacity-75">#</div>
+            <h1 class="font-bold">Find me<span class="animate-pulse">_</span></h1>
+        </div>
         <div
           v-for="category in categories" 
           :key="category[0]"
