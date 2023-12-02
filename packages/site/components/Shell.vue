@@ -6,7 +6,11 @@
       'opacity-70': !focussed
     }"
   >
-    <ElementShellHistory v-for="cmd in previous" :cmd="cmd.command">{{ cmd.output }}</ElementShellHistory>
+    <ElementShellHistory 
+        v-for="line in previous"
+        :command="line.command"
+        :output="line.output"
+    />
     <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
   </div>
 </template>

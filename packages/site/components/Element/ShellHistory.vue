@@ -6,16 +6,20 @@
       <span class="font-bold">{{ vanity?.path ?? '/' }}</span>
       <span>$ </span> 
     </span>
-    <span>{{ cmd }}</span>
-    <div>
-        <slot />
+    <span>{{ command }}</span>
+    <div 
+        v-if="typeof output === 'string'"
+        v-for="line in output.split('\n')"
+    >
+        {{ line }}
     </div>
   </div>
 </template>
 
 <script lang="ts" setup>
     defineProps<{
-        cmd: string;
+        command: string;
+        output: any;
     }>();
 
     const vanity: { userName: string, path: string } | undefined = inject('vanity')

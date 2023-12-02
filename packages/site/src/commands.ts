@@ -37,7 +37,7 @@ export default <CommandMap> new Map([
         explain usage of other commands in detail.`;
         execute(ctx: ShellContext): string | null {
             if ((this.input?.length ?? 0) <= 1) {
-                return [...ctx.commands.keys()].sort().join(" ");
+                return `Commands:\n${[...ctx.commands.keys()].sort().join(" ")}`;
             }
 
             const keyword = this.input?.at(1) ?? "";
