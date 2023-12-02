@@ -1,6 +1,6 @@
 <template>
   <div class="flex-col">
-    <ElementHeading>About</ElementHeading>
+    <ElementHeading>About Me</ElementHeading>
     <div class="flex flex-row">
       <div class="basis-6 shrink-0"></div>
       <div class="flex flex-col gap-2">
@@ -15,7 +15,7 @@
           music, physics, et cetera.
         </p>
         <p>
-          Now, at 24-years-old, my focus is on breaking into the software industry.
+          Now, at 24-years old, my focus is on breaking into the software industry.
           This website is a personal project of mine.
         </p>
       </div>

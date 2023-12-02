@@ -5,17 +5,20 @@
     <Shell class="absolute w-full h-full px-6 pt-14 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center select-none">
-        <div class="flex gap-2">
-          <div>
+        <div class="inline-flex">
+          <div class="inline-flex items-baseline">
             <span>Floppy OS</span>
             <span class="ml-1 text-xs">v60.09</span>
           </div>
-          <NuxtLink to="/">
-            <ElementButton class="inline-flex px-2">Find me</ElementButton>
-          </NuxtLink>
-          <NuxtLink to="/about">
-            <ElementButton class="inline-flex px-2">About</ElementButton>
-          </NuxtLink>
+          <span class="pl-3 pr-1">//</span>
+          <div class="inline-flex">
+            <NuxtLink to="/">
+              <div class="px-2">Find me</div>
+            </NuxtLink>
+            <NuxtLink to="/about">
+              <div class="px-2">About me</div>
+            </NuxtLink>
+          </div>
         </div>
         <div class="flex flex-row gap-x-1">
           <ElementButton 
@@ -184,6 +187,11 @@ body {
 
 div {
   text-shadow: 0px 0px 5px #f00;
+}
+
+.router-link-exact-active {
+  color: #000;
+  background-color: #ef4444;
 }
 
 #mask-scanlines {
