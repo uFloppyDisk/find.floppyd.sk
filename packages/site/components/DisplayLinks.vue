@@ -1,8 +1,6 @@
 <template>
   <div class="flex-col-reverse">
-    <ElementHeading class="order-last">
-        Find me<span class="animate-pulse">_</span>
-    </ElementHeading>
+    <ElementHeading class="order-last" :cursor="true">Find me</ElementHeading>
     <div
       v-for="category in categories" 
       :key="category[0]"

@@ -6,7 +6,7 @@
       <div v-else>#</div>
     </div>
     <component
-      class="self-center font-bold"
+      class="self-center font-bold whitespace-pre"
       :class="{
         'text-lg': !heading,
         'text-base': heading === 2,
@@ -15,6 +15,7 @@
       :is="tag"
     >
       <slot />
+      <span v-if="cursor" class="animate-pulse">_</span>
     </component>
   </div>
 </template>
@@ -22,6 +23,7 @@
 <script setup lang="ts">
   const props = defineProps<{
     heading?: number;
+    cursor?: boolean;
   }>();
 
   const tag = ref('h1');
