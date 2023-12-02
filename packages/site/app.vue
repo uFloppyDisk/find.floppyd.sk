@@ -12,11 +12,11 @@
           </div>
           <span class="pl-3 pr-1">//</span>
           <div class="inline-flex">
-            <NuxtLink to="/">
-              <div class="px-2">Find me</div>
-            </NuxtLink>
-            <NuxtLink to="/about">
-              <div class="px-2">About me</div>
+            <NuxtLink 
+              v-for="route in routes"
+              :to="route.route"
+            >
+              <div class="px-2 hover:bg-red-500/50 transition-colors">{{ route.text}}</div>
             </NuxtLink>
           </div>
         </div>
@@ -76,6 +76,11 @@
 
 <script setup lang="ts">
 import type ContentStatus from './src/types/ContentStatus';
+
+const routes = ref([
+  { route: "/", text: "Find me" },
+  { route: "/about", text: "About me" },
+]);
 
 const config = useRuntimeConfig()
 
