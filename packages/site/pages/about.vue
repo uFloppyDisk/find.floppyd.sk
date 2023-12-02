@@ -22,6 +22,20 @@
         </div>
       </div>
     </div>
+    <div>
+      <ElementHeading :heading="2">What is this?</ElementHeading>
+      <div class="flex flex-row">
+        <div class="basis-6 shrink-0"></div>
+        <div class="flex flex-col gap-2">
+          <p>
+            This website is a personal project of mine;
+            it is intended as a quasi-ARG (alternate reality game) in the form
+            of a terminal like you would see when using Linux or WSL.
+            I am always adding to this site so be sure to check back! 
+          </p>
+        </div>
+      </div>
+    </div>
   </div>
 </template>
 
