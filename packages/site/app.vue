@@ -16,7 +16,7 @@
               v-for="route in routes"
               :to="route.route"
             >
-              <div class="px-2 hover:bg-red-500/50 transition-colors">{{ route.text}}</div>
+              <div class="px-2 hover:bg-red-500/50 transition-colors">{{ route.text }}</div>
             </NuxtLink>
           </div>
         </div>
@@ -76,6 +76,8 @@
 
 <script setup lang="ts">
 import type ContentStatus from './src/types/ContentStatus';
+import links from './src/links.ts';
+import { generateLinkCategories } from './src/categories.ts';
 
 const routes = ref([
   { route: "/", text: "Find me" },
@@ -83,10 +85,11 @@ const routes = ref([
 ]);
 
 const config = useRuntimeConfig()
-
 const now = ref(Date.now());
-
 const showLinks = ref(true);
+
+const categories = ref(generateLinkCategories(links));
+
 const contentStatus = ref<ContentStatus>({
   twitch: {
     live: false,
@@ -105,6 +108,7 @@ const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
     return now.value - (dateStarted.getTime());
 })
 
+provide("categories", readonly(categories));
 provide("contentStatus", readonly(contentStatus));
 provide("contentTwitchUptimeSeconds", contentTwitchUptimeSeconds);
 

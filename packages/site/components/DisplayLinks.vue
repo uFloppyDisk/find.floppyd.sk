@@ -93,38 +93,18 @@
 </template>
 
 <script lang="ts" setup>
-import type { Link } from '~/src/links'; 
 import type { Categories } from '~/src/categories';
-import categoryPriority from '~/src/categories';
-import links from '~/src/links';
-
-const collapseCategory: Ref<Record<string, boolean>> = ref({});
-
-const collapse = (category: Categories) => {
-  collapseCategory.value[category] = !collapseCategory.value[category];
-}
 
 defineEmits<{
   (event: 'click', href: string): void
 }>();
 
-var categories = new Map<string, Link[]>();
+const categories = inject("categories");
+const collapseCategory: Ref<Record<string, boolean>> = ref({});
 
-categoryPriority.forEach(category => {
-  categories.set(category, [])
-  collapseCategory.value[category] = false;
-});
-
-links.forEach(link => {
-  var category = 'miscellaneous';
-  if (link.category) { category = link.category };
-  if (!categories.has(category)) { categories.set(category, [])}
-
-  categories.get(category)?.push(link);
-});
-
-categories = new Map([...categories.entries()].filter((cat) => cat[1].length > 0).reverse())
-
+const collapse = (category: Categories) => {
+  collapseCategory.value[category] = !collapseCategory.value[category];
+}
 </script>
 
 <style>
