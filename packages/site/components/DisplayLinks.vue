@@ -94,13 +94,26 @@
 
 <script lang="ts" setup>
 import type { Categories } from '~/src/categories';
+import type { Link } from '~/src/links';
+
+const props = defineProps<{
+  select?: string[];
+}>();
 
 defineEmits<{
   (event: 'click', href: string): void
 }>();
 
-const categories = inject("categories");
+const allCategories: Ref<Map<string, Link[]>> = ref(inject("categories") ?? new Map());
+const categories: Ref<Map<string, Link[]>> = ref(new Map());
 const collapseCategory: Ref<Record<string, boolean>> = ref({});
+
+if (typeof props.select !== 'undefined') {
+  const select = ['priority', ...props.select];
+  categories.value = new Map([...allCategories.value].filter(([k, _v]) => select.includes(k)))
+} else {
+  categories.value = allCategories.value;
+}
 
 const collapse = (category: Categories) => {
   collapseCategory.value[category] = !collapseCategory.value[category];

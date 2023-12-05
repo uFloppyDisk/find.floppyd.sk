@@ -1,5 +1,5 @@
 <template>
-    <DisplayLinks  @click="goToLink" />
+  <DisplayLinks  @click="goToLink" />
 </template>
 
 <script setup lang="ts">
