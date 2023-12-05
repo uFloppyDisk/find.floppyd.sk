@@ -98,14 +98,12 @@ const contentStatus = ref<ContentStatus>({
 });
 
 const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
-    var dateStarted = null;
     try {
-       dateStarted = new Date(contentStatus.value.twitch.started_at);
+      const dateStarted = new Date(contentStatus.value.twitch.started_at);
+      return now.value - dateStarted.getTime();
     } catch {
-        return 0;
+      return 0;
     }
-
-    return now.value - (dateStarted.getTime());
 })
 
 provide("categories", readonly(categories));
