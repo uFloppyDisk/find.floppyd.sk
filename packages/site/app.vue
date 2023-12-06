@@ -23,19 +23,19 @@
         <div class="flex flex-row gap-x-1">
           <ElementButton 
             class="w-7 h-7"
-            @click="toggleLinks"
+            @click="toggleContent"
           >
             <font-awesome-icon 
               class="absolute transition-opacity duration-75 delay-75"
               :class="{
-                'opacity-0': !showLinks
+                'opacity-0': !showContent
               }"
               :icon="['fas', 'minus']"
             />
             <font-awesome-icon
               class="absolute transition-opacity duration-75 delay-75"
               :class="{
-                'opacity-0': showLinks
+                'opacity-0': showContent
               }"
               :icon="['fas', 'plus']"
             />
@@ -62,7 +62,7 @@
     <div 
       class="flex basis-auto grow px-4 sm:px-24 md:px-36 xl:px-48 2xl:px-96 items-start xl:items-center duration-300 transition overflow-y-scroll"
       :class="{
-        'opacity-0 pointer-events-none': !showLinks,
+        'opacity-0 pointer-events-none': !showContent,
       }"
       >
       <div class="flex flex-col grow">
@@ -86,7 +86,7 @@ const routes = ref([
 
 const config = useRuntimeConfig()
 const now = ref(Date.now());
-const showLinks = ref(true);
+const showContent = ref(true);
 
 const categories = ref(generateLinkCategories(links));
 
@@ -147,8 +147,8 @@ const goHome = () => {
   window.location.href = home;
 };
 
-const toggleLinks = () => {
-  showLinks.value = !showLinks.value;
+const toggleContent = () => {
+  showContent.value = !showContent.value;
 }
 
 const updateNow = () => {

@@ -1,6 +1,6 @@
 <template>
   <div class="flex">
-    <div class="basis-4 mr-2 text-center text-lg opacity-75">
+    <div class="basis-4 mr-2 text-center text-lg opacity-75 select-none">
       <div v-if="heading === 3">/</div>
       <div v-else-if="heading === 2">&</div>
       <div v-else>#</div>
@@ -15,7 +15,7 @@
       :is="tag"
     >
       <slot />
-      <span v-if="cursor" class="animate-pulse">_</span>
+      <span v-if="cursor" class="animate-pulse select-none">_</span>
     </component>
   </div>
 </template>
