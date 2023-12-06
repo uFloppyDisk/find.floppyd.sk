@@ -2,7 +2,7 @@
   <div class="relative flex flex-col w-screen h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
     <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
     <ScreenLoading />
-    <Shell class="absolute w-full h-full px-6 pt-14 text-sm md:text-base" />
+    <Shell class="absolute w-full h-full pt-14 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center select-none">
         <div class="inline-flex grow">
@@ -105,6 +105,7 @@ const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
     }
 })
 
+provide("now", readonly(now));
 provide("categories", readonly(categories));
 provide("contentStatus", readonly(contentStatus));
 provide("contentTwitchUptimeSeconds", contentTwitchUptimeSeconds);
