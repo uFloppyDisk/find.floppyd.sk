@@ -96,6 +96,8 @@
 import type { Categories } from '~/src/categories';
 import type { Link } from '~/src/links';
 
+type CategoryMap = Map<string, Link[]>;
+
 const props = defineProps<{
   select?: string[];
 }>();
@@ -104,17 +106,18 @@ defineEmits<{
   (event: 'click', href: string): void
 }>();
 
-const allCategories: Ref<Map<string, Link[]>> = ref(inject("categories") ?? new Map());
-const categories: Ref<Map<string, Link[]>> = ref(new Map());
-const collapseCategory: Ref<Record<string, boolean>> = ref({});
+const allCategories: Ref<CategoryMap> = ref(inject("categories") ?? new Map());
+const categories: Ref<CategoryMap> = ref(new Map());
 
-if (typeof props.select !== 'undefined') {
+if (typeof props.select !== 'undefined' && props.select.length > 0) {
   const select = ['priority', ...props.select];
-  categories.value = new Map([...allCategories.value].filter(([k, _v]) => select.includes(k)))
+  categories.value = new Map([...allCategories.value]
+                        .filter(([k, _v]) => select.includes(k)));
 } else {
   categories.value = allCategories.value;
 }
 
+const collapseCategory: Ref<Record<string, boolean>> = ref({});
 const collapse = (category: Categories) => {
   collapseCategory.value[category] = !collapseCategory.value[category];
 }
