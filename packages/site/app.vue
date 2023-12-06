@@ -6,11 +6,11 @@
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center select-none">
         <div class="inline-flex grow">
-          <div class="inline-flex">
+          <div class="inline-flex pr-3">
             <img src="/svg/logo_simple.svg" id="logo" class="w-5 h-full" />
           </div>
-          <span class="pl-3 pr-1">//</span>
-          <div class="inline-flex">
+          <span class="hidden sm:inline-block">//</span>
+          <div class="inline-flex pl-1">
             <NuxtLink 
               v-for="route in routes"
               :to="route.route"

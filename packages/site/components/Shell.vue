@@ -5,16 +5,17 @@
       justify-between bg-black/50 text-sm"
     >
       <div class="flex h-full place-items-center gap-x-2">
-        <div class="mx-1">Floppy OS</div>
+        <div class="hidden md:block mx-1">Floppy OS</div>
         <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-500">
           <span class="text-black font-bold">
-            {{ vanity.userName }}@localhost
+            <span>{{ vanity.userName }}</span>
+            <span class="hidden sm:inline-block">@localhost</span>
           </span>
         </div>
         <div>: ~{{ vanity.path }}</div>
       </div>
       <div class="flex h-full place-items-center">
-        <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-700">
+        <div class="hidden sm:inline-flex h-full px-1 items-center gap-x-1 bg-red-700">
           <span class="text-black font-bold">{{ shellDate }}</span>
         </div>
         <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-500">
