@@ -1,5 +1,10 @@
 <template>
-  <DisplayLinks  @click="goToLink" :select="selected" />
+  <div class="flex-col">
+    <ElementHeading :cursor="true">Find me</ElementHeading>
+    <div class="flex flex-col-reverse select-none">
+      <DisplayLinks  @click="goToLink" :select="selected" />
+    </div>
+  </div>
 </template>
 
 <script setup lang="ts">
