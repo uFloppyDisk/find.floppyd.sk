@@ -5,10 +5,9 @@
     <Shell class="absolute w-full h-full px-6 pt-14 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
       <div class="flex h-full justify-between items-center select-none">
-        <div class="inline-flex">
-          <div class="inline-flex items-baseline">
-            <span>Floppy OS</span>
-            <span class="ml-1 text-xs">v60.09</span>
+        <div class="inline-flex grow">
+          <div class="inline-flex">
+            <img src="/svg/logo_simple.svg" id="logo" class="w-5 h-full" />
           </div>
           <span class="pl-3 pr-1">//</span>
           <div class="inline-flex">
@@ -206,5 +205,10 @@ div {
   background: repeating-linear-gradient( 0, #aaa, #aaa var(--scanline-off), #fff var(--scanline-off), #fff calc(var(--scanline-off) + var(--scanline-on)) );
   mix-blend-mode: multiply;
   pointer-events: none;
+}
+
+#logo {
+  filter: brightness(0) saturate(100%) invert(11%) sepia(92%) saturate(7480%) 
+          hue-rotate(0deg) brightness(108%) contrast(109%);
 }
 </style>
