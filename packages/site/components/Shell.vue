@@ -1,7 +1,7 @@
 <template>
   <div ref="shell" tabindex="0">
     <div 
-      class="absolute bottom-0 flex w-full h-6 z-50
+      class="absolute bottom-0 flex w-full h-6 z-10
       justify-between bg-black/50 text-sm"
     >
       <div class="flex h-full place-items-center gap-x-2">
