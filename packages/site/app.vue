@@ -1,6 +1,6 @@
 <template>
-  <div id="mask-scanlines" class="absolute w-full h-full"></div>
-  <div class="fixed flex flex-col w-full h-full text-red-500 bg-[#0f0c0c]/90 font-mono">
+  <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
+  <div class="fixed flex flex-col w-full h-full text-red-500 bg-[#1c0b0b] font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
@@ -173,8 +173,6 @@ if (process.browser) {
 
   --scanline-off: 1px;
   --scanline-on: 1px;
-
-  background-color: var(--fd-bg-color);
 }
 
 ::selection {
@@ -193,7 +191,7 @@ body {
 }
 
 div {
-  text-shadow: 0px 0px 5px #f00;
+  text-shadow: 0px 0px 0.5px #f00;
 }
 
 .router-link-exact-active {
@@ -203,7 +201,7 @@ div {
 
 #mask-scanlines {
   z-index: 1000;
-  background: repeating-linear-gradient( 0, #aaa, #aaa var(--scanline-off), #fff var(--scanline-off), #fff calc(var(--scanline-off) + var(--scanline-on)) );
+  background: repeating-linear-gradient( 0, #bbb, #bbb var(--scanline-off), #fff var(--scanline-off), #fff calc(var(--scanline-off) + var(--scanline-on)) );
   mix-blend-mode: multiply;
   pointer-events: none;
 }
