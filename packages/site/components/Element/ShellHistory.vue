@@ -17,12 +17,12 @@
 </template>
 
 <script lang="ts" setup>
-    defineProps<{
-        command: string;
-        output: any;
-    }>();
+defineProps<{
+    command: string;
+    output: any;
+}>();
 
-    const vanity: { userName: string, path: string } | undefined = inject('vanity')
+const vanity: { userName: string, path: string } | undefined = inject('vanity');
 </script>
 
 <style>

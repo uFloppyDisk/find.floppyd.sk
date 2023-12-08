@@ -1,11 +1,14 @@
 <template>
-  <div ref="shell" tabindex="0">
+  <div>
     <div 
       class="absolute bottom-0 flex w-full h-6 z-10
-      justify-between bg-black/50 text-sm"
+      justify-between bg-black/50 backdrop-blur-sm backdrop-brightness-75 text-sm"
     >
       <div class="flex h-full place-items-center gap-x-2">
-        <div class="hidden md:block mx-1">Floppy OS</div>
+        <div class="hidden md:inline-flex items-baseline mx-1 gap-x-1">
+            <span class="font-bold">Floppy OS</span>
+            <span class="hidden lg:inline-block text-xs">v60.09</span>
+        </div>
         <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-500">
           <span class="text-black font-bold">
             <span>{{ vanity.userName }}</span>
@@ -24,17 +27,22 @@
       </div>
     </div>
     <div 
-      class="px-6 transition-opacity"
-      :class="{
-        'opacity-70': !focussed
-      }"
+      ref="shell" tabindex="0"
+      class="w-full h-full pt-2"
     >
-      <ElementShellHistory 
-        v-for="line in previous"
-        :command="line.command"
-        :output="line.output"
-      />
-      <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
+      <div 
+        class="px-6 transition-opacity"
+        :class="{
+          'opacity-70': !focussed
+        }"
+      >
+        <ElementShellHistory 
+          v-for="line in previous"
+          :command="line.command"
+          :output="line.output"
+        />
+        <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
+      </div>
     </div>
   </div>
 </template>
