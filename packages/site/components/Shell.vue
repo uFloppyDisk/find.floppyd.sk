@@ -41,7 +41,12 @@
           :command="line.command"
           :output="line.output"
         />
-        <ElementShellInput :input="input" :focussed="focussed" @commit="commit" />
+        <ElementShellInput 
+          :key="inputCounter" 
+          :input="input" 
+          :focussed="focussed" 
+          @commit="commit"
+        />
       </div>
     </div>
   </div>
@@ -53,14 +58,14 @@ import { NullCommand, Command } from '~/src/classes/command';
 import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 
+const router = reactive(useRouter());
+
 const shell: Ref<HTMLDivElement | null> = ref(null);
 const input: Ref<string> = ref('');
+const inputCounter: Ref<number> = ref(0);
 
 const history: string[] = [];
-const previous: ShellPrevious[] = reactive([{
-    command: 'find -name "FloppyDisk" -type gamer -not cringe',
-    output: null,
-}]);
+const previous: ShellPrevious[] = reactive([]);
 
 const focussed: Ref<boolean> = ref(false);
 
@@ -89,10 +94,17 @@ const shellDateTime = computed(() => {
 onMounted(() => {    
   vanity.userName = `user-${randomString()}`;
   vanity.path = window.location.pathname;
+
+  previous.push({
+    command: 'find -name "FloppyDisk" -type gamer -not cringe',
+    output: null,
+  });
+  inputCounter.value += 1;
 });
 
 const commit = (input: string) => {
   history.push(input);
+  inputCounter.value += 1;
 
   const keyword = input.split(" ", 1)[0];
   if (keyword.trim().length <= 0) {
@@ -154,6 +166,10 @@ const keyDownEvent = (event: KeyboardEvent) => {
 }
 
 if (process.browser) {
+  watch(router, (value, _) => {
+    vanity.path = value.currentRoute.path;
+  });
+
   watch(shell, (value, _) => {
     if (value == null) { return; }
 
