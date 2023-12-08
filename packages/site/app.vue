@@ -1,6 +1,6 @@
 <template>
-  <div class="relative flex flex-col w-screen h-screen text-red-500 bg-[#0f0c0c]/90 font-mono">
-    <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
+  <div id="mask-scanlines" class="absolute w-full h-full"></div>
+  <div class="fixed flex flex-col w-full h-full text-red-500 bg-[#0f0c0c]/90 font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
