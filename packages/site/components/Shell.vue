@@ -1,8 +1,8 @@
 <template>
   <div>
     <div 
-      class="absolute bottom-0 flex w-full h-6 z-10
-      justify-between bg-black/50 backdrop-blur-sm backdrop-brightness-75 text-sm"
+      class="absolute bottom-0 flex w-full h-6 z-10 justify-between
+      bg-black/50 backdrop-blur-sm backdrop-brightness-75 text-sm select-none"
     >
       <div class="flex h-full place-items-center gap-x-2">
         <div class="hidden md:inline-flex items-baseline mx-1 gap-x-1">
