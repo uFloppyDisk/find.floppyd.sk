@@ -38,6 +38,7 @@
       >
         <ElementShellHistory 
           v-for="line in previous"
+          :vanity="line.vanity"
           :command="line.command"
           :output="line.output"
         />
@@ -74,6 +75,11 @@ const vanity = reactive({
   path: '',
 });
 
+let vanityStatic = {
+  userName: '',
+  path: '',
+};
+
 const now: Ref<number> = inject('now', ref(0));
 provide('vanity', vanity);
 
@@ -92,23 +98,31 @@ const shellDateTime = computed(() => {
 })
 
 onMounted(() => {    
-  vanity.userName = `user-${randomString()}`;
-  vanity.path = window.location.pathname;
+  vanity.userName = vanityStatic.userName = `user-${randomString()}`;
+  vanity.path = vanityStatic.path = window.location.pathname;
 
   previous.push({
+    vanity: vanityStatic,
     command: 'find -name "FloppyDisk" -type gamer -not cringe',
     output: null,
   });
+
   inputCounter.value += 1;
 });
 
 const commit = (input: string) => {
+  const data: ShellPrevious = { 
+    vanity: vanityStatic,
+    command: input,
+    output: null
+  };
+
   history.push(input);
   inputCounter.value += 1;
 
   const keyword = input.split(" ", 1)[0];
   if (keyword.trim().length <= 0) {
-    previous.push({ command: input, output: null });
+    previous.push(data);
     return;
   }
 
@@ -121,13 +135,14 @@ const commit = (input: string) => {
     const args = input.slice(keyword.length).split(" ");
     const command = initCommand((def as typeof Command), args);
 
-    const output = command.execute({ history, previous, commands });
+    data.output = command.execute({ history, previous, commands });
 
     if (command.shouldPush) {
-      previous.push({ command: input, output: output });
+      previous.push(data);
     }
   } catch(err) {
-    previous.push({ command: input, output: (err as Error).message});
+    data.output = (err as Error).message;
+    previous.push(data);
   }
 }
 
@@ -182,6 +197,13 @@ if (process.browser) {
     })
 
     value.addEventListener("keydown", keyDownEvent);
+  });
+
+  watch(inputCounter, (_value, _) => {
+    vanityStatic = {
+      userName: vanity.userName,
+      path: vanity.path,
+    }
   });
 }
 
