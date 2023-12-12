@@ -9,7 +9,7 @@
             <span class="font-bold">Floppy OS</span>
             <span class="hidden lg:inline-block text-xs">v60.09</span>
         </div>
-        <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-500">
+        <div class="inline-flex h-full px-1 items-center gap-x-1 bg-primary-500">
           <span class="text-black font-bold">
             <span>{{ vanity.userName }}</span>
             <span class="hidden sm:inline-block">@localhost</span>
@@ -18,10 +18,10 @@
         <div>: ~{{ vanity.path }}</div>
       </div>
       <div class="flex h-full place-items-center">
-        <div class="hidden sm:inline-flex h-full px-1 items-center gap-x-1 bg-red-700">
+        <div class="hidden sm:inline-flex h-full px-1 items-center gap-x-1 bg-primary-700">
           <span class="text-black font-bold">{{ shellDateTime.split(" ")[0] }}</span>
         </div>
-        <div class="inline-flex h-full px-1 items-center gap-x-1 bg-red-500">
+        <div class="inline-flex h-full px-1 items-center gap-x-1 bg-primary-500">
           <span class="text-black font-bold">{{ shellDateTime.split(" ")[1] }} UTC</span>
         </div>
       </div>

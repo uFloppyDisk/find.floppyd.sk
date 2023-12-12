@@ -3,7 +3,7 @@
       group group/subtitle flex justify-between items-center
       h-10
       bg-black/80
-      border border-red-500
+      border border-primary-500
       transition
       translate-y-0 hover:-translate-y-1
       cursor-pointer
@@ -58,9 +58,9 @@
         pointer-events-none
       "
     >
-      <div class="basis-8 md:basis-10 pl-1 grow-0 shrink-0 border-t border-red-500"></div>
+      <div class="basis-8 md:basis-10 pl-1 grow-0 shrink-0 border-t border-primary-500"></div>
       <div
-        class="basis-full h-full px-1.5 border border-t-0 border-dashed border-red-500 bg-black/80 break-words"
+        class="basis-full h-full px-1.5 border border-t-0 border-dashed border-primary-500 bg-black/80 break-words"
       >
         <div class="-translate-y-1">
           {{ link.subtitle }}

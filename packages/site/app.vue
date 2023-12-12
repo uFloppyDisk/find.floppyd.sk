@@ -1,9 +1,9 @@
 <template>
   <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
-  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-[#1c0b0b] font-mono">
+  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-primary-950 font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
-    <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
+    <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-primary-500">
       <div class="flex h-full justify-between items-center select-none">
         <div class="inline-flex grow">
           <div class="inline-flex pr-3">
@@ -15,7 +15,7 @@
               v-for="route in routes"
               :to="route.route"
             >
-              <div class="px-2 hover:bg-red-500/50 transition-colors">{{ route.text }}</div>
+              <div class="px-2 hover:bg-primary-500 hover:text-black transition-colors">{{ route.text }}</div>
             </NuxtLink>
           </div>
         </div>
@@ -66,7 +66,7 @@
       >
       <div class="flex flex-col grow">
         <div class="xl:hidden pt-10 sm:pt-14 md:pt-20"></div>
-        <NuxtPage class="group flex grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-red-500/25" />
+        <NuxtPage class="group flex grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-primary-500" />
         <div class="xl:hidden pt-10"></div>
       </div>
     </div>
@@ -172,7 +172,8 @@ if (process.browser) {
   --scanline-off: 1px;
   --scanline-on: 1px;
 
-  --fd-bg-color: #8f0000;
+  --fd-bg-color: var(--color-primary-950);
+  /* --fd-bg-color: #8f0000; */
 
   --color-primary-50:  theme('colors.green.50');
   --color-primary-100: theme('colors.green.100');
@@ -188,7 +189,7 @@ if (process.browser) {
 }
 
 ::selection {
-  background: red;
+  background: var(--color-primary-500);
   color: black;
 }
 
@@ -203,12 +204,12 @@ body {
 }
 
 div {
-  text-shadow: 0px 0px 0.5px #f00;
+  text-shadow: 0px 0px 0.5px var(--color-primary-500);
 }
 
 .router-link-exact-active {
   color: #000;
-  background-color: #ef4444;
+  background-color: var(--color-primary-500) !important;
 }
 
 #mask-scanlines {

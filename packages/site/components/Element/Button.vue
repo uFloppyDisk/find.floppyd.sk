@@ -2,10 +2,10 @@
   <div 
     class="
       relative flex  
-      border border-red-500 
+      border border-primary-500 
       justify-center items-center 
       cursor-pointer select-none
-      hover:bg-red-500 hover:text-black transition-colors
+      hover:bg-primary-500 hover:text-black transition-colors
     "
   >
     <slot />

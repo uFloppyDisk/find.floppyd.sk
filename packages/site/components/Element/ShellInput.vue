@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="text-red-500">
+    <span>
       <span>{{ vanity.userName }}</span>
       <span>@localhost: ~</span>
       <span class="font-bold">{{ vanity.path }}</span>
@@ -35,7 +35,7 @@ const vanity = JSON.parse(JSON.stringify(
 
 <style scoped>
 #cursor > rect {
-  fill: rgb(239 68 68)
+  fill: var(--color-primary-500)
 }
 </style>
 

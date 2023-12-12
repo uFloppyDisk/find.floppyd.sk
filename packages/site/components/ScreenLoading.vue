@@ -1,13 +1,13 @@
 <template>
     <div 
-      class="absolute w-screen h-screen bg-[#2f0c0c] z-50 transition-opacity delay-500 duration-500 select-none" 
+      class="absolute w-screen h-screen bg-primary-950 z-50 transition-opacity delay-500 duration-500 select-none" 
       :class="{
         'opacity-0 pointer-events-none': done
       }"
     >
       <div class="container flex flex-col mx-auto h-full gap-y-2 justify-center items-center">
         <div class="flex basis-3/5 w-full grow-0 justify-center items-center">
-          <Scene3DRotatingLogo class="basis-full md:basis-1/3 border-2 border-[#ff000077] border-dotted" :done="done" />
+          <Scene3DRotatingLogo class="basis-full md:basis-1/3 border-2 border-primary-700 border-dotted" :done="done" />
         </div>
         <div class="flex basis-auto grow-0 w-full justify-center">
           <div class="basis-full sm:basis-1/3 grow-0 h-fit">
@@ -17,7 +17,7 @@
             </div>
             <div class="px-4 py-3 bg-black/20 text-center">
               <div ref="dispLoadingStatus">// Initializing //</div>
-              <div ref="dispLoading" id="loading" class="flex h-7 p-1 border border-[#ff000077] text-start text-md font-mono whitespace-nowrap"></div>
+              <div ref="dispLoading" id="loading" class="flex h-7 p-1 border border-primary-500 text-start text-md font-mono whitespace-nowrap"></div>
             </div>
           </div>
         </div>  
@@ -93,7 +93,7 @@ onMounted(() => {
 
 #loading div.done {
   color: black;
-  background-color: red;
+  background-color: var(--color-primary-500);
 }
 </style>
 

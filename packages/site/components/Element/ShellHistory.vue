@@ -1,6 +1,6 @@
 <template>
   <div>
-    <span class="text-red-500">
+    <span>
       <span>{{ vanity.userName }}</span>
       <span>@localhost: ~</span>
       <span class="font-bold">{{ vanity.path }}</span>

@@ -24,7 +24,7 @@
         />
       </div>
       <div 
-        class="flex basis-full mx-2 border-dotted border-red-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
+        class="flex basis-full mx-2 border-dotted border-primary-500 font-bold text-sm capitalize opacity-75 group-hover/category:opacity-100 transition-opacity"
         :class="{
           'border-b': !collapseCategory[category[0]]
         }"
@@ -64,7 +64,7 @@
       }"
     >
       <div class="basis-1 shrink-0"></div>
-      <div class="basis-3 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-red-500 opacity-50"></div>
+      <div class="basis-3 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-primary-500 opacity-50"></div>
       <div class="basis-full">
         <div 
           class="flex flex-wrap-reverse flex-row-reverse text-center m-1"
@@ -124,13 +124,13 @@ const collapse = (category: Categories) => {
 
 @keyframes bgpulse {
   0% {
-    background-color: #ff000080;
+    background-color: var(--color-primary-950);
   }
   50% {
-    background-color: #ff000022;
+    background-color: var(--color-primary-500);
   }
   100% {
-    background-color: #ff000080;
+    background-color: var(--color-primary-950);
   }
 }
 
