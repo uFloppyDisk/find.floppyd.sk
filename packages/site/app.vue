@@ -1,6 +1,6 @@
 <template>
   <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
-  <div class="fixed flex flex-col w-full h-full text-red-500 bg-[#1c0b0b] font-mono">
+  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-[#1c0b0b] font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-red-500">
@@ -169,10 +169,22 @@ if (process.browser) {
 
 <style>
 :root {
-  --fd-bg-color: #8f0000;
-
   --scanline-off: 1px;
   --scanline-on: 1px;
+
+  --fd-bg-color: #8f0000;
+
+  --color-primary-50:  theme('colors.green.50');
+  --color-primary-100: theme('colors.green.100');
+  --color-primary-200: theme('colors.green.200');
+  --color-primary-300: theme('colors.green.300');
+  --color-primary-400: theme('colors.green.400');
+  --color-primary-500: theme('colors.green.500');
+  --color-primary-600: theme('colors.green.600');
+  --color-primary-700: theme('colors.green.700');
+  --color-primary-800: theme('colors.green.800');
+  --color-primary-900: theme('colors.green.900');
+  --color-primary-950: theme('colors.green.950');
 }
 
 ::selection {
