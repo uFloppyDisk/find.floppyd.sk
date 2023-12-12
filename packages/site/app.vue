@@ -1,13 +1,13 @@
 <template>
   <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
-  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-primary-950 font-mono">
+  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-[var(--fd-bg-color)] font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-primary-500">
       <div class="flex h-full justify-between items-center select-none">
         <div class="inline-flex grow">
           <div class="inline-flex pr-3">
-            <img src="/svg/logo_simple.svg" id="logo" class="w-5 h-full" />
+            <div id="logo" class="w-5 h-full bg-primary-500"></div>
           </div>
           <span class="hidden sm:inline-block">//</span>
           <div class="inline-flex pl-1">
@@ -175,17 +175,17 @@ if (process.browser) {
   --fd-bg-color: var(--color-primary-950);
   /* --fd-bg-color: #8f0000; */
 
-  --color-primary-50:  theme('colors.green.50');
-  --color-primary-100: theme('colors.green.100');
-  --color-primary-200: theme('colors.green.200');
-  --color-primary-300: theme('colors.green.300');
-  --color-primary-400: theme('colors.green.400');
-  --color-primary-500: theme('colors.green.500');
-  --color-primary-600: theme('colors.green.600');
-  --color-primary-700: theme('colors.green.700');
-  --color-primary-800: theme('colors.green.800');
-  --color-primary-900: theme('colors.green.900');
-  --color-primary-950: theme('colors.green.950');
+  --color-primary-50:  theme('colors.red.50');
+  --color-primary-100: theme('colors.red.100');
+  --color-primary-200: theme('colors.red.200');
+  --color-primary-300: theme('colors.red.300');
+  --color-primary-400: theme('colors.red.400');
+  --color-primary-500: theme('colors.red.500');
+  --color-primary-600: theme('colors.red.600');
+  --color-primary-700: theme('colors.red.700');
+  --color-primary-800: theme('colors.red.800');
+  --color-primary-900: theme('colors.red.900');
+  --color-primary-950: theme('colors.red.950');
 }
 
 ::selection {
@@ -220,7 +220,8 @@ div {
 }
 
 #logo {
-  filter: brightness(0) saturate(100%) invert(11%) sepia(92%) saturate(7480%) 
-          hue-rotate(0deg) brightness(108%) contrast(109%);
+  mask-image: url("/svg/logo_simple.svg");
+  mask-repeat: no-repeat;
+  mask-position: 50%;
 }
 </style>
