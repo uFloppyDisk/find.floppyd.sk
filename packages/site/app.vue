@@ -66,7 +66,7 @@
       >
       <div class="flex flex-col grow">
         <div class="xl:hidden pt-10 sm:pt-14 md:pt-20"></div>
-        <NuxtPage class="group flex grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-primary-500" />
+        <NuxtPage class="group flex grow py-2 pl-3 pr-2 gap-2 backdrop-blur-sm backdrop-brightness-50 border border-primary-800" />
         <div class="xl:hidden pt-10"></div>
       </div>
     </div>
