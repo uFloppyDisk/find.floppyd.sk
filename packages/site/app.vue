@@ -1,6 +1,7 @@
 <template>
   <div id="mask-scanlines" class="absolute w-screen h-screen"></div>
-  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-[var(--fd-bg-color)] font-mono">
+  <div class="fixed w-full h-full bg-primary-950 -z-50"></div>
+  <div class="fixed flex flex-col w-full h-full text-primary-500 bg-black/50 font-mono">
     <ScreenLoading />
     <Shell class="absolute w-full h-full pt-12 text-sm md:text-base" />
     <div class="relative basis-12 shrink-0 px-6 bg-black/80 border-b border-primary-500">
@@ -172,8 +173,7 @@ if (process.browser) {
   --scanline-off: 1px;
   --scanline-on: 1px;
 
-  --fd-bg-color: var(--color-primary-950);
-  /* --fd-bg-color: #8f0000; */
+  --fd-bg-color: #8f0000;
 
   --color-primary-50:  theme('colors.red.50');
   --color-primary-100: theme('colors.red.100');
