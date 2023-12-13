@@ -58,4 +58,8 @@ export default <CommandMap> new Map([
             return this.input?.join(" ") ?? null;
         }
     }],
+    ["colour", class ColourCommand extends CommandWithInput {
+        keyword = "colour";
+        description = "Change the colour of the terminal.";
+    }],
 ]);
