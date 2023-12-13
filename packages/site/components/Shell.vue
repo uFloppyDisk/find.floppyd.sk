@@ -59,6 +59,7 @@ import { NullCommand, Command } from '~/src/classes/command';
 import type { ShellPrevious } from '~/src/types/shell';
 import { randomString } from '~/src/utils';
 
+const root: Ref<Document | null> = ref(null);
 const router = reactive(useRouter());
 
 const shell: Ref<HTMLDivElement | null> = ref(null);
@@ -98,6 +99,8 @@ const shellDateTime = computed(() => {
 })
 
 onMounted(() => {    
+  root.value = window.document;
+
   vanity.userName = vanityStatic.userName = `user-${randomString()}`;
   vanity.path = vanityStatic.path = window.location.pathname;
 
@@ -135,7 +138,10 @@ const commit = (input: string) => {
     const args = input.slice(keyword.length).split(" ");
     const command = initCommand((def as typeof Command), args);
 
-    data.output = command.execute({ history, previous, commands });
+    data.output = command.execute({ 
+      root: root.value, commands,
+      history, previous, 
+    });
 
     if (command.shouldPush) {
       previous.push(data);

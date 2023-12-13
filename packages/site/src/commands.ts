@@ -6,6 +6,7 @@ import {
     CommandWithInput,
     CommandWithoutPush
 } from './classes/command.ts';
+import colors from 'tailwindcss/colors';
 
 export function getCommand(commands: CommandMap, keyword: string): typeof Command | typeof NullCommand {
     const def = commands.get(keyword);
@@ -61,5 +62,43 @@ export default <CommandMap> new Map([
     ["colour", class ColourCommand extends CommandWithInput {
         keyword = "colour";
         description = "Change the colour of the terminal.";
+        availableColours = Object.keys(colors).splice(5, 22);
+        help(): string {
+          return `${this.description}\n
+          Available colours: ${this.availableColours.join(", ")}`;
+        };
+        execute(ctx: ShellContext): string | null {
+          let selected = 'red'; 
+
+          if (!this.input) { return null; }
+
+          do {
+            if (this.input.length <= 1) {
+              selected = this.availableColours[
+                Math.floor(Math.random() * this.availableColours.length)
+              ];
+
+              break;
+            }
+
+            if (!this.availableColours.includes(this.input[1])) {
+              return `Colour '${this.input[1]}' does not exist. 
+                Type 'help ${this.keyword}' to see a list of available colours.`
+            }
+            
+            selected = this.input[1];
+          } while (false);
+
+
+          const grades = colors[selected];
+          for (const grade of Object.keys(grades)) {
+            ctx.root?.documentElement.style.setProperty(
+              `--color-primary-${grade}`, grades[grade]
+            )
+            
+          }
+
+          return `Changing colour to '${selected}'`;
+        }
     }],
 ]);

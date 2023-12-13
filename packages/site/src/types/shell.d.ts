@@ -7,8 +7,9 @@ export type ShellPrevious = {
 }
 
 export type ShellContext = {
+  root: Document | null,
+  commands: CommandMap,
   history: string[],
   previous: ShellPrevious[],
-  commands: CommandMap,
 }
 
