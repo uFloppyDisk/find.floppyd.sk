@@ -1,13 +1,13 @@
 <template>
   <div class="flex-col">
     <ElementHeading :cursor="true">Find me</ElementHeading>
-    <div class="flex flex-col-reverse select-none">
+    <div class="flex flex-col-reverse xl:flex-row-reverse xl:flex-wrap-reverse select-none">
       <div
         v-for="category in categories" 
         :key="category[0]"
-        class="group/category flex flex-col grow py-1"
+        class="group/category flex flex-col xl:basis-1/2 grow py-1"
         :class="{
-          'mb-4': category[0] === 'priority',
+          'mb-4 lg:mb-0': category[0] === 'priority',
         }"
       >
         <div 
@@ -78,7 +78,7 @@
               <div
                 v-for="link in category[1].slice().reverse()"
                 :key="link.href"
-                class="basis-1/2 md:basis-1/3 grow shrink-0 xl:basis-1/4 m-1"
+                class="basis-1/2 md:basis-1/3 grow shrink-0 m-1"
               >
                 <ElementLink
                   class="min-w-fit max-h-10 opacity-100 group-hover:opacity-75 hover:!opacity-100"

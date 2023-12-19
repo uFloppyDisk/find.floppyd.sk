@@ -39,13 +39,9 @@
       />
     </div>
     <div class="basis-full grow px-2">
-      <div 
-        class="relative"
-      >
-        <span class="capitalize font-bold">
-          {{ link.title }}
-        </span>
-      </div>
+      <span class="capitalize font-bold">
+        {{ link.title }}
+      </span>
     </div>
     <div
       v-if="link.subtitle"
