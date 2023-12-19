@@ -15,6 +15,7 @@
             <NuxtLink 
               v-for="route in routes"
               :to="route.route"
+              @click="toggleContent(true)"
             >
               <div class="px-2 hover:bg-primary-500 hover:text-black transition-colors">{{ route.text }}</div>
             </NuxtLink>
@@ -23,7 +24,7 @@
         <div class="flex flex-row gap-x-1">
           <ElementButton 
             class="w-7 h-7"
-            @click="toggleContent"
+            @click="toggleContent()"
           >
             <font-awesome-icon 
               class="absolute transition-opacity duration-75 delay-75"
@@ -148,8 +149,13 @@ const goHome = () => {
   window.location.href = home;
 };
 
-const toggleContent = () => {
-  showContent.value = !showContent.value;
+const toggleContent = (setTo?: boolean) => {
+  if (typeof setTo !== 'boolean') {
+    showContent.value = !showContent.value;
+    return;
+  }
+
+  showContent.value = setTo;
 }
 
 const updateNow = () => {
