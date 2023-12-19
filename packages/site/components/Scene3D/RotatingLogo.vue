@@ -106,10 +106,10 @@ if (process.browser) {
 
   let delta = 0;
   function animate() {
-    // if (props.done) {
-    //   renderer.dispose();
-    //   return;
-    // }
+    if (props.done) {
+      renderer.dispose();
+      return;
+    }
 
     requestAnimationFrame(animate);
     delta += clock.getDelta();
