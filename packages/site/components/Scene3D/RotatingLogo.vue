@@ -1,7 +1,5 @@
 <template>
-  <canvas id="scene" class="w-full" width="100" height="100">
-
-  </canvas>
+  <canvas ref="sceneDom" class="w-full" width="100" height="100"></canvas>
 </template>
 
 <script lang="ts" setup>
@@ -12,19 +10,14 @@ const props = defineProps<{
   done: boolean
 }>();
 
-if (process.browser) {
-  const sceneDom = document.getElementById('scene') ?? undefined;
-  const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
-    width: window.innerWidth,
-    height: window.innerHeight,
-  };
+const sceneDom: Ref<HTMLCanvasElement | null> = ref(null);
+
+onMounted(() => {
+  if (sceneDom.value === null) { return; }
+
+  const sceneDomSize = sceneDom.value.getBoundingClientRect(); 
 
   window.addEventListener('resize', (event) => {
-    const sceneDomSize = sceneDom?.getBoundingClientRect() ?? {
-      width: window.innerWidth,
-      height: window.innerHeight,
-    };
-
     camera.aspect = sceneDomSize.width / sceneDomSize.height;
     camera.updateProjectionMatrix();
 
@@ -43,7 +36,7 @@ if (process.browser) {
   const interval = 1 / 1;
 
   const renderer = new THREE.WebGLRenderer({
-    canvas: sceneDom,
+    canvas: sceneDom.value,
     alpha: true
   });
 
@@ -90,7 +83,6 @@ if (process.browser) {
       logo.scale.set(0.01, 0.01, 1);
       logo.setRotationFromEuler(new THREE.Euler(Math.PI, 0.0, 0.0));
 
-      // Centering adjustments
       logo.translateX(0.042);
 
       scene.add(logo);
@@ -104,24 +96,24 @@ if (process.browser) {
   pivot.add(camera);
   scene.add(pivot);
 
-  let delta = 0;
+  let time = 0;
   function animate() {
+    requestAnimationFrame(animate);
+
     if (props.done) {
       renderer.dispose();
       return;
     }
 
-    requestAnimationFrame(animate);
-    delta += clock.getDelta();
-
-    if (delta > interval) {
+    time += clock.getDelta();
+    if (time > interval) {
       pivot.rotation.y = (pivot.rotation.y + (Math.PI / 6)) % (Math.PI * 2);
-      delta = delta % interval;
+      time = time % interval;
     }
 
     renderer.render(scene, camera);
   }
 
   animate();
-}
+});
 </script>
