@@ -32,7 +32,7 @@
     >
       <div 
         ref="scrollToElement"
-        class="mt-2 pb-10 px-6 transition-opacity"
+        class="mt-2 pb-8 px-6 transition-opacity"
         :class="{
           'opacity-70': !focussed
         }"
@@ -209,7 +209,9 @@ if (process.browser) {
   });
 
   watch(previous, () => {
-    scrollToElement.value?.scrollIntoView(false);
+    setTimeout(() => {
+      scrollToElement.value?.scrollIntoView(false);
+    }, 0.1)
   });
 
   watch(inputCounter, (_value, _) => {
