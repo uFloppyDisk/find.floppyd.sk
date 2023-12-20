@@ -1,13 +1,14 @@
 <template>
   <div class="flex-col">
     <ElementHeading :cursor="true">Find me</ElementHeading>
-    <div class="flex flex-col-reverse xl:flex-row-reverse xl:flex-wrap-reverse select-none">
+    <div class="flex flex-col-reverse xl:flex-row-reverse xl:flex-wrap-reverse gap-y-2 select-none">
       <div
         v-for="category in categories" 
         :key="category[0]"
-        class="group/category flex flex-col xl:basis-1/2 grow py-1"
+        class="group/category flex flex-col xl:basis-1/2 grow"
         :class="{
-          'mb-4 lg:mb-0': category[0] === 'priority',
+          'pb-2 xl:pb-0 border-b xl:border-b-0 border-primary-500 border-dashed': 
+            category[0] === 'priority',
         }"
       >
         <div 
@@ -33,12 +34,12 @@
             }"
           >
             <span 
-              class="flex w-full"
+              class="inline-flex w-full py-1 items-center"
               :class="{
                 'animate-bounce': category[0] === 'priority' && categoryCollapsed[category[0]]
               }"
             >
-              <div class="flex basis-5 pr-1 justify-center items-center">
+              <span class="flex basis-5 justify-center items-center">
                 <font-awesome-icon
                   v-if="category[0] === 'priority'"
                   :icon="['fas', 'heart']"
@@ -55,8 +56,10 @@
                   v-else
                   :icon="['fas', 'question']"
                 />
-              </div>
-              {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
+              </span>
+              <span class="h-4">
+                {{ !(category[0] === 'priority') ? category[0] : "Floppy's picks" }}
+              </span>
             </span>
           </div>
         </div>
@@ -78,10 +81,10 @@
               <div
                 v-for="link in category[1].slice().reverse()"
                 :key="link.href"
-                class="basis-1/2 md:basis-1/3 grow shrink-0 m-1"
+                class="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-full grow shrink-0"
               >
                 <ElementLink
-                  class="min-w-fit max-h-10 opacity-100 group-hover:opacity-75 hover:!opacity-100"
+                  class="min-w-fit max-h-10 m-1 opacity-100 group-hover:opacity-75 hover:!opacity-100"
                   :link="link"
                   @click="goToLink(link.href)"
                 />
