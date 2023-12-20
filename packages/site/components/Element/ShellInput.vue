@@ -6,8 +6,13 @@
       <span class="font-bold">{{ vanity.path }}</span>
       <span>$ </span> 
     </span>
-    <span>
-      <span class="inline-flex basis-0 grow shrink bg-transparent whitespace-pre-wrap" role="textbox">{{ input }}</span>
+    <span class="relative">
+      <span 
+        class="inline-flex basis-0 grow shrink bg-transparent whitespace-pre-wrap" 
+        role="textbox"
+      >
+        {{ input }}
+      </span>
       <span 
         class="absolute h-fit transition-opacity"
         :class="{

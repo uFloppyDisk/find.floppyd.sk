@@ -28,10 +28,11 @@
     </div>
     <div 
       ref="shell" tabindex="0"
-      class="w-full h-full pt-2"
+      class="w-full h-full overflow-y-scroll"
     >
       <div 
-        class="px-6 transition-opacity"
+        ref="scrollToElement"
+        class="mt-2 pb-10 px-6 transition-opacity"
         :class="{
           'opacity-70': !focussed
         }"
@@ -63,6 +64,7 @@ const root: Ref<Document | null> = ref(null);
 const router = reactive(useRouter());
 
 const shell: Ref<HTMLDivElement | null> = ref(null);
+const scrollToElement: Ref<HTMLDivElement | null> = ref(null);
 const input: Ref<string> = ref('');
 const inputCounter: Ref<number> = ref(0);
 
@@ -150,6 +152,7 @@ const commit = (input: string) => {
     data.output = (err as Error).message;
     previous.push(data);
   }
+
 }
 
 const keyDownEvent = (event: KeyboardEvent) => {
@@ -203,6 +206,10 @@ if (process.browser) {
     })
 
     value.addEventListener("keydown", keyDownEvent);
+  });
+
+  watch(previous, () => {
+    scrollToElement.value?.scrollIntoView(false);
   });
 
   watch(inputCounter, (_value, _) => {
