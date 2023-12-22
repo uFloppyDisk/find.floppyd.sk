@@ -15,7 +15,6 @@
             <NuxtLink 
               v-for="route in routes"
               :to="route.route"
-              @click="toggleContent(true)"
             >
               <div class="px-2 hover:bg-primary-500 hover:text-black transition-colors">{{ route.text }}</div>
             </NuxtLink>
@@ -85,6 +84,7 @@ const routes = ref([
   { route: "/about", text: "About me" },
 ]);
 
+const router = reactive(useRouter());
 const config = useRuntimeConfig();
 const now: Ref<number | null> = ref(null);
 const showContent = ref(true);
@@ -130,7 +130,19 @@ const goToLink = (href: string) => {
 const goHome = () => {
   const ua = navigator.userAgent;
   const info = {
-    browser: /Edge\/\d+/.test(ua) ? 'ed' : /MSIE 9/.test(ua) ? 'ie9' : /MSIE 10/.test(ua) ? 'ie10' : /MSIE 11/.test(ua) ? 'ie11' : /MSIE\s\d/.test(ua) ? 'ie?' : /rv\:11/.test(ua) ? 'ie11' : /Firefox\W\d/.test(ua) ? 'ff' : /Chrom(e|ium)\W\d|CriOS\W\d/.test(ua) ? 'gc' : /\bSafari\W\d/.test(ua) ? 'sa' : /\bOpera\W\d/.test(ua) ? 'op' : /\bOPR\W\d/i.test(ua) ? 'op' : typeof PointerEvent !== 'undefined' ? 'ie?' : '',
+    browser: 
+      /Edge\/\d+/.test(ua) ? 'ed' : 
+      /MSIE 9/.test(ua) ? 'ie9' : 
+      /MSIE 10/.test(ua) ? 'ie10' : 
+      /MSIE 11/.test(ua) ? 'ie11' : 
+      /MSIE\s\d/.test(ua) ? 'ie?' : 
+      /rv\:11/.test(ua) ? 'ie11' : 
+      /Firefox\W\d/.test(ua) ? 'ff' : 
+      /Chrom(e|ium)\W\d|CriOS\W\d/.test(ua) ? 'gc' : 
+      /\bSafari\W\d/.test(ua) ? 'sa' : 
+      /\bOpera\W\d/.test(ua) ? 'op' : 
+      /\bOPR\W\d/i.test(ua) ? 'op' : 
+      typeof PointerEvent !== 'undefined' ? 'ie?' : '',
   };
 
   let home = 'about:blank';
@@ -164,15 +176,18 @@ const updateNow = () => {
     now.value = Date.now();
 }
 
-if (process.browser) {
-  const {data} = await useFetch(config.public.CFWorkerTwitchGetStatus, { })
-
+onMounted(async () => {
   setInterval(updateNow, 1000);
+  
+  watch(router, () => {
+    toggleContent(true);
+  })
 
-  watch(data, (value, _) => {
+  const {data} = await useFetch(config.public.CFWorkerTwitchGetStatus, { })
+  watch(data, (value) => {
     contentStatus.value = { twitch: (value as ContentStatus['twitch']) };
   })
-}
+});
 
 </script>
 
