@@ -65,8 +65,10 @@ const router = reactive(useRouter());
 
 const shell: Ref<HTMLDivElement | null> = ref(null);
 const scrollToElement: Ref<HTMLDivElement | null> = ref(null);
+
 const input: Ref<string> = ref('');
 const inputCounter: Ref<number> = ref(0);
+const historyPointer: Ref<number> = ref(0);
 
 const history: string[] = [];
 const previous: ShellPrevious[] = reactive([]);
@@ -122,7 +124,6 @@ const commit = (input: string) => {
     output: null
   };
 
-  history.push(input);
   inputCounter.value += 1;
 
   const keyword = input.split(" ", 1)[0];
@@ -130,6 +131,8 @@ const commit = (input: string) => {
     previous.push(data);
     return;
   }
+
+  history.push(input);
 
   try {
     const def = getCommand(commands, keyword);
@@ -169,6 +172,18 @@ const keyDownEvent = (event: KeyboardEvent) => {
         if (input.value.length <= 0) { break; }
 
         input.value = input.value.slice(0, -1);
+        break;
+
+      case 'ArrowUp':
+        if (historyPointer.value <= 0) { break; }
+
+        historyPointer.value -= 1; 
+        break;
+
+      case 'ArrowDown':
+        if (historyPointer.value >= history.length) { break; }
+
+        historyPointer.value += 1;
         break;
     }
 
@@ -219,7 +234,18 @@ onMounted(() => {
       userName: vanity.userName,
       path: vanity.path,
     }
+
+    historyPointer.value = history.length;
   });
+
+  watch(historyPointer, (value) => {
+    if (value >= history.length || value < 0) { 
+      input.value = ''; 
+      return;
+    }
+
+    input.value = history[value];
+  })
 });
 
 </script>
