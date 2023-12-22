@@ -189,38 +189,38 @@ const keyDownEvent = (event: KeyboardEvent) => {
   }
 }
 
-if (process.browser) {
-  watch(router, (value, _) => {
-    vanity.path = value.currentRoute.path;
-  });
+onMounted(() => {
+  do {
+    if (shell.value === null) { break; }
 
-  watch(shell, (value, _) => {
-    if (value == null) { return; }
-
-    value.addEventListener('focusin', (_event) => {
+    shell.value.addEventListener('focusin', (_event) => {
       focussed.value = true;
     })
 
-    value.addEventListener('focusout', (_event) => {
+    shell.value.addEventListener('focusout', (_event) => {
       focussed.value = false;
     })
 
-    value.addEventListener("keydown", keyDownEvent);
-  });
+    shell.value.addEventListener("keydown", keyDownEvent);
+  } while (false);
 
+  watch(router, (value) => {
+    vanity.path = value.currentRoute.path;
+  });
+  
   watch(previous, () => {
     setTimeout(() => {
       scrollToElement.value?.scrollIntoView(false);
     }, 0.1)
   });
 
-  watch(inputCounter, (_value, _) => {
+  watch(inputCounter, () => {
     vanityStatic = {
       userName: vanity.userName,
       path: vanity.path,
     }
   });
-}
+});
 
 </script>
 
