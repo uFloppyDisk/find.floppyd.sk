@@ -19,10 +19,10 @@
       </div>
       <div class="flex h-full place-items-center">
         <div class="hidden sm:inline-flex h-full px-1 items-center gap-x-1 bg-primary-700">
-          <span class="text-black font-bold">{{ shellDateTime.split(" ")[0] }}</span>
+          <span class="text-black font-bold">{{ shellDateTime[0] }}</span>
         </div>
         <div class="inline-flex h-full px-1 items-center gap-x-1 bg-primary-500">
-          <span class="text-black font-bold">{{ shellDateTime.split(" ")[1] }} UTC</span>
+          <span class="text-black font-bold">{{ shellDateTime[1] }}</span>
         </div>
       </div>
     </div>
@@ -89,17 +89,24 @@ const now: Ref<number> = inject('now', ref(0));
 provide('vanity', vanity);
 
 const shellDateTime = computed(() => {
+  if (now.value <= 0) { return ['', '']; }
   const date = new Date(now.value);
 
-  const year = date.getUTCFullYear();
-  const month = (date.getUTCMonth() + 1).toString().padStart(2, '0');
-  const day = date.getUTCDate().toString().padStart(2, '0');
+  const pad = (value: number) => {
+    return value.toString().padStart(2, '0');
+  }
 
-  const hours = date.getUTCHours().toString().padStart(2, '0');
-  const minutes = date.getUTCMinutes().toString().padStart(2, '0');
-  const seconds = date.getUTCSeconds().toString().padStart(2, '0');
+  const year = date.getFullYear();
+  const month = pad(date.getMonth() + 1);
+  const day = pad(date.getDate());
+
+  const hours = pad(date.getHours());
+  const minutes = pad(date.getMinutes());
+  const seconds = pad(date.getSeconds());
   
-  return `${year}-${month}-${day} ${hours}:${minutes}:${seconds}`;
+  const zone = date.toLocaleTimeString(undefined,{timeZoneName:'short'}).split(' ')[2]
+
+  return [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds} ${zone}`];
 })
 
 onMounted(() => {    
@@ -159,7 +166,7 @@ const commit = (input: string) => {
 }
 
 const keyDownEvent = (event: KeyboardEvent) => {
-  if (input.value == null) { return; }
+  if (input.value === null) { return; }
 
   if (event.key.length > 1) {
     switch (event.key) {
