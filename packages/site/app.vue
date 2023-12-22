@@ -86,7 +86,7 @@ const routes = ref([
 ]);
 
 const config = useRuntimeConfig();
-const now = ref(Date.now());
+const now: Ref<number | null> = ref(null);
 const showContent = ref(true);
 
 const categories = ref(generateLinkCategories(links));
@@ -99,12 +99,14 @@ const contentStatus = ref<ContentStatus>({
 });
 
 const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
-    try {
-      const dateStarted = new Date(contentStatus.value.twitch.started_at);
-      return now.value - dateStarted.getTime();
-    } catch {
-      return 0;
-    }
+  if (now.value === null) { return 0; }
+
+  try {
+    const dateStarted = new Date(contentStatus.value.twitch.started_at);
+    return now.value - dateStarted.getTime();
+  } catch {
+    return 0;
+  }
 })
 
 provide("now", readonly(now));
