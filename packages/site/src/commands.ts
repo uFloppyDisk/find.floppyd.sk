@@ -59,6 +59,13 @@ export default <CommandMap> new Map([
       return this.input?.join(" ") ?? null;
     }
   }],
+  ["history", class EchoCommand extends CommandWithInput {
+    keyword = "history";
+    description = "Show history of shell input during this session.";
+    execute(ctx: ShellContext): string | null {
+      return ctx.history.slice(0, -1).join("\n");
+    }
+  }],
   ["colour", class ColourCommand extends CommandWithInput {
     keyword = "colour";
     description = "Change the colour of the terminal.";
