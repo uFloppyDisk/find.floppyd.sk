@@ -29,6 +29,9 @@
     <div 
       ref="shell" tabindex="0"
       class="w-full h-full overflow-y-scroll"
+      @focusin="focussed = true;"
+      @focusout="focussed = false;"
+      @keydown.prevent="keyDownEvent"
     >
       <div 
         ref="scrollToElement"
@@ -162,7 +165,6 @@ const commit = (input: string) => {
     data.output = (err as Error).message;
     previous.push(data);
   }
-
 }
 
 const keyDownEvent = (event: KeyboardEvent) => {
@@ -212,20 +214,6 @@ const keyDownEvent = (event: KeyboardEvent) => {
 }
 
 onMounted(() => {
-  do {
-    if (shell.value === null) { break; }
-
-    shell.value.addEventListener('focusin', (_event) => {
-      focussed.value = true;
-    })
-
-    shell.value.addEventListener('focusout', (_event) => {
-      focussed.value = false;
-    })
-
-    shell.value.addEventListener("keydown", keyDownEvent);
-  } while (false);
-
   watch(router, (value) => {
     vanity.path = value.currentRoute.path;
   });
