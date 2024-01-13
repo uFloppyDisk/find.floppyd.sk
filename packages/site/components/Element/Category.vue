@@ -1,11 +1,5 @@
 <template>
-  <div
-    class="group/category flex flex-col"
-    :class="{
-      '': 
-        isPriority,
-    }"
-  >
+  <div class="group/category flex flex-col">
     <div 
       class="flex cursor-pointer"
       @click="collapse = !collapse"
@@ -46,6 +40,10 @@
             <font-awesome-icon
               v-else-if="category[0] === 'social'"
               :icon="['fas', 'user-group']"
+            />
+            <font-awesome-icon
+              v-else-if="category[0] === 'software'"
+              :icon="['fas', 'code']"
             />
             <font-awesome-icon
               v-else
