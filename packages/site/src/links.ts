@@ -7,6 +7,7 @@ type GenericLink = {
     title: string;
     subtitle?: string;
 
+    priority?: boolean;
     category?: Categories;
 };
 

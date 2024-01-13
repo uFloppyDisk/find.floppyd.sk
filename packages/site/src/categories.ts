@@ -5,6 +5,7 @@ export type Categories = (typeof categoryPriority)[number];
 
 export function generateLinkCategories(links: Link[]) {
   const categories = new Map<string, Link[]>();
+  categories.set('priority', []);
 
   links.forEach(link => {
     let category = 'miscellaneous';
@@ -12,6 +13,10 @@ export function generateLinkCategories(links: Link[]) {
     if (!categories.has(category)) { categories.set(category, [])}
 
     categories.get(category)?.push(link);
+
+    if (link.priority ?? false) {
+      categories.get('priority')?.push(link);
+    }
   });
 
   return new Map(
