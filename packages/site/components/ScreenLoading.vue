@@ -17,7 +17,18 @@
             </div>
             <div class="px-4 py-3 bg-black/20 text-center">
               <div>{{ loadingStatusMsg }}</div>
-              <div ref="dispLoading" id="loading" class="flex h-7 p-1 border border-primary-500 text-start text-md font-mono whitespace-nowrap"></div>
+              <div ref="dispLoading" class="flex h-7 p-1 border border-primary-500 text-start text-md font-mono whitespace-nowrap">
+                <div
+                  v-for="i in loadingSteps"
+                  ref="dispLoadingSteps"
+                  :key="i"
+                  class="flex justify-center items-center"
+                  :class="{
+                    'grow': loadingSteps > 1,
+                    'invisible': loadingSteps <= 1
+                  }"
+                >.</div>
+              </div>
             </div>
           </div>
         </div>  
@@ -29,8 +40,9 @@
 const PROGRESS_MAX = 100;
 
 const dispLoading: Ref<HTMLDivElement | null> = ref(null);
+const dispLoadingSteps: Ref<HTMLDivElement[] | null> = ref(null);
 const loadingStatusMsg: Ref<string> = ref('Please wait...');
-const dispLoadingSteps = ref(0);
+const loadingSteps = ref(1);
 
 const progress = ref(-1);
 const done = ref(false);
@@ -48,26 +60,19 @@ const makeProgress = () => {
 
 onMounted(() => {
   if (dispLoading.value == null) { return; }
+  if (dispLoadingSteps.value == null) { return; }
 
-  const CHAR = '<div class="flex grow justify-center items-center"><span>.</span></div>'
-  const MAXCHARS = 200
+  const sample = dispLoadingSteps.value.pop();
+  if (typeof sample === 'undefined') { return; }
 
-  const MAXWIDTH = dispLoading.value.clientWidth;
-  for (let char = 0; char < MAXCHARS; char++) {
-    dispLoading.value.innerHTML += CHAR;
-    if (dispLoading.value.clientWidth > MAXWIDTH) {
-      dispLoading.value.innerHTML = CHAR.repeat(char);
-      break;
-    }
-  }
+  const steps = Math.ceil(dispLoading.value.clientWidth / sample.clientWidth);
+  loadingSteps.value = steps;
 
-  dispLoadingSteps.value = dispLoading.value?.children.length;
   dispLoading.value.style.width = dispLoading.value.clientWidth + 'px'
-
   loadingStatusMsg.value = "// Initializing //";
 
   watch(progress, (value) => {
-    const curProgressStep = Math.floor((value / PROGRESS_MAX) * dispLoadingSteps.value);
+    const curProgressStep = Math.floor((value / PROGRESS_MAX) * loadingSteps.value);
     
     if (dispLoading.value?.children[curProgressStep] == null) { return; }
 
@@ -86,15 +91,3 @@ onMounted(() => {
   makeProgress();
 })
 </script>
-
-<style>
-#loading * {
-  text-shadow: none !important;
-}
-
-#loading div.done {
-  color: black;
-  background-color: var(--color-primary-500);
-}
-</style>
-
