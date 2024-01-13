@@ -78,6 +78,9 @@
           >
             <ElementLink
               class="min-w-fit max-h-10 m-1 opacity-100 group-hover:opacity-75 hover:!opacity-100"
+              :class="{
+                'shadow-[2px_2px_0_0_rgba(0,0,0,0.25)]': isPriority,
+              }"
               :link="link"
             />
           </div>

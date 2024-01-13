@@ -4,7 +4,7 @@
       h-10
       bg-black/80
       border border-primary-500
-      transition
+      transition-transform
       translate-y-0 hover:-translate-y-1
       cursor-pointer
     "
