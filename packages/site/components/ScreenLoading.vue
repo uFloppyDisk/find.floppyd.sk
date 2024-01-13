@@ -19,15 +19,16 @@
               <div>{{ loadingStatusMsg }}</div>
               <div ref="dispLoading" class="flex h-7 p-1 border border-primary-500 text-start text-md font-mono whitespace-nowrap">
                 <div
-                  v-for="i in loadingSteps"
                   ref="dispLoadingSteps"
-                  :key="i"
+                  v-for="step in loadingSteps"
+                  :key="step"
                   class="flex justify-center items-center"
                   :class="{
+                    'bg-primary-500 text-black': stepDone > step,
                     'grow': loadingSteps > 1,
                     'invisible': loadingSteps <= 1
                   }"
-                >.</div>
+                >{{ stepDone > step ? '#' : '.' }}</div>
               </div>
             </div>
           </div>
@@ -37,24 +38,28 @@
 </template>
 
 <script lang="ts" setup>
-const PROGRESS_MAX = 100;
-
 const dispLoading: Ref<HTMLDivElement | null> = ref(null);
 const dispLoadingSteps: Ref<HTMLDivElement[] | null> = ref(null);
+
 const loadingStatusMsg: Ref<string> = ref('Please wait...');
 const loadingSteps = ref(1);
 
-const progress = ref(-1);
+const progress = ref(-0.4);
 const done = ref(false);
+
+const stepDone = computed(() => {
+  return loadingSteps.value * progress.value;
+})
+
 const makeProgress = () => {
-  if (progress.value >= PROGRESS_MAX) { 
+  if (progress.value >= 1) { 
     done.value = true;
     return;
   }
 
-  progress.value += 1;
+  progress.value += 0.01;
 
-  const multiplier = Math.min(Math.max((progress.value / PROGRESS_MAX), 0.01), 0.80);
+  const multiplier = Math.min(Math.max(progress.value, 0.01), 0.80);
   setTimeout(makeProgress, (15 + ((Math.random() - 0.5) * 10)) * (1.2 - multiplier));
 }
 
@@ -71,15 +76,6 @@ onMounted(() => {
   dispLoading.value.style.width = dispLoading.value.clientWidth + 'px'
   loadingStatusMsg.value = "// Initializing //";
 
-  watch(progress, (value) => {
-    const curProgressStep = Math.floor((value / PROGRESS_MAX) * loadingSteps.value);
-    
-    if (dispLoading.value?.children[curProgressStep] == null) { return; }
-
-    dispLoading.value.children[curProgressStep].classList.add('done');
-    dispLoading.value.children[curProgressStep].innerHTML = "#";
-  })
-
   watch(done, (value) => {
     if (!value) { return; }
 
@@ -88,6 +84,6 @@ onMounted(() => {
     loadingStatusMsg.value = doneMsg;
   })
 
-  makeProgress();
+  setTimeout(makeProgress, 0);
 })
 </script>
