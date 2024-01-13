@@ -1,5 +1,5 @@
 import type { ShellContext } from "./shell.d.ts";
-import { Command } from "../classes/command.ts";
+import { Command } from "../src/classes/command.ts";
 
 export type CommandMap = Map<string, typeof Command>
 

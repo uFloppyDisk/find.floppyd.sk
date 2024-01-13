@@ -92,7 +92,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Link } from '~/src/links'
+import type { Link } from '~/types/link';
 
 const props = defineProps<{
   category: [string, Link[]];

@@ -1,9 +1,8 @@
-import type { Link } from './links.ts'; 
-const categoryOrder = ['priority', 'content', 'social', 'software'] as const;
+import categoryOrder from "../src/categoryOrder.ts";
+import type { Link } from "../types/link.d.ts";
+import type { Categories } from "../types/categories.d.ts";
 
-export type Categories = (typeof categoryOrder)[number];
-
-export function generateLinkCategories(links: Link[]) {
+export default function (links: Link[]) {
   const categories = new Map<string, Link[]>();
   categories.set('priority', []);
 
@@ -34,5 +33,3 @@ export function generateLinkCategories(links: Link[]) {
     .reverse()
   );
 }
-
-export default categoryOrder;

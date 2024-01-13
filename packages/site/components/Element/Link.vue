@@ -75,8 +75,8 @@
 </template>
 
 <script lang="ts" setup>
-import type ContentStatus from '~/src/types/ContentStatus'
-import type { CustomLink, Link } from '~/src/links';
+import type ContentStatus from '~/types/ContentStatus'
+import type { CustomLink, Link } from '~/types/link';
 
 const status: ContentStatus | undefined = inject("contentStatus");
 const uptime: number = inject("contentTwitchUptimeSeconds", 0);

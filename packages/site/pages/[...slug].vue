@@ -21,7 +21,7 @@
 </template>
 
 <script setup lang="ts">
-import type { Link } from '~/src/links';
+import type { Link } from '~/types/link';
 
 const route = useRoute();
 const select = route.params.slug instanceof Array ? route.params.slug : [];

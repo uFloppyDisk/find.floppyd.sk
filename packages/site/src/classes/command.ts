@@ -1,5 +1,5 @@
-import type { CommandInterface } from "../types/command.d.ts";
-import type { ShellContext } from "../types/shell.d.ts";
+import type { CommandInterface } from "../../types/command.d.ts";
+import type { ShellContext } from "../../types/shell.d.ts";
 
 export class NullCommand { }
 

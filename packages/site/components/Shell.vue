@@ -58,10 +58,11 @@
 </template>
 
 <script setup lang="ts">
-import commands, { getCommand, initCommand } from '~/src/commands';
+import commands from '~/src/commands';
+import { getCommand, initCommand } from '~/utils/commandFuncs';
 import { NullCommand, Command } from '~/src/classes/command';
-import type { ShellPrevious } from '~/src/types/shell';
-import { randomString } from '~/src/utils';
+import type { ShellPrevious } from '~/types/shell';
+import randomString from '~/utils/randomString';
 
 const root: Ref<Document | null> = ref(null);
 const router = reactive(useRouter());

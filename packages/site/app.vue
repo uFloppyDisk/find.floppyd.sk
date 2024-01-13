@@ -75,9 +75,9 @@
 </template>
 
 <script setup lang="ts">
-import type ContentStatus from './src/types/ContentStatus';
-import links from './src/links.ts';
-import { generateLinkCategories } from './src/categories.ts';
+import type ContentStatus from '~/types/ContentStatus';
+import links from '~/src/links';
+import generateLinkCategories from '~/utils/generateLinkCategories.ts';
 
 const routes = ref([
   { route: "/", text: "Find me" },
