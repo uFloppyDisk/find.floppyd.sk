@@ -34,7 +34,8 @@ export default <Link[]>[
         subtitle:
             'Business-oriented and client-facing portfolio and marketplace.',
 
-        category: 'priority',
+        priority: true,
+        category: 'software',
     },
     {
         platform: 'site',
@@ -44,7 +45,8 @@ export default <Link[]>[
         subtitle:
             'A custom-built web platform for hosting my own web applications.',
 
-        category: 'priority',
+        priority: true,
+        category: 'software',
     },
     {
         platform: 'youtube',
@@ -96,7 +98,8 @@ export default <Link[]>[
         title: 'github',
         subtitle: "See what I'm working on!",
 
-        category: 'priority',
+        priority: true,
+        category: 'social',
     },
     {
         platform: 'twitter',
