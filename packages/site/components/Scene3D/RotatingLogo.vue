@@ -17,7 +17,7 @@ onMounted(() => {
 
   const sceneDomSize = sceneDom.value.getBoundingClientRect(); 
 
-  window.addEventListener('resize', (event) => {
+  window.addEventListener('resize', (_) => {
     camera.aspect = sceneDomSize.width / sceneDomSize.height;
     camera.updateProjectionMatrix();
 
@@ -69,7 +69,6 @@ onMounted(() => {
           });
 
           const geometry = new THREE.EdgesGeometry(geometryIntermediate);
-
           const mesh = new THREE.LineSegments(geometry, material);
 
           logo.add(mesh);
