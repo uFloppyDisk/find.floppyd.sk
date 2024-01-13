@@ -62,8 +62,9 @@
         'hidden': collapse
       }"
     >
-      <div class="basis-1 shrink-0"></div>
-      <div class="basis-3 shrink-0 mt-1 mb-1 border border-t-0 border-r-0 border-primary-500 opacity-50"></div>
+      <div class="grid grid-cols-6 basis-4 shrink-0 my-1">
+        <div class="col-start-3 col-span-full border border-t-0 border-r-0 border-primary-500 opacity-50" />
+      </div>
       <div class="basis-full">
         <div 
           class="flex flex-wrap-reverse flex-row-reverse text-center m-1"
