@@ -108,7 +108,7 @@ const shellDateTime = computed(() => {
   const minutes = pad(date.getMinutes());
   const seconds = pad(date.getSeconds());
   
-  const zone = date.toLocaleTimeString(undefined,{timeZoneName:'short'}).split(' ')[2]
+  const zone = date.toLocaleTimeString('en', {timeZoneName:'short'}).split(' ')[2]
 
   return [`${year}-${month}-${day}`, `${hours}:${minutes}:${seconds} ${zone}`];
 })
