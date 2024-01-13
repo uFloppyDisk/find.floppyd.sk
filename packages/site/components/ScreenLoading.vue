@@ -16,7 +16,7 @@
               <div class="text-sm">v60.09</div>
             </div>
             <div class="px-4 py-3 bg-black/20 text-center">
-              <div ref="dispLoadingStatus">// Initializing //</div>
+              <div>{{ loadingStatusMsg }}</div>
               <div ref="dispLoading" id="loading" class="flex h-7 p-1 border border-primary-500 text-start text-md font-mono whitespace-nowrap"></div>
             </div>
           </div>
@@ -29,7 +29,7 @@
 const PROGRESS_MAX = 100;
 
 const dispLoading: Ref<HTMLDivElement | null> = ref(null);
-const dispLoadingStatus: Ref<HTMLDivElement | null> = ref(null);
+const loadingStatusMsg: Ref<string> = ref('Please wait...');
 const dispLoadingSteps = ref(0);
 
 const progress = ref(-1);
@@ -64,7 +64,9 @@ onMounted(() => {
   dispLoadingSteps.value = dispLoading.value?.children.length;
   dispLoading.value.style.width = dispLoading.value.clientWidth + 'px'
 
-  watch(progress, (value, old) => {
+  loadingStatusMsg.value = "// Initializing //";
+
+  watch(progress, (value) => {
     const curProgressStep = Math.floor((value / PROGRESS_MAX) * dispLoadingSteps.value);
     
     if (dispLoading.value?.children[curProgressStep] == null) { return; }
@@ -73,13 +75,12 @@ onMounted(() => {
     dispLoading.value.children[curProgressStep].innerHTML = "#";
   })
 
-  watch(done, (value, old) => {
+  watch(done, (value) => {
     if (!value) { return; }
-    if (dispLoadingStatus.value == null) { return; }
 
-    var donePhrase = "DONE";
-    if (Math.random() >= 0.99) { donePhrase = "DAWN"; };
-    dispLoadingStatus.value.innerHTML = donePhrase;
+    var doneMsg = "DONE";
+    if (Math.random() >= 0.99) { doneMsg = "DAWN"; };
+    loadingStatusMsg.value = doneMsg;
   })
 
   makeProgress();
