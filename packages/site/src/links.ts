@@ -9,7 +9,6 @@ export default <Link[]>[
         subtitle:
             'Business-oriented and client-facing portfolio and marketplace.',
 
-        priority: true,
         category: 'software',
     },
     {
@@ -20,7 +19,6 @@ export default <Link[]>[
         subtitle:
             'A custom-built web platform for hosting my own web applications.',
 
-        priority: true,
         category: 'software',
     },
     {
@@ -39,6 +37,7 @@ export default <Link[]>[
         title: 'gaming',
         subtitle: 'Laid-back videos with goofs and gaffs.',
 
+        priority: true,
         category: 'content',
     },
     {
@@ -47,6 +46,7 @@ export default <Link[]>[
 
         title: 'twitch',
 
+        priority: true,
         category: 'content',
     },
     {
