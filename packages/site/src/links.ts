@@ -74,7 +74,7 @@ export default <Link[]>[
         subtitle: "See what I'm working on!",
 
         priority: true,
-        category: 'social',
+        category: 'software',
     },
     {
         platform: 'twitter',
