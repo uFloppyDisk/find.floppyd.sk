@@ -1,5 +1,5 @@
 <template>
-  <div class="
+  <NuxtLink class="
       group group/subtitle flex justify-between items-center
       h-10
       bg-black/80
@@ -11,6 +11,9 @@
     :class="{
       'hover:border-b-0': link.subtitle,
     }"
+    :to="link.href"
+    target="_blank"
+    :external="true"
   >
     <div class="flex basis-8 md:basis-10 pl-1 grow-0 shrink-0 h-full justify-center items-center">
       <font-awesome-icon 
@@ -67,7 +70,7 @@
       v-if="link.platform === 'twitch'"
       class="absolute top-0 right-0"
     />
-  </div>
+  </NuxtLink>
 </template>
 
 <script lang="ts" setup>
