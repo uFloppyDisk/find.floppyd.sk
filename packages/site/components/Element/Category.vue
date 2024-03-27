@@ -83,6 +83,7 @@
                 'shadow-[2px_2px_0_0_rgba(0,0,0,0.25)]': isPriority,
               }"
               :link="link"
+              @click="goToLink(link.href)"
             />
           </div>
         </div>
@@ -101,4 +102,7 @@ const props = defineProps<{
 const collapse = ref(false);
 const isPriority = computed(() => props.category[0] === 'priority');
 
+const goToLink = (href: string) => {
+  window.open(href, '_blank', 'noopener')
+}
 </script>
