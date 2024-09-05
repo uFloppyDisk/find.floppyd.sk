@@ -92,4 +92,14 @@ export default <Link[]>[
 
         category: 'social',
     },
+    {
+        platform: 'site',
+        href: 'https://emerldd.com',
+
+        title: 'Emerldd.com',
+        subtitle: 
+            'Community platform custom-built for Emerldd, a Twitch- and YouTube-partnered content creator.',
+
+        category: 'software',
+    },
 ];
