@@ -2,6 +2,9 @@
   "name": "find-floppyd-sk",
   "private": true,
   "type": "module",
+  "engine": {
+    "node": "18.x"
+  },
   "workspaces": [
     "packages/**",
     "packages/workers/**"
