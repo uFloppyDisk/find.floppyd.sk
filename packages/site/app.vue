@@ -85,34 +85,13 @@ const routes = ref([
 ]);
 
 const router = reactive(useRouter());
-const config = useRuntimeConfig();
 const now: Ref<number | null> = ref(null);
 const showContent = ref(true);
 
 const categories = ref(generateLinkCategories(links));
 
-const contentStatus = ref<ContentStatus>({
-  twitch: {
-    live: false,
-    started_at: ''
-  }
-});
-
-const contentTwitchUptimeSeconds: ComputedRef<number> = computed(() => {
-  if (now.value === null) { return 0; }
-
-  try {
-    const dateStarted = new Date(contentStatus.value.twitch.started_at);
-    return now.value - dateStarted.getTime();
-  } catch {
-    return 0;
-  }
-})
-
 provide("now", readonly(now));
 provide("categories", readonly(categories));
-provide("contentStatus", readonly(contentStatus));
-provide("contentTwitchUptimeSeconds", contentTwitchUptimeSeconds);
 
 useSeoMeta({
   title: 'Find FloppyDisk',
@@ -181,11 +160,6 @@ onMounted(async () => {
   
   watch(router, () => {
     toggleContent(true);
-  })
-
-  const {data} = await useFetch(config.public.CFWorkerTwitchGetStatus, { })
-  watch(data, (value) => {
-    contentStatus.value = { twitch: (value as ContentStatus['twitch']) };
   })
 });
 

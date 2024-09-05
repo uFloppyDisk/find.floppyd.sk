@@ -1,1 +1,1 @@
-export default ['priority', 'content', 'social', 'software'] as const;
+export default ['priority', 'software', 'content', 'social'] as const;
