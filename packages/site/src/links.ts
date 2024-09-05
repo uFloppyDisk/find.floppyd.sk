@@ -37,7 +37,6 @@ export default <Link[]>[
         title: 'gaming',
         subtitle: 'Laid-back videos with goofs and gaffs.',
 
-        priority: true,
         category: 'content',
     },
     {
@@ -100,6 +99,7 @@ export default <Link[]>[
         subtitle: 
             'Community platform custom-built for Emerldd, a Twitch- and YouTube-partnered content creator.',
 
+        priority: true,
         category: 'software',
     },
 ];
