@@ -39,6 +39,23 @@
       </div>
     </div>
     <div>
+      <ElementHeading :heading="3">Try it out!</ElementHeading>
+      <div class="flex flex-row">
+        <div class="basis-6 shrink-0"></div>
+        <div class="flex flex-col gap-2">
+          <p>
+            Click into the terminal behind this window and you should
+            see a cursor appear. Start by typing "help" and pressing your enter key;
+            a list of commands will appear showing what you can type next!
+            Try typing "colour yellow" and pressing your enter key. The terminal is now yellow :O
+          </p>
+          <p>
+            To hide the window covering your terminal, click the '-' dash button in the top left of your screen.
+          </p>
+        </div>
+      </div>
+    </div>
+    <div>
       <ElementHeading :heading="2">How is this site hosted?</ElementHeading>
       <div class="flex flex-row">
         <div class="basis-6 shrink-0"></div>
