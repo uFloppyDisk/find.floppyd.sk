@@ -8,16 +8,17 @@
         <div class="flex flex-col gap-2">
           <p>
             My name is Pawel. Online, you know me as FloppyDisk.
-            I am currently bunkered and ready for war near Vancouver, BC.
+            Currently living near Vancouver, BC.
           </p>
           <p>
-            At the age of 13, I endeavoured to learn as much as I can about
+            At the age of 13, I endeavoured to learn as much as I could about
             the things that fascinate me: web development, video editing,
             motion graphics, vector art, 3D modeling and animation, game development,
-            music, physics, et cetera.
+            music, and physics.
           </p>
           <p>
-            Now, at 24-years old, my focus is on breaking into the software industry.
+            This is my lifelong mission but my focus is now on breaking into 
+            the web development industry and to bring my interactive visions to life.
           </p>
         </div>
       </div>
