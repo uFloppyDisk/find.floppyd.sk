@@ -33,6 +33,8 @@
             a custom-made link aggregator that is also intended as a 
             quasi-ARG (alternate reality game) in the form of a 
             terminal like you would see when using Linux or WSL.
+          </p>
+          <p>
             I am always adding to this site so be sure to check back! 
           </p>
         </div>
