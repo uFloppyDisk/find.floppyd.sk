@@ -2,7 +2,7 @@
   "name": "find-floppyd-sk",
   "private": true,
   "type": "module",
-  "engine": {
+  "engines": {
     "node": "18.x"
   },
   "workspaces": [
