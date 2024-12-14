@@ -5,11 +5,36 @@
   "engines": {
     "node": "18.x"
   },
-  "workspaces": [
-    "packages/**",
-    "packages/workers/**"
-  ],
+  "scripts": {
+    "build": "nuxt build",
+    "dev": "nuxt dev",
+    "generate": "nuxt generate",
+    "preview": "npm run build && wrangler pages dev",
+    "postinstall": "nuxt prepare",
+    "deploy": "npm run build && wrangler pages deploy",
+    "cf-typegen": "wrangler types"
+  },
   "devDependencies": {
-    "lerna": "^8.1.8"
+    "@nuxt/devtools": "latest",
+    "@types/three": "^0.157.0",
+    "@cloudflare/workers-types": "^4.20241205.0",
+    "nitro-cloudflare-dev": "^0.2.1",
+    "wrangler": "^3.95.0"
+  },
+  "dependencies": {
+    "@fortawesome/fontawesome-free": "^6.4.2",
+    "@fortawesome/fontawesome-svg-core": "^6.4.2",
+    "@fortawesome/free-brands-svg-icons": "^6.4.2",
+    "@fortawesome/free-regular-svg-icons": "^6.4.2",
+    "@fortawesome/free-solid-svg-icons": "^6.4.2",
+    "@fortawesome/vue-fontawesome": "^3.0.3",
+    "@nuxtjs/tailwindcss": "^6.8.0",
+    "tailwindcss": "^3.3.3",
+    "autoprefixer": "^10.4.16",
+    "postcss": "^8.4.31",
+    "three": "^0.157.0",
+    "nuxt": "^3.7.4",
+    "vue": "^3.3.4",
+    "vue-router": "^4.2.5"
   }
 }
