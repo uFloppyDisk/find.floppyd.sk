@@ -28,7 +28,7 @@
     </div>
     <div 
       ref="shell" tabindex="0"
-      class="w-full h-full overflow-y-scroll"
+      class="w-full h-full overflow-y-auto"
       @focusin="focussed = true;"
       @focusout="focussed = false;"
       @keydown.prevent="keyDownEvent"

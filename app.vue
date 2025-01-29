@@ -60,7 +60,7 @@
       </div>
     </div>
     <div 
-      class="container mx-auto flex basis-auto grow px-4 lg:px-44 items-start xl:items-center duration-300 transition overflow-y-scroll"
+      class="container mx-auto flex basis-auto grow px-4 lg:px-44 items-start xl:items-center duration-300 transition overflow-y-auto"
       :class="{
         'opacity-0 pointer-events-none': !showContent,
       }"
