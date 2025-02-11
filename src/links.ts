@@ -83,7 +83,7 @@ export default <Link[]>[
   },
   {
     platform: 'custom',
-    href: 'https://floppyd.sk/instagram',
+    href: 'https://steamcommunity.com/sharedfiles/filedetails/?id=2494170635',
 
     icon: 'bomb',
     title: 'Ordnance',
