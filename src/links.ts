@@ -3,16 +3,6 @@ import type { Link } from "../types/link.d.ts";
 export default <Link[]>[
   {
     platform: 'site',
-    href: 'https://floppydiskprod.com',
-
-    title: 'FloppyDiskProd',
-    subtitle:
-      'Business-oriented and client-facing portfolio and marketplace.',
-
-    category: 'software',
-  },
-  {
-    platform: 'site',
     href: 'https://io.floppyd.sk',
 
     title: 'FD I/O',
@@ -90,16 +80,5 @@ export default <Link[]>[
     title: 'images',
 
     category: 'social',
-  },
-  {
-    platform: 'site',
-    href: 'https://emerldd.com',
-
-    title: 'Emerldd.com',
-    subtitle:
-      'Community platform custom-built for Emerldd, a Twitch- and YouTube-partnered content creator.',
-
-    priority: true,
-    category: 'software',
   },
 ];
