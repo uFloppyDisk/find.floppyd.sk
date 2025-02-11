@@ -1,24 +1,24 @@
 import type { Categories } from "./categories.d.ts";
 
 type GenericLink = {
-    platform: string;
-    href: string;
+  platform: string;
+  href: string;
 
-    title: string;
-    subtitle?: string;
+  title: string;
+  subtitle?: string;
 
-    priority?: boolean;
-    category?: Categories;
+  priority?: boolean;
+  category?: Categories;
 };
 
 type StandardLink = GenericLink & {
-    platform: string | 'site';
+  platform: string | 'site';
 };
 
 type CustomLink = GenericLink & {
-    platform: 'custom';
+  platform: 'custom';
 
-    icon: string;
+  icon: string; 
 };
 
 type Link = StandardLink | CustomLink;
