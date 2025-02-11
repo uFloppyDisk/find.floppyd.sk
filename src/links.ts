@@ -35,7 +35,6 @@ export default <Link[]>[
 
     title: 'twitch',
 
-    priority: true,
     category: 'content',
   },
   {
@@ -89,6 +88,7 @@ export default <Link[]>[
     title: 'Ordnance',
     subtitle: "A steam workshop mod for voxel-based game 'Teardown' with over 100k unique visitors and subscribers.",
 
+    priority: true,
     category: 'software',
   },
 ];
