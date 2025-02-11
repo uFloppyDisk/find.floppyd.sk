@@ -81,4 +81,14 @@ export default <Link[]>[
 
     category: 'social',
   },
+  {
+    platform: 'custom',
+    href: 'https://floppyd.sk/instagram',
+
+    icon: 'gamepad',
+    title: 'Ordnance',
+    subtitle: "A steam workshop mod for voxel-based game 'Teardown' with over 100k unique visitors and subscribers.",
+
+    category: 'software',
+  },
 ];
