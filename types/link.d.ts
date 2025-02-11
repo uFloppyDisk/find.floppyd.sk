@@ -1,4 +1,5 @@
 import type { Categories } from "./categories.d.ts";
+import type { IconName } from "@fortawesome/fontawesome-common-types";
 
 type GenericLink = {
   platform: string;
@@ -18,7 +19,7 @@ type StandardLink = GenericLink & {
 type CustomLink = GenericLink & {
   platform: 'custom';
 
-  icon: string; 
+  icon: IconName;
 };
 
 type Link = StandardLink | CustomLink;
