@@ -13,7 +13,12 @@ export default defineNuxtConfig({
     preset: "cloudflare-pages"
   },
 
-  modules: ["@nuxtjs/tailwindcss", "nitro-cloudflare-dev"],
+  modules: [
+    "nitro-cloudflare-dev",
+    "@nuxt/content",
+    "@nuxtjs/tailwindcss"
+  ],
+
   css: ['@fortawesome/fontawesome-svg-core/styles.css'],
 
   build: {
