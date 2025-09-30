@@ -1,8 +1,9 @@
-import categoryOrder from "~/src/categoryOrder.ts";
 import type { Link } from "~/types/link.d.ts";
 import type { Categories } from "~/types/categories.d.ts";
 
-export default function (links?: any[]) {
+export type CategoryMap = Map<string, Link[]>;
+
+export default function(links: any[] | null, order: string[]): CategoryMap {
   const categories = new Map<string, Link[]>();
   if (links == null) {
     return categories;
@@ -36,9 +37,9 @@ export default function (links?: any[]) {
   return new Map(
     [...categories.entries()]
       .filter((cat) => cat[1].length > 0)
-      .sort(function (a, b) {
-        const indexA = categoryOrder.indexOf(a[0] as Categories);
-        const indexB = categoryOrder.indexOf(b[0] as Categories);
+      .sort(function(a, b) {
+        const indexA = order.indexOf(a[0] as Categories);
+        const indexB = order.indexOf(b[0] as Categories);
 
         if (indexA === -1) { return 1; }
         if (indexB === -1) { return -1; }

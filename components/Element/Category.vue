@@ -30,20 +30,8 @@
         >
           <span class="flex basis-5 justify-center items-center">
             <font-awesome-icon
-              v-if="isPriority"
-              :icon="['fas', 'heart']"
-            />
-            <font-awesome-icon
-              v-else-if="category[0] === 'content'"
-              :icon="['fas', 'video']"
-            />
-            <font-awesome-icon
-              v-else-if="category[0] === 'social'"
-              :icon="['fas', 'user-group']"
-            />
-            <font-awesome-icon
-              v-else-if="category[0] === 'software'"
-              :icon="['fas', 'code']"
+              v-if="category?.icon"
+              :icon="['fas', category.icon]"
             />
             <font-awesome-icon
               v-else
@@ -51,7 +39,7 @@
             />
           </span>
           <span class="h-4">
-            {{ !(isPriority) ? category[0] : "Floppy's picks" }}
+            {{ category?.title }}
           </span>
         </span>
       </div>
@@ -73,7 +61,7 @@
           }"
         >
           <div
-            v-for="link in category[1].slice().reverse()"
+            v-for="link in links.slice().reverse()"
             :key="link.href"
             class="basis-full md:basis-1/2 lg:basis-1/3 xl:basis-full grow shrink-0"
           >
@@ -92,12 +80,27 @@
 </template>
 
 <script setup lang="ts">
+import type { CategoriesCollectionItem } from '@nuxt/content';
 import type { Link } from '~/types/link';
 
+type Category = Pick<CategoriesCollectionItem, "name" | "title" | "icon">;
+
 const props = defineProps<{
-  category: [string, Link[]];
+  links: Link[];
+  category?: Category;
 }>();
 
+const category = computed<Category>(() => {
+  if (!props.category) {
+    return {
+      name: "misc",
+      title: "Misc."
+    }
+  }
+
+  return props.category;
+})
+
 const collapse = ref(false);
-const isPriority = computed(() => props.category[0] === 'priority');
+const isPriority = computed(() => category.value.name === 'priority');
 </script>

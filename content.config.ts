@@ -29,6 +29,15 @@ const linksSchema = z.discriminatedUnion("platform", [
 
 export default defineContentConfig({
   collections: {
+    categories: defineCollection({
+      type: 'data',
+      source: 'categories/*.md',
+      schema: z.object({
+        name: z.string(),
+        title: z.string(),
+        icon: z.string().optional(),
+      }),
+    }),
     links: defineCollection({
       type: 'data',
       source: 'links/**/*.md',
