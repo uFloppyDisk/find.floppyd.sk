@@ -75,10 +75,6 @@
 </template>
 
 <script setup lang="ts">
-import type ContentStatus from '~/types/ContentStatus';
-import links from '~/src/links';
-import generateLinkCategories from '~/utils/generateLinkCategories.ts';
-
 const routes = ref([
   { route: "/", text: "Find me" },
   { route: "/about", text: "About me" },
@@ -88,10 +84,7 @@ const router = reactive(useRouter());
 const now: Ref<number | null> = ref(null);
 const showContent = ref(true);
 
-const categories = ref(generateLinkCategories(links));
-
 provide("now", readonly(now));
-provide("categories", readonly(categories));
 
 useSeoMeta({
   title: 'Find FloppyDisk',

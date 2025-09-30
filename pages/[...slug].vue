@@ -22,13 +22,15 @@
 
 <script setup lang="ts">
 import type { Link } from '~/types/link';
+import generateLinkCategories from '~/utils/generateLinkCategories.ts';
 
 const route = useRoute();
 const select = route.params.slug instanceof Array ? route.params.slug : [];
 
 type CategoryMap = Map<string, Link[]>;
 
-const allCategories: Ref<CategoryMap> = ref(inject("categories") ?? new Map());
+const { data: links } = await useAsyncData(() => queryCollection("links").all());
+const allCategories: Ref<CategoryMap> = computed(() => generateLinkCategories(links.value));
 const categories: Ref<CategoryMap> = ref(new Map());
 
 do {
